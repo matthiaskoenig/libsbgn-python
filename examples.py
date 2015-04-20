@@ -113,6 +113,7 @@ map.set_bbox(box)
 		<bbox x="40" y="120" w="60" h="60"/>
 	</glyph>
 '''
+# glyphs with labels
 g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph1')
 g.set_label(libsbgn.label(text='Ethanol'))
 g.set_bbox(libsbgn.bbox(x=40, y=120, w=60, h=60))
@@ -143,15 +144,46 @@ g.set_label(libsbgn.label(text='NADH'))
 g.set_bbox(libsbgn.bbox(x=300, y=150, w=60, h=60))
 map.add_glyph(g)
 
-g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_nadh', 
+# glyph with ports (process)
+g = libsbgn.glyph(class_=GlyphClass.PROCESS, id='pn1', 
                   orientation=Orientation.HORIZONTAL)
-g.set_label(libsbgn.label(text='NADH'))
-g.set_bbox(libsbgn.bbox(x=300, y=150, w=60, h=60))
+g.set_bbox(libsbgn.bbox(x=148, y=168, w=24, h=24))
+g.add_port(libsbgn.port(x=136, y=180, id="pn1.1"))
+g.add_port(libsbgn.port(x=184, y=180, id="pn1.2"))
 map.add_glyph(g)
 
+# arcs
+a = libsbgn.arc(class_=ArcClass.CONSUMPTION, source="glyph1", target="pn1.1", id="a01")
+a.set_start(libsbgn.startType(x=98, y=160))
+a.set_end(libsbgn.endType(x=98, y=160))
+map.add_arc(a)
+
+a = libsbgn.arc(class_=ArcClass.PRODUCTION, source="pn1.2", target="glyph_nadh", id="a02")
+a.set_start(libsbgn.startType(x=184, y=180))
+a.set_end(libsbgn.endType(x=300, y=180))
+map.add_arc(a)
+
+a = libsbgn.arc(class_=ArcClass.CATALYSIS, source="glyph_adh1", target="pn1", id="a03")
+a.set_start(libsbgn.startType(x=160, y=80))
+a.set_end(libsbgn.endType(x=160, y=168))
+map.add_arc(a)
+
+a = libsbgn.arc(class_=ArcClass.PRODUCTION, source="pn1.2", target="glyph_h", id="a04")
+a.set_start(libsbgn.startType(x=184, y=180))
+a.set_end(libsbgn.endType(x=224, y=202))
+map.add_arc(a)
+
+a = libsbgn.arc(class_=ArcClass.PRODUCTION, source="pn1.2", target="glyph_ethanal", id="a05")
+a.set_start(libsbgn.startType(x=184, y=180))
+a.set_end(libsbgn.endType(x=224, y=154))
+map.add_arc(a)
+
+a = libsbgn.arc(class_=ArcClass.CONSUMPTION, source="glyph_nad", target="pn1.1", id="a06")
+a.set_start(libsbgn.startType(x=95, y=202))
+a.set_end(libsbgn.endType(x=136, y=180))
+map.add_arc(a)
 
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
-
 f_out = open('examples/test.sbgn', 'w')
 sbgn.export(f_out, level=0, namespace_='')
 f_out.close()

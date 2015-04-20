@@ -25,9 +25,34 @@
             <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="NADH"/>
             <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="300" y="150" w="60" h="60"/>
         </sbgn:glyph>
-        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_nadh" class="simple chemical" orientation="horizontal">
-            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="NADH"/>
-            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="300" y="150" w="60" h="60"/>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="pn1" class="process" orientation="horizontal">
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="148" y="168" w="24" h="24"/>
+            <sbgn:port xmlns:sbgn="http://sbgn.org/libsbgn/0.2" y="180" x="136" id="pn1.1"/>
+            <sbgn:port xmlns:sbgn="http://sbgn.org/libsbgn/0.2" y="180" x="184" id="pn1.2"/>
         </sbgn:glyph>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="glyph1" target="pn1.1" class="consumption" id="a01">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="98" y="160"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="98" y="160"/>
+        </sbgn:arc>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="pn1.2" target="glyph_nadh" class="production" id="a02">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="184" y="180"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="300" y="180"/>
+        </sbgn:arc>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="glyph_adh1" target="pn1" class="catalysis" id="a03">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="160" y="80"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="160" y="168"/>
+        </sbgn:arc>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="pn1.2" target="glyph_h" class="production" id="a04">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="184" y="180"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="224" y="202"/>
+        </sbgn:arc>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="pn1.2" target="glyph_ethanal" class="production" id="a05">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="184" y="180"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="224" y="154"/>
+        </sbgn:arc>
+        <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="glyph_nad" target="pn1.1" class="consumption" id="a06">
+            <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="95" y="202"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="136" y="180"/>
+        </sbgn:arc>
     </sbgn:map>
 </sbgn>
