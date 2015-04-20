@@ -11,6 +11,9 @@ Created on Mon Apr 20 19:02:22 2015
 TODO: export write <?xml version="1.0" encoding="UTF-8"?>
 TODO: export no sbgn: prefix
 
+TODO: int() cast of integer values - not string of double
+TODO: 
+
 TODO: git repository
 TODO: documentation sphynx
 TODO: python package
@@ -21,12 +24,12 @@ import libsbgn         # import the bindings
 print(libsbgn.__all__)
 
 def print_bbox(b):
-    print('x, y, w, h : ', bbox.get_x(), bbox.get_y(), bbox.get_w(), bbox.get_h())
+    print('x, y, w, h : ', b.get_x(), b.get_y(), b.get_w(), b.get_h())
 
 #################################################################
 # read SBGN
 #################################################################
-f_in = 'adh.sbgn'
+f_in = 'examples/adh.sbgn'
 
 # sbgn and map
 sbgn = libsbgn.parse(f_in)
@@ -85,11 +88,11 @@ for a in arcs:
 #################################################################
 # TODO: write file
 sbgn = libsbgn.sbgn()
-print sbgn
+print(sbgn)
 
 map = libsbgn.map()
 sbgn.set_map(map)
-print map
+print(map)
 
 '''
 <bbox x="0" y="0" w="363" h="253"/>
@@ -111,6 +114,6 @@ map.set_bbox(box)
 
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
 
-f_out = open('test.sbgn', 'w')
+f_out = open('examples/test.sbgn', 'w')
 sbgn.export(f_out, level=0, namespace_='')
 f_out.close()
