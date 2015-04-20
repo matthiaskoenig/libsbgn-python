@@ -1,0 +1,5 @@
+<sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
+    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
+        <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" y="0." h="253." w="363." x="0."/>
+    </sbgn:map>
+</sbgn>
