@@ -1,5 +1,33 @@
 <sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
-    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
+    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2" language="Language.PD">
         <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="0" y="0" w="363" h="253"/>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph1" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="Ethanol"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="40" y="120" w="60" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_ethanal" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="Ethanal"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="220" y="110" w="60" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_adh1" class="macromolecule" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="ADH1"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="106" y="20" w="108" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_h" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="H+"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="220" y="190" w="60" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_nad" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="NAD+"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="40" y="190" w="60" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_nadh" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="NADH"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="300" y="150" w="60" h="60"/>
+        </sbgn:glyph>
+        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph_nadh" class="simple chemical" orientation="horizontal">
+            <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="NADH"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="300" y="150" w="60" h="60"/>
+        </sbgn:glyph>
     </sbgn:map>
 </sbgn>

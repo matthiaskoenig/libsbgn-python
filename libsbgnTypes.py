@@ -14,6 +14,10 @@ class Language(Enum):
     ER = "entity relationship"
     PD = "process description"
 
+@unique
+class Orientation(Enum):
+    HORIZONTAL = "horizontal"
+    VERTICAL = "vertical"
 
 @unique	
 class GlyphClass(Enum):

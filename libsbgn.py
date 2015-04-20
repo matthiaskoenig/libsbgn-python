@@ -25,6 +25,8 @@ import datetime as datetime_
 import warnings as warnings_
 from lxml import etree as etree_
 
+from libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+
 
 Validate_simpletypes_ = True
 
@@ -852,7 +854,7 @@ class bbox(SBGNBase):
     glyphs, and is optional for labels."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, y=None, h=None, w=None, x=None):
+    def __init__(self, x=None, y=None, w=None,  h=None, notes=None, extension=None):
         self.original_tagname_ = None
         super(bbox, self).__init__(notes, extension, )
         self.y = _cast(float, y)
@@ -1556,14 +1558,22 @@ class glyph(SBGNBase):
     attribute is optional and should only be used for compartments."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, id=None, compartmentRef=None, class_=None, compartmentOrder=None, orientation='horizontal', label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
+    def __init__(self, notes=None, extension=None, id=None, compartmentRef=None, class_=None, compartmentOrder=None, orientation=Orientation.HORIZONTAL, 
+                 label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
-        self.class_ = _cast(None, class_)
+        if class_ and not isinstance(class_, GlyphClass):
+            raise TypeError('class must be of type GlyphClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
         self.compartmentOrder = _cast(float, compartmentOrder)
-        self.orientation = _cast(None, orientation)
+        if not isinstance(orientation, Orientation):
+            raise TypeError('orientation must be of type Orientation')
+        self.orientation = _cast(None, orientation.value)
         self.label = label
         self.state = state
         self.clone = clone
@@ -2027,7 +2037,12 @@ class arc(SBGNBase):
         super(arc, self).__init__(notes, extension, )
         self.source = _cast(None, source)
         self.target = _cast(None, target)
-        self.class_ = _cast(None, class_)
+        if class_ and not isinstance(class_, ArcClass):
+            raise TypeError('class must be of type ArcClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
         self.id = _cast(None, id)
         if glyph is None:
             self.glyph = []

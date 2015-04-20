@@ -86,10 +86,10 @@ for a in arcs:
 #################################################################
 # write SBGN
 #################################################################
-from libsbgnTypes import Language, GlyphClass, ArcClass
-sbgn = libsbgn.sbgn()
-print(sbgn)
+from libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+reload(libsbgn)
 
+sbgn = libsbgn.sbgn()
 map = libsbgn.map()
 map.set_language(Language.PD)
 sbgn.set_map(map)
@@ -98,11 +98,12 @@ print(map)
 '''
 <bbox x="0" y="0" w="363" h="253"/>
 '''
-box = libsbgn.bbox()
-box.set_x(0)
-box.set_y(0)
-box.set_w(363)
-box.set_h(253)
+# box = libsbgn.bbox()
+# box.set_x(0)
+# box.set_y(0)
+# box.set_w(363)
+# box.set_h(253)
+box = libsbgn.bbox(x=0, y=0, w=363, h=253)
 map.set_bbox(box)
 
 '''
@@ -112,6 +113,42 @@ map.set_bbox(box)
 		<bbox x="40" y="120" w="60" h="60"/>
 	</glyph>
 '''
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph1')
+g.set_label(libsbgn.label(text='Ethanol'))
+g.set_bbox(libsbgn.bbox(x=40, y=120, w=60, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_ethanal')
+g.set_label(libsbgn.label(text='Ethanal'))
+g.set_bbox(libsbgn.bbox(x=220, y=110, w=60, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.MACROMOLECULE, id='glyph_adh1')
+g.set_label(libsbgn.label(text='ADH1'))
+g.set_bbox(libsbgn.bbox(x=106, y=20, w=108, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_h')
+g.set_label(libsbgn.label(text='H+'))
+g.set_bbox(libsbgn.bbox(x=220, y=190, w=60, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_nad')
+g.set_label(libsbgn.label(text='NAD+'))
+g.set_bbox(libsbgn.bbox(x=40, y=190, w=60, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_nadh')
+g.set_label(libsbgn.label(text='NADH'))
+g.set_bbox(libsbgn.bbox(x=300, y=150, w=60, h=60))
+map.add_glyph(g)
+
+g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph_nadh', 
+                  orientation=Orientation.HORIZONTAL)
+g.set_label(libsbgn.label(text='NADH'))
+g.set_bbox(libsbgn.bbox(x=300, y=150, w=60, h=60))
+map.add_glyph(g)
+
 
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
 
