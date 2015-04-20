@@ -1,5 +1,5 @@
-<sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
-    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2" language="Language.PD">
+<?xml version="1.0" encoding="UTF-8"?><sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2" language="process description">
         <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="0" y="0" w="363" h="253"/>
         <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="glyph1" class="simple chemical" orientation="horizontal">
             <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="Ethanol"/>
@@ -32,7 +32,7 @@
         </sbgn:glyph>
         <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="glyph1" target="pn1.1" class="consumption" id="a01">
             <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="98" y="160"/>
-            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="98" y="160"/>
+            <sbgn:end xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="136" y="180"/>
         </sbgn:arc>
         <sbgn:arc xmlns:sbgn="http://sbgn.org/libsbgn/0.2" source="pn1.2" target="glyph_nadh" class="production" id="a02">
             <sbgn:start xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="184" y="180"/>

@@ -2,8 +2,8 @@
 """
 Defintion of Language, GlyphClass and ArcClass types.
 
-Created on Mon Apr 20 21:05:38 2015
 @author: Matthias Koenig
+@date: 2015-04-20
 """
 from enum import Enum, unique
 

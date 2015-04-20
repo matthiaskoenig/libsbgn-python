@@ -6,13 +6,7 @@ with SBGN maps.
 generateDS.py -o libsbgn.py -s libsbgnSubs.py SBGN.xsd
 
 @author: Matthias Koenig & Augustin Luna
-Created on Mon Apr 20 19:02:22 2015
-
-TODO: export write <?xml version="1.0" encoding="UTF-8"?>
-TODO: export no sbgn: prefix
-TODO: test export in vanted
-
-TODO: encode class restrictions & test for the classes
+@date: 2015-04-20
 
 TODO: git repository
 TODO: documentation sphynx
@@ -155,7 +149,7 @@ map.add_glyph(g)
 # arcs
 a = libsbgn.arc(class_=ArcClass.CONSUMPTION, source="glyph1", target="pn1.1", id="a01")
 a.set_start(libsbgn.startType(x=98, y=160))
-a.set_end(libsbgn.endType(x=98, y=160))
+a.set_end(libsbgn.endType(x=136, y=180))
 map.add_arc(a)
 
 a = libsbgn.arc(class_=ArcClass.PRODUCTION, source="pn1.2", target="glyph_nadh", id="a02")
@@ -185,5 +179,6 @@ map.add_arc(a)
 
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
 f_out = open('examples/test.sbgn', 'w')
-sbgn.export(f_out, level=0, namespace_='')
+f_out.write('<?xml version="1.0" encoding="UTF-8"?>')
+sbgn.export(f_out, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')
 f_out.close()

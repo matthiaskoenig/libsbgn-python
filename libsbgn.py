@@ -18,6 +18,14 @@
 #   generateDS
 #
 
+"""
+Fixing of multiple bugs & support of GlyphClasses, ArcClasses &
+LanguageClasses.
+
+@author: Matthias Koenig
+@date: 2015-04-20
+"""
+
 import sys
 import re as re_
 import base64
@@ -1206,7 +1214,7 @@ class map(SBGNBase):
     def __init__(self, notes=None, extension=None, language=None, bbox=None, glyph=None, arc=None, arcgroup=None):
         self.original_tagname_ = None
         super(map, self).__init__(notes, extension, )
-        self.language = _cast(None, language)
+        self.set_language(language)
         self.bbox = bbox
         if glyph is None:
             self.glyph = []
@@ -1243,8 +1251,14 @@ class map(SBGNBase):
     def add_arcgroup(self, value): self.arcgroup.append(value)
     def insert_arcgroup_at(self, index, value): self.arcgroup.insert(index, value)
     def replace_arcgroup_at(self, index, value): self.arcgroup[index] = value
-    def get_language(self): return self.language
-    def set_language(self, language): self.language = language
+    def get_language(self): return Language(self.language)
+    def set_language(self, language): 
+        if language and not isinstance(language, Language):
+            raise TypeError('language must be of type Language')
+        if language:
+            self.language = _cast(None, language.value)
+        else:
+            self.language = _cast(None, language)
     def hasContent_(self):
         if (
             self.bbox is not None or
@@ -1263,7 +1277,7 @@ class map(SBGNBase):
             eol_ = ''
         if self.original_tagname_ is not None:
             name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
+        showIndent(outfile, level, pretty_print)        
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='map')
@@ -1564,16 +1578,9 @@ class glyph(SBGNBase):
         super(glyph, self).__init__(notes, extension, )
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
-        if class_ and not isinstance(class_, GlyphClass):
-            raise TypeError('class must be of type GlyphClass')
-        if class_:
-            self.class_ = _cast(None, class_.value)
-        else:
-            self.class_ = _cast(None, class_)
+        self.set_class(class_)
         self.compartmentOrder = _cast(float, compartmentOrder)
-        if not isinstance(orientation, Orientation):
-            raise TypeError('orientation must be of type Orientation')
-        self.orientation = _cast(None, orientation.value)
+        self.set_orientation(orientation)
         self.label = label
         self.state = state
         self.clone = clone
@@ -1620,12 +1627,21 @@ class glyph(SBGNBase):
     def set_id(self, id): self.id = id
     def get_compartmentRef(self): return self.compartmentRef
     def set_compartmentRef(self, compartmentRef): self.compartmentRef = compartmentRef
-    def get_class(self): return self.class_
-    def set_class(self, class_): self.class_ = class_
+    def get_class(self): return GlyphClass(self.class_)
+    def set_class(self, class_): 
+        if class_ and not isinstance(class_, GlyphClass):
+            raise TypeError('class must be of type GlyphClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
     def get_compartmentOrder(self): return self.compartmentOrder
     def set_compartmentOrder(self, compartmentOrder): self.compartmentOrder = compartmentOrder
-    def get_orientation(self): return self.orientation
-    def set_orientation(self, orientation): self.orientation = orientation
+    def get_orientation(self): return Orientation(self.orientation)
+    def set_orientation(self, orientation): 
+        if not isinstance(orientation, Orientation):
+            raise TypeError('orientation must be of type Orientation')
+        self.orientation = _cast(None, orientation.value)
     def hasContent_(self):
         if (
             self.label is not None or
@@ -2037,12 +2053,7 @@ class arc(SBGNBase):
         super(arc, self).__init__(notes, extension, )
         self.source = _cast(None, source)
         self.target = _cast(None, target)
-        if class_ and not isinstance(class_, ArcClass):
-            raise TypeError('class must be of type ArcClass')
-        if class_:
-            self.class_ = _cast(None, class_.value)
-        else:
-            self.class_ = _cast(None, class_)
+        self.set_class(class_)
         self.id = _cast(None, id)
         if glyph is None:
             self.glyph = []
@@ -2087,8 +2098,14 @@ class arc(SBGNBase):
     def set_source(self, source): self.source = source
     def get_target(self): return self.target
     def set_target(self, target): self.target = target
-    def get_class(self): return self.class_
-    def set_class(self, class_): self.class_ = class_
+    def get_class(self): return ArcClass(self.class_)
+    def set_class(self, class_): 
+        if class_ and not isinstance(class_, ArcClass):
+            raise TypeError('class must be of type ArcClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
     def get_id(self): return self.id
     def set_id(self, id): self.id = id
     def hasContent_(self):
