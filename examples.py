@@ -10,9 +10,9 @@ Created on Mon Apr 20 19:02:22 2015
 
 TODO: export write <?xml version="1.0" encoding="UTF-8"?>
 TODO: export no sbgn: prefix
+TODO: test export in vanted
 
-TODO: int() cast of integer values - not string of double
-TODO: 
+TODO: encode class restrictions & test for the classes
 
 TODO: git repository
 TODO: documentation sphynx
@@ -86,11 +86,12 @@ for a in arcs:
 #################################################################
 # write SBGN
 #################################################################
-# TODO: write file
+from libsbgnTypes import Language, GlyphClass, ArcClass
 sbgn = libsbgn.sbgn()
 print(sbgn)
 
 map = libsbgn.map()
+map.set_language(Language.PD)
 sbgn.set_map(map)
 print(map)
 
