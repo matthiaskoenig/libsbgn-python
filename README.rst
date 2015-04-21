@@ -8,9 +8,10 @@ Python bindings for SBGN based on the XML schema. Prelimenary bindings were gene
 * examples.py - SBGN import and export example
 
 Open Issues
-* python package building
+* python package building & upload to pip
 * XML schema validation of files against XSD file
 * proper imports in python package
 * split read example, write example, validate example
 * test python 3 support (?enum vs. enum34 import)
+* documentation sphynx
 

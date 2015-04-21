@@ -2,3 +2,5 @@
 *~
 dist/
 libsbgn.egg-info/
+libsbgnpy.egg-info/
+.Rhistory
