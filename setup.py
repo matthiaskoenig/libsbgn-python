@@ -20,7 +20,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='sample',
+    name='libsbgn',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -94,5 +94,8 @@ setup(
     package_data={
         'sample': ['package_data.dat'],
     },
+    # Prevent the package manager to install a python egg, 
+    # instead you'll get a real directory with files in it.
+    zip_safe=False
 
 )

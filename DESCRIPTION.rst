@@ -1,4 +1,4 @@
-A sample Python project
+libsbgn python bindings
 =======================
 
 This is the description file for the project.
