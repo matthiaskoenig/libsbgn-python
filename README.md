@@ -8,3 +8,7 @@ Python examples for reading, writing and validation are provided.
 * libsbgn.py : python bindings
 * libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
 * examples/ : python examples 
+
+**installation**
+
+sudo pip install libsbgnpy
