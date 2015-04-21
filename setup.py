@@ -61,8 +61,8 @@ setup(
         'Development Status :: 4 - Beta',
 
         # Indicate who your project is intended for
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Language Binding',
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering :: Visualization',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: MIT License',
