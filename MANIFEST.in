@@ -1,2 +1,2 @@
 include DESCRIPTION.rst README.rst
-recursive-include  *.py *.rst *.xsd *.sbgn *.png
+recursive-include libsbgn *.py *.rst *.xsd *.sbgn *.png

@@ -1,7 +1,9 @@
 libsbgn python bindings
 =======================
 
-This is the description file for the project.
+Python bindings for the reading, writing, manipulation and validation
+of files in the Systems Biology Graphical Notation (SBGN) format.
+Information available on the www.sbgn.org.
 
 The file should use UTF-8 encoding and be written using ReStructured Text. It
 will be used to generate the project webpage on PyPI, and should be written for

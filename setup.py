@@ -25,7 +25,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.0',
+    version='0.1.1',
 
     description='libsbgn python bindings',
     long_description=long_description,
@@ -71,7 +71,8 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+    # exclude=['contrib', 'docs', 'tests*']
+    packages = find_packages(),
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
@@ -83,19 +84,23 @@ setup(
     # dependencies). You can install these using the following syntax,
     # for example:
     # $ pip install -e .[dev,test]
-    extras_require={
-        'dev': ['check-manifest'],
-        'test': ['coverage'],
-    },
+    # extras_require={
+    #     'dev': ['check-manifest'],
+    #    'test': ['coverage'],
+    # },
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
-    package_data={
-        'sample': ['package_data.dat'],
-    },
+    # package_data={
+    #    'sample': ['package_data.dat'],
+    # },
+    
+    # include the package data (SBGN, XSD)
+    include_package_data=True,
+
     # Prevent the package manager to install a python egg, 
     # instead you'll get a real directory with files in it.
-    zip_safe=False
+    zip_safe=False,
 
 )
