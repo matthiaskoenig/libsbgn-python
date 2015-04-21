@@ -23,8 +23,6 @@ Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
 @date: 2015-04-21
 """
 
-__version__ = "0.1.1" # TODO version from revision
-
 import sys
 import re as re_
 import base64
@@ -678,6 +676,12 @@ class SBGNBase(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+    def write_file(self, outfile):
+        '''Write SBGN to file,'''
+        f = open(outfile, 'w')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>')
+        self.export(f, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')    
+        f.close()
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='SBGNBase'):
         if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')

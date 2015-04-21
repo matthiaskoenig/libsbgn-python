@@ -120,10 +120,8 @@ a.set_end(libsbgn.endType(x=136, y=180))
 map.add_arc(a)
 
 # write everything to a file
-# some hacks in formating necessary
+# some hacks in formating necessary (implemented in sbgn.write_file)
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
-f_out = open('sbgn/test.sbgn', 'w')
-f_out.write('<?xml version="1.0" encoding="UTF-8"?>')
-sbgn.export(f_out, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')
-f_out.close()
+f_out = 'sbgn/test.sbgn'
+sbgn.write_file(f_out)
 print(f_out)
