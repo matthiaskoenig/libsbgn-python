@@ -8,7 +8,6 @@ generateDS.py -o libsbgn.py -s libsbgnSubs.py SBGN.xsd
 @author: Matthias Koenig & Augustin Luna
 @date: 2015-04-20
 
-TODO: git repository
 TODO: documentation sphynx
 TODO: python package
 
@@ -16,6 +15,7 @@ TODO: python package
 from __future__ import print_function
 import libsbgn         # import the bindings
 print(libsbgn.__all__)
+import roadrunner
 
 def print_bbox(b):
     print('x, y, w, h : ', b.get_x(), b.get_y(), b.get_w(), b.get_h())
@@ -182,3 +182,7 @@ f_out = open('examples/test.sbgn', 'w')
 f_out.write('<?xml version="1.0" encoding="UTF-8"?>')
 sbgn.export(f_out, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')
 f_out.close()
+
+#################################################################
+# SBGN validation with schematron
+#################################################################

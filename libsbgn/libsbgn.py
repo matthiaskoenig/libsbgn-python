@@ -1,30 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#
-# Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
-#
-# Command line options:
-#   ('-o', 'libsbgn.py')
-#   ('-s', 'libsbgnSubs.py')
-#
-# Command line arguments:
-#   SBGN.xsd
-#
-# Command line:
-#   /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
-#
-# Current working directory (os.getcwd()):
-#   generateDS
-#
-
 """
-Fixing of multiple bugs & support of GlyphClasses, ArcClasses &
-LanguageClasses.
+Python SBGN bindings.
+Bindings generated with generateDS and subsequent implementation of
+support for GlyphClasses, ArcClasses & LanguageClasses.
+
+-----------------------------------------------------------------------------
+Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
+ Command line options:
+   ('-o', 'libsbgn.py')
+   ('-s', 'libsbgnSubs.py')
+
+ Command line arguments:
+   SBGN.xsd
+
+ Command line:
+   /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
+-----------------------------------------------------------------------------
 
 @author: Matthias Koenig
-@date: 2015-04-20
+@date: 2015-04-21
 """
+
+__version__ = "0.1.1" # TODO version from revision
 
 import sys
 import re as re_
