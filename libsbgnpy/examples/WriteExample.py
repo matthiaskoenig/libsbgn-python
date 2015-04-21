@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn 
-from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+from libsbgnpy.libsbgnTypes import GlyphClass
 
 if __name__ == "__main__":
-    f = "test-output.sbgn"
+    f = "sbgn/test-output.sbgn"
 		
     sbgn = libsbgn.sbgn()
     map = libsbgn.map()

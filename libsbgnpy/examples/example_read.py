@@ -12,9 +12,9 @@ with SBGN maps.
 from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn          # import the bindings
 print(libsbgn.__all__)
-print(libsbgn.__version__)
 
-from libsbgnpy.libsbgnTools import print_bbox # some additional helpers 
+
+from libsbgnpy.libsbgnUtils import print_bbox # some additional helpers 
 
 # file to process
 f_in = 'sbgn/adh.sbgn'

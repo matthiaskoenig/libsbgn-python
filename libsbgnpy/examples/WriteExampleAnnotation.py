@@ -5,7 +5,7 @@ from libsbgnpy.libsbgnTypes import Language, GlyphClass
 from libsbgnpy.libsbgn import *
 
 if __name__ == "__main__":
-    f = "test-output.sbgn"
+    f = "sbgn/test-output-annotation.sbgn"
 
     doc = sbgn()
     m = map()
