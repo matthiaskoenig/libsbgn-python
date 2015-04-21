@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+###############################################################################
+# Write SBGN
+###############################################################################
 Create SBGN example map from scratch and write to file.
 Map of single reaction with substrates, products and modifiers.
 
@@ -14,9 +17,7 @@ import libsbgnpy.libsbgn as libsbgn
 # glyph, arc and language enums
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
-#################################################################
-# write SBGN
-#################################################################
+
 
 # create empty sbgn
 sbgn = libsbgn.sbgn()
@@ -121,7 +122,8 @@ map.add_arc(a)
 # write everything to a file
 # some hacks in formating necessary
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
-f_out = open('../sbgn/test.sbgn', 'w')
+f_out = open('sbgn/test.sbgn', 'w')
 f_out.write('<?xml version="1.0" encoding="UTF-8"?>')
 sbgn.export(f_out, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')
 f_out.close()
+print(f_out)
