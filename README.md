@@ -1,9 +1,7 @@
 # libsbgnpy
 
 Python bindings for SBGN based on the XML schema.
-Prelimenary bindings were generated with generateDS. Additional constraints based on 
-defined Enums for GlyphClasses, ArcClasses and Languages were created.
-Python examples for reading and writing are provided. Currently, validation against schema files is not implemented.
+Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder. Currently, validation against schema files is not implemented.
 
 * libsbgn.py : python bindings
 * libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
@@ -16,7 +14,7 @@ The package is available from pypi (https://pypi.python.org/pypi/libsbgnpy)
 sudo pip install libsbgnpy
 ```
 **usage example**
-```
+```python
 import libsbgnpy.libsbgn as libsbgn 
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
