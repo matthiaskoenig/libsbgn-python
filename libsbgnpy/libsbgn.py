@@ -915,16 +915,16 @@ class bbox(SBGNBase):
         super(bbox, self).exportAttributes(outfile, level, already_processed, namespace_, name_='bbox')
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
-            outfile.write(' x="%s"' % self.gds_format_integer(self.x, input_name='x'))
+            outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_integer(self.y, input_name='y'))
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
         if self.w is not None and 'w' not in already_processed:
             already_processed.add('w')
-            outfile.write(' w="%s"' % self.gds_format_integer(self.w, input_name='w'))        
+            outfile.write(' w="%s"' % self.gds_format_float(self.w, input_name='w'))        
         if self.h is not None and 'h' not in already_processed:
             already_processed.add('h')
-            outfile.write(' h="%s"' % self.gds_format_integer(self.h, input_name='h'))        
+            outfile.write(' h="%s"' % self.gds_format_float(self.h, input_name='h'))        
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='bbox', fromsubclass_=False, pretty_print=True):
         super(bbox, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
     def exportLiteral(self, outfile, level, name_='bbox'):
@@ -1466,10 +1466,10 @@ class port(SBGNBase):
         super(port, self).exportAttributes(outfile, level, already_processed, namespace_, name_='port')
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_integer(self.y, input_name='y'))
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
-            outfile.write(' x="%s"' % self.gds_format_integer(self.x, input_name='x'))
+            outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.id is not None and 'id' not in already_processed:
             already_processed.add('id')
             outfile.write(' id=%s' % (self.gds_format_string(quote_attrib(self.id).encode(ExternalEncoding), input_name='id'), ))
@@ -2859,10 +2859,10 @@ class startType(GeneratedsSuper):
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='startType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
-            outfile.write(' x="%s"' % self.gds_format_integer(self.x, input_name='x'))
+            outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_integer(self.y, input_name='y'))
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='startType', fromsubclass_=False, pretty_print=True):
         pass
     def exportLiteral(self, outfile, level, name_='startType'):
@@ -2966,10 +2966,10 @@ class nextType(GeneratedsSuper):
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='nextType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
-            outfile.write(' x="%s"' % self.gds_format_integer(self.x, input_name='x'))
+            outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_integer(self.y, input_name='y'))
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='nextType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -3093,10 +3093,10 @@ class endType(GeneratedsSuper):
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='endType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
-            outfile.write(' x="%s"' % self.gds_format_integer(self.x, input_name='x'))
+            outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_integer(self.y, input_name='y'))
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='endType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'

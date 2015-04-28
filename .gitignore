@@ -4,3 +4,8 @@ dist/
 libsbgn.egg-info/
 libsbgnpy.egg-info/
 .Rhistory
+.project
+.pydevproject
+.settings/
+.metadata
+
