@@ -13,6 +13,18 @@ The package is available from pypi (https://pypi.python.org/pypi/libsbgnpy)
 ```
 sudo pip install libsbgnpy
 ```
+
+**support**
+
+For bugs, feature requests and support file an issue at
+https://github.com/matthiaskoenig/libsbgn-python/issues
+
+**software using libsbgnpy**
+
+* Mimoza (http://mimoza.bordeaux.inria.fr/) takes a metabolic model in
+SBML format and visualizes it in several formats (downloadable as a
+COMBINE archive)
+
 **usage example**
 ```python
 import libsbgnpy.libsbgn as libsbgn 
