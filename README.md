@@ -5,7 +5,10 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 
 * libsbgn.py : python bindings
 * libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
+* libsbgnTests.py : unittests
 * examples/ : python examples 
+
+If you use libsbgnpy please cite [![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
 
 **installation**
 
