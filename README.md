@@ -1,4 +1,4 @@
-# libsbgnpy
+# libsbgnpy : Python bindings for SBGN
 
 Python bindings for SBGN based on the XML schema.
 Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder. Currently, validation against schema files is not implemented.
@@ -8,7 +8,21 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 * libsbgnTests.py : unittests
 * examples/ : python examples 
 
-If you use libsbgnpy please cite [![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
+[![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
+
+To cite libsbgnpy use the following BibTex or equivalent
+
+    @MISC{libsbgnpy,
+      author        = {Matthias Koenig},
+      title         = {libsbgnpy: Python bindings for SBGN},
+      month         = {Apr.},
+      year          = {2015},
+      doi           = "{10.5281/zenodo.17197}",
+      url           = "{http://dx.doi.org/10.5281/zenodo.17197}",
+      howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
+    }
+
+If you use libsbgnpy please cite 
 
 **installation**
 
