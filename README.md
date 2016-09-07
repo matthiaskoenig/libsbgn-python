@@ -22,8 +22,6 @@ To cite libsbgnpy use the following BibTex or equivalent
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
-If you use libsbgnpy please cite 
-
 **installation**
 
 The package is available from pypi (https://pypi.python.org/pypi/libsbgnpy)
