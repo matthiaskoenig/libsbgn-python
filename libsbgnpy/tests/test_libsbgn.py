@@ -1,11 +1,10 @@
-'''
-Created on Apr 28, 2015
-
-@author: mkoenig
-'''
+"""
+Example tests.
+"""
 import unittest
 import libsbgnpy.libsbgn as libsbgn
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+
 
 class TestLibSBGN(unittest.TestCase):
 
@@ -32,7 +31,7 @@ class TestLibSBGN(unittest.TestCase):
 
         # glyph with ports (process)
         g = libsbgn.glyph(class_=GlyphClass.PROCESS, id='pn1', 
-                  orientation=Orientation.HORIZONTAL)
+                          orientation=Orientation.HORIZONTAL)
         g.set_bbox(libsbgn.bbox(x=148, y=168, w=24, h=24))
         g.add_port(libsbgn.port(x=136, y=180, id="pn1.1"))
         g.add_port(libsbgn.port(x=184, y=180, id="pn1.2"))
@@ -49,51 +48,51 @@ class TestLibSBGN(unittest.TestCase):
         self.sbgn = None
         
     def test_sbgn_exists(self):
-        self.assertIsNotNone(self.sbgn, 'sbgn created')
+        self.assertTrue(self.sbgn is not None, 'sbgn created')
         
     def test_map_exists(self):
-        self.assertIsNotNone(self.sbgn.get_map(), 'map created')
+        self.assertTrue(self.sbgn.get_map() is not None, 'map created')
         
     def test_map_language(self):
         sbgn_map = self.sbgn.get_map()
         self.assertEqual(sbgn_map.get_language(), Language.PD, 'language is process diagram')
         
     def test_map_box_exists(self):
-        self.assertIsNotNone(self.sbgn.get_map().get_bbox(), 'bbox created')
+        self.assertTrue(self.sbgn.get_map().get_bbox() is not None, 'bbox created')
     
     def test_map_box_x(self):
         bbox = self.sbgn.get_map().get_bbox()
-        self.assertEqual(bbox.get_x(), 0 , 'bbox.get_x()')
+        self.assertEqual(bbox.get_x(), 0, 'bbox.get_x()')
     
     def test_map_box_y(self):
         bbox = self.sbgn.get_map().get_bbox()
-        self.assertEqual(bbox.get_y(), 0 , 'bbox.get_y()')
+        self.assertEqual(bbox.get_y(), 0, 'bbox.get_y()')
     
     def test_map_box_w(self):
         bbox = self.sbgn.get_map().get_bbox()
-        self.assertEqual(bbox.get_w(), 363 , 'bbox.get_w()')
+        self.assertEqual(bbox.get_w(), 363, 'bbox.get_w()')
         
     def test_map_box_h(self):
         bbox = self.sbgn.get_map().get_bbox()
-        self.assertEqual(bbox.get_h(), 253 , 'bbox.get_h()')
+        self.assertEqual(bbox.get_h(), 253, 'bbox.get_h()')
             
     def test_glyph_exists(self):
         glyphs = self.sbgn.get_map().get_glyph()
-        self.assertEqual(len(glyphs), 2 , '2 glyphs were created')
+        self.assertEqual(len(glyphs), 2, '2 glyphs were created')
         
     def test_glyph_ids(self):
         glyphs = self.sbgn.get_map().get_glyph()
-        self.assertEqual(glyphs[0].get_id(), "glyph1" , 'glyph id')
-        self.assertEqual(glyphs[1].get_id(), "pn1" , 'glyph id')
+        self.assertEqual(glyphs[0].get_id(), "glyph1", 'glyph id')
+        self.assertEqual(glyphs[1].get_id(), "pn1", 'glyph id')
     
     def test_glyph_classes(self):
         glyphs = self.sbgn.get_map().get_glyph()
-        self.assertEqual(glyphs[0].get_class(), GlyphClass.SIMPLE_CHEMICAL , 'glyph class')
+        self.assertEqual(glyphs[0].get_class(), GlyphClass.SIMPLE_CHEMICAL, 'glyph class')
         self.assertEqual(glyphs[1].get_class(), GlyphClass.PROCESS, 'glyph class')
     
     def test_glyph_labels(self):
         glyphs = self.sbgn.get_map().get_glyph()
-        self.assertEqual(glyphs[0].get_label().get_text(), 'Ethanol' , 'glyph text')
+        self.assertEqual(glyphs[0].get_label().get_text(), 'Ethanol', 'glyph text')
         
     def test_glyph_bboxes(self):
         glyphs = self.sbgn.get_map().get_glyph()
@@ -123,17 +122,17 @@ class TestLibSBGN(unittest.TestCase):
         
     def test_arc_exists(self):
         arcs = self.sbgn.get_map().get_arc()
-        self.assertEqual(len(arcs), 1 , '1 arc was created')
+        self.assertEqual(len(arcs), 1, '1 arc was created')
         
     def test_arc_start(self):
         start = self.sbgn.get_map().get_arc()[0].get_start()
-        self.assertIsNotNone(start, 'start of arc exists')
+        self.assertTrue(start is not None, 'start of arc exists')
         self.assertEqual(start.get_x(), 98, 'arc start x coordinate')
         self.assertEqual(start.get_y(), 160, 'arc start y coordinate')
         
     def test_arc_end(self):
         end = self.sbgn.get_map().get_arc()[0].get_end()
-        self.assertIsNotNone(end, 'end of arc exists')
+        self.assertTrue(end is not None, 'end of arc exists')
         self.assertEqual(end.get_x(), 136, 'arc start x coordinate')
         self.assertEqual(end.get_y(), 180, 'arc start y coordinate')
         

@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # create a glyph with an id and class "annotation"
     g2 = glyph()
     g2.set_id("g2")
-    g2.set_class(GlyphClass.ANNOTATION);
+    g2.set_class(GlyphClass.ANNOTATION)
 
     co = calloutType()
     co.set_target(g1)

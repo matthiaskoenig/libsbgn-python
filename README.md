@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
+[![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
+[![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
+
 # libsbgnpy : Python bindings for SBGN
 
 Python bindings for SBGN based on the XML schema.
@@ -8,7 +12,7 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 * libsbgnTests.py : unittests
 * examples/ : python examples 
 
-[![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
+libsbgnpy supports py2 and py3.
 
 To cite libsbgnpy use the following BibTex or equivalent
 
@@ -22,25 +26,25 @@ To cite libsbgnpy use the following BibTex or equivalent
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
-**installation**
+**Installation**
 
 The package is available from pypi (https://pypi.python.org/pypi/libsbgnpy)
 ```
 sudo pip install libsbgnpy
 ```
 
-**support**
+**Support**
 
 For bugs, feature requests and support file an issue at
 https://github.com/matthiaskoenig/libsbgn-python/issues
 
-**software using libsbgnpy**
+**Software using libsbgnpy**
 
-* Mimoza (http://mimoza.bordeaux.inria.fr/) takes a metabolic model in
+* [Mimoza](http://mimoza.bordeaux.inria.fr/) takes a model in
 SBML format and visualizes it in several formats (downloadable as a
 COMBINE archive)
 
-**usage example**
+**Usage example**
 ```python
 import libsbgnpy.libsbgn as libsbgn 
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
@@ -148,3 +152,7 @@ map.add_arc(a)
 # write everything to a file
 sbgn.write_file('sbgn/test.sbgn')
 ```
+
+**License**
+* Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
+* Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)

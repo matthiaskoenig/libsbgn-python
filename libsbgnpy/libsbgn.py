@@ -19,8 +19,6 @@ Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
    /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
 -----------------------------------------------------------------------------
 
-@author: Matthias Koenig
-@date: 2015-04-21
 """
 
 import sys
@@ -30,7 +28,7 @@ import datetime as datetime_
 import warnings as warnings_
 from lxml import etree as etree_
 
-from libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+from .libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
 
 Validate_simpletypes_ = True
