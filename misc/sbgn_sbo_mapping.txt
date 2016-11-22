@@ -1,0 +1,1304 @@
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000357 ! perturbation
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000170 ! stimulation
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000405 ! perturbing agent
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000412 ! biological activity
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+\glyphSboTerm SBO:0000291 ! empty set
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000409 ! interaction outcome
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:NEW ! delay.
+\glyphSboTerm SBO:0000168 ! control
+\glyphSboTerm SBO:0000245 ! entity 
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000357 ! perturbation
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm  SBO:0000289 ! functional compartment
+\glyphSboTerm SBO:0000291 ! empty set
+\glyphSboTerm %SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000409 ! interaction outcome
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000177 ! binding.
+\glyphSboTerm SBO:0000247 ! simple chemical
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000357 ! perturbation
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+\glyphSboTerm SBO:0000247 ! simple chemical
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000354 ! genetic entity
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000354 ! genetic entity
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000170 ! stimulation
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+\glyphSboTerm SBO:0000358 ! observable
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! inhibition.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000177 ! binding.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000168 ! control
+\glyphSboTerm SBO:0000245 ! entity 
+\glyphSboTerm SBO:0000168 ! control
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000550 ! annotation
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+\glyphSboTerm SBO:0000550 ! annotation
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000167 ! reaction
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000550 ! annotation.
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+\glyphSboTerm SBO:0000550 ! annotation
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000354 ! genetic entity
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+ \glyphSboTerm SBO:0000394 ! consumption.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000168 ! control
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:NEW ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000168 ! control
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000168 ! control
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000168 ! control
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000550 ! annotation
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000168 ! control
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm SBO:0000550 ! annotation
+\glyphSboTerm  SBO:0000289 ! functional compartment
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+\glyphSboTerm SBO:0000168 ! control
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000550 ! annotation
+\glyphSboTerm SBO:0000412 ! biological activity
+\glyphSboTerm  SBO:0000289 ! functional compartment
+ \glyphSboTerm SBO:0000225 ! delay.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000171 ! necessary stimulation
+\glyphSboTerm SBO:0000169 ! inhibition
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000170 ! stimulation
+\glyphSboTerm SBO:0000375 ! process
+\glyphSboTerm SBO:0000395 ! encapsulating process
+\glyphSboTerm SBO:0000168 ! control
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000170 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000245 ! entity 
+\glyphSboTerm SBO:0000409 ! interaction outcome
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000550 ! annotation.
+\glyphSboTerm SBO:0000245 ! entity 
+\glyphSboTerm SBO:0000409 ! interaction outcome
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000550 ! annotation.
+ \glyphSboTerm SBO:0000407 ! absolute inhibition.
+ \glyphSboTerm SBO:0000411 ! absolute stimulation
+ \glyphSboTerm SBO:0000173 ! and.
+\glyphSboTerm SBO:0000550 ! annotation.
+ \glyphSboTerm SBO:0000464 ! state variable assignment
+ \glyphSboTerm SBO:0000225 ! delay.
+\glyphSboTerm SBO:0000245 ! entity 
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000409 ! interaction outcome
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000167 ! reaction
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+\glyphSboTerm SBO:0000291 ! empty set
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000290 ! physical compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments 
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000393 ! production.
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature 
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000354 ! genetic entity
+\glyphSboTerm SBO:0000245 ! macromolecule 
+\glyphSboTerm SBO:0000286 ! multimer
+\glyphSboTerm SBO:0000358 ! observable
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000177 ! binding.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+\glyphSboTerm  SBO:0000289 ! functional compartment 
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm SBO:0000354 ! genetic entity
+ \glyphSboTerm SBO:0000169 ! inhibition.
+\glyphSboTerm SBO:0000245 ! macromolecule 
+ \glyphSboTerm SBO:0000168 ! control.
+\glyphSboTerm SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000358 ! observable
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000357 ! perturbation
+\glyphSboTerm SBO:0000247 ! simple chemical
+\glyphSboTerm SBO:0000291 ! empty set
+ \glyphSboTerm SBO:0000170 ! stimulation.
+\glyphSboTerm SBO:0000167 ! reaction
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+\glyphSboTerm SBO:0000285 ! material entity of unknown nature 
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+\glyphSboTerm SBO:0000550 ! annotation
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm SBO:0000291 ! empty set
+  \glyphSboTerm SBO:0000247 ! simple chemical \glyphContainer A
+\glyphSboTerm SBO:0000421 ! multimer of simple chemicals
+\glyphSboTerm SBO:0000285 ! material entity of unspecified nature
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000245 ! macromolecule
+\glyphSboTerm SBO:0000420 ! multimer of macromolecules
+\glyphSboTerm SBO:0000354 !  informational molecule segment
+\glyphSboTerm SBO:0000419 ! multimer of informational molecule segments
+\glyphSboTerm SBO:0000253 ! non-covalent complex
+\glyphSboTerm SBO:0000418 ! multimer of complexes
+\glyphSboTerm SBO:0000358 ! phenotype
+\glyphSboTerm SBO:0000395 ! encapsulating process
+ \glyphSboTerm SBO:0000173 ! and.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000238 ! not.
+\glyphSboTerm SBO:0000375 ! process
+ \glyphSboTerm SBO:0000396 ! uncertain process.
+ \glyphSboTerm SBO:0000177 ! non-covalent binding.
+ \glyphSboTerm SBO:0000180 ! dissociation.
+\glyphSboTerm  SBO:0000290 ! physical compartment
+\glyphSboTerm SBO:0000550 ! annotation
+ \glyphSboTerm SBO:0000394 ! consumption.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000393 ! production.
+ \glyphSboTerm SBO:0000168 ! control.
+ \glyphSboTerm SBO:0000170 ! stimulation.
+ \glyphSboTerm SBO:0000172 ! catalysis.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000171 ! necessary stimulation.
+ \glyphSboTerm SBO:0000398 ! logical relationship.
+\glyphSboTerm %SBO:0000286 ! multimer
+ \glyphSboTerm SBO:0000180 ! dissociation.
+ \glyphSboTerm SBO:0000169 ! inhibition.
+ \glyphSboTerm SBO:0000238 ! not.
+ \glyphSboTerm SBO:0000174 ! or.
+ \glyphSboTerm SBO:0000174 ! or.
+\glyphSboTerm SBO:0000405 ! perturbing agent
+\glyphSboTerm SBO:0000291 ! empty set
