@@ -19,8 +19,6 @@ Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
    /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
 -----------------------------------------------------------------------------
 
-@author: Matthias Koenig
-@date: 2015-04-21
 """
 
 import sys

@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-###############################################################################
-# Write SBGN
-###############################################################################
+Write SBGN file.
+
 Create SBGN example map from scratch and write to file.
 Map of single reaction with substrates, products and modifiers.
-
-@author: mkoenig
-@date: 2015-04-21
 """
 
 from __future__ import print_function
 
 # language bindings
-import libsbgnpy.libsbgn as libsbgn 
+import libsbgnpy.libsbgn as libsbgn
 # glyph, arc and language enums
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
-
-
 
 # create empty sbgn
 sbgn = libsbgn.sbgn()
@@ -42,11 +36,11 @@ map.set_bbox(box)
 # create some glyphs
 # class attribute is named 'class_' ! in glyphs and arcs
 '''
-	<glyph class="simple chemical" id="glyph1">
-		<label text="Ethanol"/> <!-- fontsize="" etc -->
-		<!-- Line breaks are allowed in the text attribute -->
-		<bbox x="40" y="120" w="60" h="60"/>
-	</glyph>
+    <glyph class="simple chemical" id="glyph1">
+        <label text="Ethanol"/> <!-- fontsize="" etc -->
+        <!-- Line breaks are allowed in the text attribute -->
+        <bbox x="40" y="120" w="60" h="60"/>
+    </glyph>
 '''
 # glyphs with labels
 g = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph1')
@@ -80,8 +74,7 @@ g.set_bbox(libsbgn.bbox(x=300, y=150, w=60, h=60))
 map.add_glyph(g)
 
 # glyph with ports (process)
-g = libsbgn.glyph(class_=GlyphClass.PROCESS, id='pn1', 
-                  orientation=Orientation.HORIZONTAL)
+g = libsbgn.glyph(class_=GlyphClass.PROCESS, id='pn1', orientation=Orientation.HORIZONTAL)
 g.set_bbox(libsbgn.bbox(x=148, y=168, w=24, h=24))
 g.add_port(libsbgn.port(x=136, y=180, id="pn1.1"))
 g.add_port(libsbgn.port(x=184, y=180, id="pn1.2"))
@@ -121,7 +114,8 @@ map.add_arc(a)
 
 # write everything to a file
 # some hacks in formating necessary (implemented in sbgn.write_file)
-# export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
+# export(self, outfile, level, namespace_='sbgn:', name_='sbgn',
+#        namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
 f_out = 'sbgn/test.sbgn'
 sbgn.write_file(f_out)
 print(f_out)
