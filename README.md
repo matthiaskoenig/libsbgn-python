@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
-[![DOI](https://zenodo.org/badge/5066/matthiaskoenig/libsbgn-python.svg)](http://dx.doi.org/10.5281/zenodo.17197)
+[![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
 
 # libsbgnpy : Python bindings for SBGN
 
@@ -19,10 +19,10 @@ To cite libsbgnpy use the following BibTex or equivalent
     @MISC{libsbgnpy,
       author        = {Matthias Koenig},
       title         = {libsbgnpy: Python bindings for SBGN},
-      month         = {Apr.},
-      year          = {2015},
+      month         = {Nov.},
+      year          = {2016},
       doi           = "{10.5281/zenodo.17197}",
-      url           = "{http://dx.doi.org/10.5281/zenodo.17197}",
+      url           = "{http://dx.doi.org/10.5281/zenodo.168076}",
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
