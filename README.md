@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
+
 # libsbgnpy : Python bindings for SBGN
 
 Python bindings for SBGN based on the XML schema.
