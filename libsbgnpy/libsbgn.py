@@ -30,7 +30,7 @@ import datetime as datetime_
 import warnings as warnings_
 from lxml import etree as etree_
 
-from libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+from .libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
 
 Validate_simpletypes_ = True
