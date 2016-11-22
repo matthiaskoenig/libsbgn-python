@@ -21,7 +21,7 @@ To cite libsbgnpy use the following BibTex or equivalent
       title         = {libsbgnpy: Python bindings for SBGN},
       month         = {Nov.},
       year          = {2016},
-      doi           = "{10.5281/zenodo.17197}",
+      doi           = "{10.5281/zenodo.168076}",
       url           = "{http://dx.doi.org/10.5281/zenodo.168076}",
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
