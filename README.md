@@ -12,6 +12,8 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 * libsbgnTests.py : unittests
 * examples/ : python examples 
 
+libsbgnpy supports py2 and py3.
+
 To cite libsbgnpy use the following BibTex or equivalent
 
     @MISC{libsbgnpy,
