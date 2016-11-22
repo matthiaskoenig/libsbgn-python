@@ -1,7 +1,9 @@
 # libsbgnpy CHANGELOG
 
-**v.0.1.4dev**
+**v.0.1.4**
 
+* support for py2.6, 2.7, 3.4, 3.5
+* continuous integration with travis
 
 **v.0.1.3**
 
