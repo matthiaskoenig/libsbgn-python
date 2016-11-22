@@ -1,11 +1,10 @@
-'''
-Created on Apr 28, 2015
-
-@author: mkoenig
-'''
+"""
+Example tests.
+"""
 import unittest
 import libsbgnpy.libsbgn as libsbgn
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
+
 
 class TestLibSBGN(unittest.TestCase):
 
@@ -32,7 +31,7 @@ class TestLibSBGN(unittest.TestCase):
 
         # glyph with ports (process)
         g = libsbgn.glyph(class_=GlyphClass.PROCESS, id='pn1', 
-                  orientation=Orientation.HORIZONTAL)
+                          orientation=Orientation.HORIZONTAL)
         g.set_bbox(libsbgn.bbox(x=148, y=168, w=24, h=24))
         g.add_port(libsbgn.port(x=136, y=180, id="pn1.1"))
         g.add_port(libsbgn.port(x=184, y=180, id="pn1.2"))
