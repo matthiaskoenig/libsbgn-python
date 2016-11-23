@@ -27,25 +27,26 @@ To cite libsbgnpy use the following BibTex or equivalent
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
-**Installation**
+## Installation
 
 The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
 ```
 sudo pip install libsbgnpy
 ```
 
-**Support**
+## Support
 
 For bugs, feature requests and support file an issue at
 https://github.com/matthiaskoenig/libsbgn-python/issues
 
-**Software using libsbgnpy**
+## Software using libsbgnpy
 
 * [Mimoza](http://mimoza.bordeaux.inria.fr/) takes a model in
 SBML format and visualizes it in several formats (downloadable as a
 COMBINE archive)
 
-**Prelimenary bindings were generated with Usage example**
+## Usage example
+
 ```python
 import libsbgnpy.libsbgn as libsbgn 
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
