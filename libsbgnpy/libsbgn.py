@@ -626,9 +626,11 @@ def _cast(typ, value):
 
 
 class SBGNBase(GeneratedsSuper):
-    """The SBGNBase type is the base type of all main components in SBGN.
+    """
+    The SBGNBase type is the base type of all main components in SBGN.
     It supports attaching metadata, notes and annotations to
-    components."""
+    components.
+    """
     subclass = None
     superclass = None
     def __init__(self, notes=None, extension=None, extensiontype_=None):
@@ -675,7 +677,11 @@ class SBGNBase(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def write_file(self, outfile):
-        '''Write SBGN to file,'''
+        """ Write SBGN to file
+        :param outfile:
+        :type outfile:
+        :return:
+        """
         f = open(outfile, 'w')
         f.write('<?xml version="1.0" encoding="UTF-8"?>')
         self.export(f, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')    
