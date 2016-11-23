@@ -8,6 +8,7 @@ import os
 import re
 from collections import defaultdict
 
+
 def _clean_line(line):
     """
     Parse the sbo and sbgn from a single line
@@ -19,10 +20,12 @@ def _clean_line(line):
     sbgn = tokens[1].replace('.', "")
     return sbo, sbgn
 
+
 def _is_sbo(sbo_term):
     """ Check is sbo_term is really a SBO term."""
     res = re.search('^SBO:\d{7}$', sbo_term)
     return res is not None
+
 
 def read_sbo2sbgn(infile):
     """
@@ -36,6 +39,7 @@ def read_sbo2sbgn(infile):
             sbo, sbgn = _clean_line(line)
             sbo2sbgn[sbo].add(sbgn)
     return sbo2sbgn
+
 
 def write_sbo2sbgn(outfile, sbo2sbgn):
     """

@@ -9,7 +9,8 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 
 * libsbgn.py : python bindings
 * libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
-* libsbgnTests.py : unittests
+* libsbgnUtils.py : SBGN helper functions
+* tests/ : unittests
 * examples/ : python examples 
 
 libsbgnpy supports py2 and py3.
@@ -44,7 +45,7 @@ https://github.com/matthiaskoenig/libsbgn-python/issues
 SBML format and visualizes it in several formats (downloadable as a
 COMBINE archive)
 
-**Usage example**
+**Prelimenary bindings were generated with Usage example**
 ```python
 import libsbgnpy.libsbgn as libsbgn 
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
@@ -153,6 +154,29 @@ map.add_arc(a)
 sbgn.write_file('sbgn/test.sbgn')
 ```
 
-**License**
+## License
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
 * Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
+## Python Language Bindings
+The python language bindings were created from the XML schema using
+generateDS and than adapted to include GlyphClasses and ArcClasses.
+```
+/usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
+```
+
+## ChangeLog
+**v.0.1.4**
+
+* support for py2.6, 2.7, 3.4, 3.5
+* continuous integration with travis
+
+**v.0.1.3**
+
+* unittests added
+* x, y, w, d handled as float instead int according to specification
+
+
+**v.0.1.2**
+
+* initial release
