@@ -20,6 +20,7 @@ Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
 -----------------------------------------------------------------------------
 
 """
+from six import string_types
 
 import sys
 import re as re_
@@ -392,7 +393,7 @@ def quote_xml(inStr):
     "Escape markup chars, but do not modify CDATA sections."
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, string_types) and inStr or
           '%s' % inStr)
     s2 = ''
     pos = 0
@@ -415,7 +416,7 @@ def quote_xml_aux(inStr):
 
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, string_types) and inStr or
           '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
