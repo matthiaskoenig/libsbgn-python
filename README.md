@@ -29,7 +29,7 @@ To cite libsbgnpy use the following BibTex or equivalent
 
 **Installation**
 
-The package is available from pypi (https://pypi.python.org/pypi/libsbgnpy)
+The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
 ```
 sudo pip install libsbgnpy
 ```
