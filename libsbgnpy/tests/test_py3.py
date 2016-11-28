@@ -8,7 +8,7 @@ from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass
 class TestLibSBGN(unittest.TestCase):
 
     def test_basestring_issue(self):
-        """ py3 does not have basestrings.
+        """
         This tests issue: https://github.com/matthiaskoenig/libsbgn-python/issues/4
         """
         # create empty sbgn
