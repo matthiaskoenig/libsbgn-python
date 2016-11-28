@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
     <map language="process description">
         <glyph class="macromolecule" id="g1">
             <label text="LABEL"/>

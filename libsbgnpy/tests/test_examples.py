@@ -42,7 +42,7 @@ class ExampleTestCase(unittest.TestCase):
         write_sbgn_03(f)
 
     def test_write_read_example_01(self):
-        f_out = "sbgn/test-output.sbgn"
+        f_out = "sbgn/test-output-01.sbgn"
         f = os.path.join(dir, '../examples/{0}'.format(f_out))
         write_sbgn_01(f)
         sbgn = read_sbgn_01(f)

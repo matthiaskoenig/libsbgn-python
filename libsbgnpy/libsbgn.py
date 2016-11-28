@@ -700,16 +700,14 @@ class SBGNBase(GeneratedsSuper):
         # this is a bad hack to remove the namespaces, because
         # most of the SBGN tools do not support them.
         import fileinput
-        # import re
 
         with fileinput.FileInput(outfile, inplace=True) as file:
             for line in file:
                 # remove prefix from closing tags, and unnecessary namespace
                 line = line.replace(' xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', '')
                 line = line.replace('sbgn:', '')
-                line = line.replace('<sbgn>', '<sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">')
+                line = line.replace('<sbgn>', '<sbgn xmlns="http://sbgn.org/libsbgn/0.2">')
                 print(line, end='')
-
 
 
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):

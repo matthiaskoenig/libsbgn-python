@@ -203,9 +203,9 @@ def write_sbgn_03(f):
     doc.write_file(f)
 
 if __name__ == "__main__":
-    write_sbgn_01("sbgn/test-write-01.sbgn")
-    write_sbgn_02("sbgn/test-write-02.sbgn")
-    write_sbgn_03("sbgn/test-write-03.sbgn")
+    write_sbgn_01("sbgn/test-output-01.sbgn")
+    write_sbgn_02("sbgn/test-output-02.sbgn")
+    write_sbgn_03("sbgn/test-output-03.sbgn")
 
 
 
