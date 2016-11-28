@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><sbgn xmlns="http://sbgn.org/libsbgn/0.2">
-    <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2">
-        <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id=b'"glyph1"' class=b'"macromolecule"' orientation=b'"horizontal"'>
-            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="125." y="60." w="100." h="40."/>
-        </sbgn:glyph>
-    </sbgn:map>
-</sbgn>

@@ -12,3 +12,5 @@ libsbgnpy.egg-info/
 # coverage information
 .coverage
 htmlcov/
+libsbgnpy/examples/sbgn/test-output.sbgn
+libsbgnpy/examples/sbgn/test-output-annotation.sbgn
