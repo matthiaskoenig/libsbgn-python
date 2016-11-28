@@ -683,18 +683,31 @@ class SBGNBase(GeneratedsSuper):
         else:
             return False
 
-    def write_file(self, outfile):
+    def write_file(self, outfile, namespace='sbgn'):
         """ Write SBGN to file
+
+        Necessary to fix the issue of the sbgn namespace prefix.
+
         :param outfile:
         :type outfile:
         :return:
         """
         f = open(outfile, 'w')
         f.write('<?xml version="1.0" encoding="UTF-8"?>')
-        self.export(f, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')
+        self.export(f, level=0, namespace_='sbgn', name_='')
         f.close()
 
-    def export(self, outfile, level, namespace_='sbgn:', name_='SBGNBase', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
+        # this is a bad hack to remove the namespaces, because
+        # most of the SBGN tools do not support them.
+        import fileinput
+        # import re
+        # with fileinput.FileInput(outfile, inplace=True, backup='.bak') as file:
+        with fileinput.FileInput(outfile, inplace=True) as file:
+            for line in file:
+                print(line.replace('sbgn:', ''), end='')
+
+
+    def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -704,10 +717,10 @@ class SBGNBase(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SBGNBase')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='sbgn')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='sbgn:', name_='SBGNBase', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='sbgn:', name_='sbgn', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:

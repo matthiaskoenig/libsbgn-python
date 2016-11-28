@@ -104,3 +104,9 @@ class calloutType ->
             self.target = target
 
 ```
+
+**Overwrite namespace prefix**
+```
+namespace_='sbgn:' -> namespace_='namespace_'
+self.exportChildren(outfile, level + 1, namespace_=namespace_, name_='point', pretty_print=pretty_print)
+```
