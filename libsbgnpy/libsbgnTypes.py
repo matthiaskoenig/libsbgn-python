@@ -3,6 +3,7 @@
 Definition of Language, GlyphClass and ArcClass types.
 Created manually from schema file.
 """
+from __future__ import print_function
 from enum import Enum, unique
 
 @unique
@@ -99,3 +100,7 @@ class ArcClass(Enum):
     EQUIVALENCE_ARC = "equivalence arc"
     NECESSARY_STIMULATION = "necessary stimulation"
     LOGIC_ARC = "logic arc"
+
+
+if __name__ == "__main__":
+    print(ArcClass('production'))

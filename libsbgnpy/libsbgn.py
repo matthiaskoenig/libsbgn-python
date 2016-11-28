@@ -1184,7 +1184,7 @@ class map(SBGNBase):
     def __init__(self, notes=None, extension=None, language=None, bbox=None, glyph=None, arc=None, arcgroup=None):
         self.original_tagname_ = None
         super(map, self).__init__(notes, extension, )
-        self.language = self.set_language(language)
+        self.set_language(language)
         self.bbox = bbox
         if glyph is None:
             self.glyph = []
@@ -1489,7 +1489,7 @@ class glyph(SBGNBase):
     def __init__(self, notes=None, extension=None, class_=None, orientation='horizontal', id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
-        self.class_ = self.set_class(class_)
+        self.set_class(class_)
         self.orientation = _cast(None, orientation)
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
@@ -1543,7 +1543,9 @@ class glyph(SBGNBase):
     def replace_port_at(self, index, value): self.port[index] = value
 
     def get_class(self):
-        """ Returns the GlyphClass."""
+        """ Get the Language.
+        :return: Language instance.
+        """
         return GlyphClass(self.class_)
 
     def set_class(self, class_):
@@ -1852,7 +1854,7 @@ class arc(SBGNBase):
     def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
         self.original_tagname_ = None
         super(arc, self).__init__(notes, extension, )
-        self.class_ = self.set_class(class_)
+        self.set_class(class_)
         self.id = _cast(None, id)
         self.source = _cast(None, source)
         self.target = _cast(None, target)

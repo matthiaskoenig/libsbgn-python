@@ -55,6 +55,7 @@ class map ->
 
     __init__
         self.language = self.set_language(language)
+        self.set_language(language)
 
 class glyph ->
 
@@ -75,7 +76,7 @@ class glyph ->
             self.class_ = _cast(None, class_)
         
     __init__
-        self.class_ = self.set_class(class_)
+        self.set_class(class_)
      
 class arc ->
 
@@ -96,7 +97,7 @@ class arc ->
             self.class_ = _cast(None, class_)
             
     __init__
-        self.class_ = self.set_class(class_)
+        self.set_class(class_)
 ```
 **Fixing bugs in automatic creation**
 ```
