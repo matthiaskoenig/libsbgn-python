@@ -53,6 +53,9 @@ class map ->
         else:
             self.language = _cast(None, language)
 
+    __init__
+        self.language = self.set_language(language)
+
 class glyph ->
 
     def get_class(self):
@@ -71,6 +74,9 @@ class glyph ->
         else:
             self.class_ = _cast(None, class_)
         
+    __init__
+        self.class_ = self.set_class(class_)
+     
 class arc ->
 
     def get_class(self):
@@ -88,6 +94,9 @@ class arc ->
             self.class_ = _cast(None, class_.value)
         else:
             self.class_ = _cast(None, class_)
+            
+    __init__
+        self.class_ = self.set_class(class_)
 ```
 **Fixing bugs in automatic creation**
 ```

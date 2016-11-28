@@ -693,7 +693,7 @@ class SBGNBase(GeneratedsSuper):
         :return:
         """
         f = open(outfile, 'w')
-        f.write('<?xml version="1.0" encoding="UTF-8"?>')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.export(f, level=0, namespace_='sbgn', name_='')
         f.close()
 
@@ -701,10 +701,15 @@ class SBGNBase(GeneratedsSuper):
         # most of the SBGN tools do not support them.
         import fileinput
         # import re
-        # with fileinput.FileInput(outfile, inplace=True, backup='.bak') as file:
+
         with fileinput.FileInput(outfile, inplace=True) as file:
             for line in file:
-                print(line.replace('sbgn:', ''), end='')
+                # remove prefix from closing tags, and unnecessary namespace
+                line = line.replace(' xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', '')
+                line = line.replace('sbgn:', '')
+                line = line.replace('<sbgn>', '<sbgn xmlns:sbgn="http://sbgn.org/libsbgn/0.2">')
+                print(line, end='')
+
 
 
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
@@ -1179,7 +1184,7 @@ class map(SBGNBase):
     def __init__(self, notes=None, extension=None, language=None, bbox=None, glyph=None, arc=None, arcgroup=None):
         self.original_tagname_ = None
         super(map, self).__init__(notes, extension, )
-        self.language = _cast(None, language)
+        self.language = self.set_language(language)
         self.bbox = bbox
         if glyph is None:
             self.glyph = []
@@ -1484,7 +1489,7 @@ class glyph(SBGNBase):
     def __init__(self, notes=None, extension=None, class_=None, orientation='horizontal', id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
-        self.class_ = _cast(None, class_)
+        self.class_ = self.set_class(class_)
         self.orientation = _cast(None, orientation)
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
@@ -1847,7 +1852,7 @@ class arc(SBGNBase):
     def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
         self.original_tagname_ = None
         super(arc, self).__init__(notes, extension, )
-        self.class_ = _cast(None, class_)
+        self.class_ = self.set_class(class_)
         self.id = _cast(None, id)
         self.source = _cast(None, source)
         self.target = _cast(None, target)
