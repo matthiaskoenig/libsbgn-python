@@ -2,14 +2,14 @@
     <sbgn:map xmlns:sbgn="http://sbgn.org/libsbgn/0.2" language="process description">
         <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="g1" class="macromolecule" orientation="horizontal">
             <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="LABEL"/>
-            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="90" y="160" w="380" h="210"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="90." y="160." w="380." h="210."/>
         </sbgn:glyph>
         <sbgn:glyph xmlns:sbgn="http://sbgn.org/libsbgn/0.2" id="g2" class="annotation" orientation="horizontal">
             <sbgn:label xmlns:sbgn="http://sbgn.org/libsbgn/0.2" text="INFO"/>
-            <sbgn:callout xmlns:sbgn="http://sbgn.org/libsbgn/0.2" target="&lt;libsbgnpy.libsbgn.glyph object at 0x7faa000ac090&gt;">
+            <sbgn:callout xmlns:sbgn="http://sbgn.org/libsbgn/0.2" target="&lt;libsbgnpy.libsbgn.glyph object at 0x7f03f789ef50&gt;">
                 <sbgn:point xmlns:sbgn="http://sbgn.org/libsbgn/0.2" y="200." x="160."/>
             </sbgn:callout>
-            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="5" y="5" w="220" h="125"/>
+            <sbgn:bbox xmlns:sbgn="http://sbgn.org/libsbgn/0.2" x="5." y="5." w="220." h="125."/>
         </sbgn:glyph>
     </sbgn:map>
 </sbgn>

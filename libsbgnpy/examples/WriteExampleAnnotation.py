@@ -4,14 +4,18 @@ from __future__ import print_function
 from libsbgnpy.libsbgnTypes import Language, GlyphClass
 from libsbgnpy.libsbgn import *
 
-if __name__ == "__main__":
-    f = "sbgn/test-output-annotation.sbgn"
 
+def write_annotation_sbgn(f):
+    """ Create SBGN with annotation and write to file.
+
+    :param f: file to write
+    :return:
+    """
     doc = sbgn()
     m = map()
     m.set_language(Language.PD)
     doc.set_map(m)
-    
+
     # create a glyph with an id and class "macromolecule"
     g1 = glyph()
     g1.set_id("g1")
@@ -51,3 +55,9 @@ if __name__ == "__main__":
 
     # now write everything to disk
     doc.write_file(f)
+
+
+if __name__ == "__main__":
+    f = "sbgn/test-output-annotation.sbgn"
+    write_annotation_sbgn(f)
+
