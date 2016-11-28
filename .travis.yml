@@ -20,8 +20,8 @@ install:
 # command to run tests
 script:
   # nosetests
-  nosetests --with-coverage --cover-package=libsbgnpy --cover-inclusive
+  nosetests --with-coverage --cover-package=libsbgnpy
 after_success:
   coveralls
 
-# nosetests --with-coverage --cover-package=libsbgnpy --cover-inclusive
+# nosetests --with-coverage --cover-package=libsbgnpy
