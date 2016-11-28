@@ -6,6 +6,8 @@ Python SBGN bindings.
 Bindings generated with generateDS and subsequent implementation of
 support for GlyphClasses, ArcClasses & LanguageClasses.
 
+http://www.davekuhlman.org/generateDS.html
+
 -----------------------------------------------------------------------------
 Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
  Command line options:
@@ -20,6 +22,7 @@ Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
 -----------------------------------------------------------------------------
 
 """
+from __future__ import print_function
 from six import string_types
 
 import sys
@@ -390,7 +393,7 @@ def showIndent(outfile, level, pretty_print=True):
 
 
 def quote_xml(inStr):
-    "Escape markup chars, but do not modify CDATA sections."
+    """ Escape markup chars, but do not modify CDATA sections. """
     if not inStr:
         return ''
     s1 = (isinstance(inStr, string_types) and inStr or
@@ -418,6 +421,8 @@ def quote_xml_aux(inStr):
 def quote_attrib(inStr):
     s1 = (isinstance(inStr, string_types) and inStr or
           '%s' % inStr)
+    # if isinstance(s1, bytes):
+    #    s1 = s1.decode()
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
     s1 = s1.replace('>', '&gt;')
@@ -428,6 +433,7 @@ def quote_attrib(inStr):
             s1 = "'%s'" % s1
     else:
         s1 = '"%s"' % s1
+
     return s1
 
 
