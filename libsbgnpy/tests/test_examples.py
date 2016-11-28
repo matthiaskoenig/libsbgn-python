@@ -10,6 +10,7 @@ from libsbgnpy.examples.write_example import write_sbgn_01, write_sbgn_02, write
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
+
 class ExampleTestCase(unittest.TestCase):
 
     def test_read_examples(self):
