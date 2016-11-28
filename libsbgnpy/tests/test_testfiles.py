@@ -5,9 +5,9 @@ Read all the test files.
 """
 from __future__ import print_function
 import unittest
+import tempfile
 import os
 import libsbgnpy.libsbgn as libsbgn
-from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
 ##############################################
 # Test files
@@ -29,15 +29,29 @@ sbgn_files = find_sbgn_files(dir=testfile_dir)
 
 
 class TestSBGNFile(unittest.TestCase):
+    """
+    Dummy test class. Test methods are attached.
+    """
     pass
 
+
 def create_method(f):
+    """ Test function generator.
+
+    :param f:
+    :return:
+    """
     def f_expected(self):
         print('*' * 80)
         print(f)
         print('*' * 80)
         sbgn = libsbgn.parse(f)
         self.assertTrue(sbgn is not None)
+
+        # write everything to tempfile
+        f_tmp = tempfile.NamedTemporaryFile(suffix=".sbgn")
+        sbgn.write_file(f_tmp.name)
+
     return f_expected
 
 # Add test functions for files
@@ -48,5 +62,4 @@ for k, f in enumerate(sbgn_files):
     del test_method
 
 if __name__ == '__main__':
-
     unittest.main()
