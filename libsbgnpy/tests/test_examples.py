@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Test the example scripts in the examples folder.
 """
@@ -13,23 +15,23 @@ class ExampleTestCase(unittest.TestCase):
 
     def test_read_example(self):
         f_in = 'sbgn/adh.sbgn'
-        f = os.path.join(dir, '../examples/{}'.format(f_in))
+        f = os.path.join(dir, '../examples/{0}'.format(f_in))
         sbgn = read_sbgn(f)
         self.assertTrue(sbgn is not None)
 
     def test_write_example(self):
         f_out = "sbgn/test-output.sbgn"
-        f = os.path.join(dir, '../examples/{}'.format(f_out))
+        f = os.path.join(dir, '../examples/{0}'.format(f_out))
         write_sbgn(f)
 
     def test_write_annotation_example(self):
         f_out = "sbgn/test-output-annotation.sbgn"
-        f = os.path.join(dir, '../examples/{}'.format(f_out))
+        f = os.path.join(dir, '../examples/{0}'.format(f_out))
         write_annotation_sbgn(f)
 
     def test_write_read_example(self):
         f_out = "sbgn/test-output.sbgn"
-        f = os.path.join(dir, '../examples/{}'.format(f_out))
+        f = os.path.join(dir, '../examples/{0}'.format(f_out))
         write_sbgn(f)
         sbgn = read_sbgn(f)
         self.assertTrue(sbgn is not None)

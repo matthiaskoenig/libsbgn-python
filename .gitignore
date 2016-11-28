@@ -9,4 +9,6 @@ libsbgnpy.egg-info/
 .settings/
 .metadata
 .idea
+# coverage information
 .coverage
+htmlcov/

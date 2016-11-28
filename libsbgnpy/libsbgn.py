@@ -2670,7 +2670,12 @@ class calloutType(GeneratedsSuper):
     def get_point(self): return self.point
     def set_point(self, point): self.point = point
     def get_target(self): return self.target
-    def set_target(self, target): self.target = target
+    def set_target(self, target):
+        if isinstance(target, string_types):
+            self.target = target
+        else:
+            self.target = target.get_id()
+
     def hasContent_(self):
         if (
             self.point is not None
