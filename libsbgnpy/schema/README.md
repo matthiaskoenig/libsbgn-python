@@ -35,67 +35,68 @@ def write_file(self, outfile):
 ```{python}
 class map ->
 
-def get_language(self):
-    """ Get the Language.
-    :return: Language instance.
-    """
-    return Language(self.language)
-
-def set_language(self, language):
-    """ Sets the language and checks that within allowed values.
-    :param language:
-    :return:
-    """
-    if language and not isinstance(language, Language):
-        raise TypeError('language must be of type Language')
-    if language:
-        self.language = _cast(None, language.value)
-    else:
-        self.language = _cast(None, language)
-
+    def get_language(self):
+        """ Get the Language.
+        :return: Language instance.
+        """
+        return Language(self.language)
+    
+    def set_language(self, language):
+        """ Sets the language and checks that within allowed values.
+        :param language:
+        :return:
+        """
+        if language and not isinstance(language, Language):
+            raise TypeError('language must be of type Language')
+        if language:
+            self.language = _cast(None, language.value)
+        else:
+            self.language = _cast(None, language)
 
 class glyph ->
 
-def get_class(self):
-    """ Returns the GlyphClass."""
-    return GlyphClass(self.class_)
-    
-def set_class(self, class_):
-    """ Sets the class and checks that in allowed GlyphClasses
-    :param class_:
-    :return:
-    """
-    if class_ and not isinstance(class_, GlyphClass):
-        raise TypeError('class must be of type GlyphClass')
-    if class_:
-        self.class_ = _cast(None, class_.value)
-    else:
-        self.class_ = _cast(None, class_)
+    def get_class(self):
+        """ Returns the GlyphClass."""
+        return GlyphClass(self.class_)
+        
+    def set_class(self, class_):
+        """ Sets the class and checks that in allowed GlyphClasses
+        :param class_:
+        :return:
+        """
+        if class_ and not isinstance(class_, GlyphClass):
+            raise TypeError('class must be of type GlyphClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
         
 class arc ->
 
-def get_class(self):
-    """ Get the ArcClass. """
-    return ArcClass(self.class_)
-
-def set_class(self, class_):
-    """ Set the ArcClass.
-    :param class_:
-    :return:
-    """
-    if class_ and not isinstance(class_, ArcClass):
-        raise TypeError('class must be of type ArcClass')
-    if class_:
-        self.class_ = _cast(None, class_.value)
-    else:
-        self.class_ = _cast(None, class_)
-        
+    def get_class(self):
+        """ Get the ArcClass. """
+        return ArcClass(self.class_)
+    
+    def set_class(self, class_):
+        """ Set the ArcClass.
+        :param class_:
+        :return:
+        """
+        if class_ and not isinstance(class_, ArcClass):
+            raise TypeError('class must be of type ArcClass')
+        if class_:
+            self.class_ = _cast(None, class_.value)
+        else:
+            self.class_ = _cast(None, class_)
+```
+**Fixing bugs in automatic creation**
+```
 class bbox ->
--> change order of arguments for backwards compatibility
+    # change order of arguments for backwards compatibility
     def __init__(self, x=None, y=None, w=None,  h=None, notes=None, extension=None):
 
 class calloutType ->
-
+    # ensure that id is written in SBGN 
     def set_target(self, target):
         if isinstance(target, glyph):
             self.target = target.get_id()
