@@ -36,14 +36,16 @@ class SBGNBase ->
         # this is a bad hack to remove the namespaces, because
         # most of the SBGN tools do not support them.
         import fileinput
+        f = fileinput.input(outfile, inplace=True)
 
-        with fileinput.FileInput(outfile, inplace=True) as file:
-            for line in file:
-                # remove prefix from closing tags, and unnecessary namespace
-                line = line.replace(' xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', '')
-                line = line.replace('sbgn:', '')
-                line = line.replace('<sbgn>', '<sbgn xmlns="http://sbgn.org/libsbgn/0.2">')
-                print(line, end='')
+        for line in f:
+            # remove prefix from closing tags, and unnecessary namespace
+            line = line.replace(' xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', '')
+            line = line.replace('sbgn:', '')
+            line = line.replace('<sbgn>', '<sbgn xmlns="http://sbgn.org/libsbgn/0.2">')
+            print(line, end='')
+
+        f.close()
 ```
 **Future imports**
 ```{python}
