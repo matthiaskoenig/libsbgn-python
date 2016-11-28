@@ -7,6 +7,7 @@ Map of single reaction with substrates, products and modifiers.
 """
 
 from __future__ import print_function
+import os
 
 # language bindings
 import libsbgnpy.libsbgn as libsbgn
@@ -117,5 +118,6 @@ map.add_arc(a)
 # export(self, outfile, level, namespace_='sbgn:', name_='sbgn',
 #        namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True)
 f_out = 'sbgn/test.sbgn'
-sbgn.write_file(f_out)
+dir = os.path.dirname(os.path.realpath(__file__))
+sbgn.write_file(os.path.join(dir, f_out))
 print(f_out)
