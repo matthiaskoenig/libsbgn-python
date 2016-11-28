@@ -9,3 +9,4 @@ libsbgnpy.egg-info/
 .settings/
 .metadata
 .idea
+.coverage
