@@ -45,6 +45,11 @@ class SBGNBase ->
                 line = line.replace('<sbgn>', '<sbgn xmlns="http://sbgn.org/libsbgn/0.2">')
                 print(line, end='')
 ```
+**Future imports**
+```{python}
+future imports:
+    from __future__ import print_function
+```    
 
 **Adding type checks**
 ```{python}

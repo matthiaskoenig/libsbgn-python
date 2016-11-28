@@ -17,7 +17,7 @@
 # Current working directory (os.getcwd()):
 #   schema
 #
-
+from __future__ import print_function
 import sys
 import re as re_
 import base64
