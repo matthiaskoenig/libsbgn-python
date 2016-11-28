@@ -1484,11 +1484,11 @@ class glyph(SBGNBase):
     attribute is optional and should only be used for compartments."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, class_=None, orientation='horizontal', id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
+    def __init__(self, notes=None, extension=None, class_=None, orientation=Orientation.HORIZONTAL, id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
         self.set_class(class_)
-        self.orientation = _cast(None, orientation)
+        self.set_orientation(orientation)
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
         self.compartmentOrder = _cast(float, compartmentOrder)
@@ -1558,8 +1558,22 @@ class glyph(SBGNBase):
         else:
             self.class_ = _cast(None, class_)
 
-    def get_orientation(self): return self.orientation
-    def set_orientation(self, orientation): self.orientation = orientation
+    def get_orientation(self):
+        """ Get orientation.
+        :return: Orientation instance.
+        """
+        return Orientation(self.orientation)
+
+    def set_orientation(self, orientation):
+        """ Sets orientation and checks that allowed Orientation.
+
+        :param orientation:
+        :return:
+        """
+        if not isinstance(orientation, Orientation):
+            raise TypeError('orientation must be of type Orientation')
+        self.orientation = _cast(None, orientation.value)
+
     def get_id(self): return self.id
     def set_id(self, id): self.id = id
     def get_compartmentRef(self): return self.compartmentRef

@@ -90,8 +90,25 @@ class glyph ->
         else:
             self.class_ = _cast(None, class_)
         
+    def get_orientation(self):
+        """ Get orientation.
+        :return: Orientation instance.
+        """
+        return Orientation(self.orientation)
+
+    def set_orientation(self, orientation):
+        """ Sets orientation and checks that allowed Orientation.
+
+        :param orientation:
+        :return:
+        """
+        if not isinstance(orientation, Orientation):
+            raise TypeError('orientation must be of type Orientation')
+        self.orientation = _cast(None, orientation.value)
+        
     __init__
         self.set_class(class_)
+        self.set_orientation(orientation)
      
 class arc ->
 
