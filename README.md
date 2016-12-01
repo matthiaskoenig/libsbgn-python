@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
-[![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg)](https://coveralls.io/github/matthiaskoenig/libsbgn-python)
+[![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg?branch=develop)](https://coveralls.io/github/matthiaskoenig/libsbgn-python?branch=develop)
 # libsbgnpy : Python bindings for SBGN
 
 Python bindings for SBGN based on the XML schema.
@@ -11,7 +11,8 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 * libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
 * libsbgnUtils.py : SBGN helper functions
 * tests/ : unittests
-* examples/ : python examples 
+* examples/ : python examples
+* validation/ : validation of SBGN files
 
 libsbgnpy supports py2 and py3.
 
