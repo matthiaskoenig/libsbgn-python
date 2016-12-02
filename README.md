@@ -1,18 +1,18 @@
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
-[![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.192356.svg)](https://doi.org/10.5281/zenodo.192356)
 [![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg?branch=develop)](https://coveralls.io/github/matthiaskoenig/libsbgn-python?branch=develop)
 # libsbgnpy : Python bindings for SBGN
 
 Python bindings for SBGN based on the XML schema.
 Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder. Currently, validation against schema files is not implemented.
 
-* libsbgn.py : python bindings
-* libsbgnTypes.py : SBGN type definitions (GlyphClasses, ArcClasses, Languages)
-* libsbgnUtils.py : SBGN helper functions
-* tests/ : unittests
-* examples/ : python examples
-* validation/ : validation of SBGN files
+* `libsbgn.py` python bindings
+* `libsbgnTypes.py` SBGN type definitions (GlyphClasses, ArcClasses, Languages)
+* `libsbgnUtils.py` SBGN helper functions
+* `tests` unittests
+* `examples/` python examples
+* `validation/` validation of SBGN files
 
 libsbgnpy supports py2 and py3.
 
@@ -21,10 +21,10 @@ To cite libsbgnpy use the following BibTex or equivalent
     @MISC{libsbgnpy,
       author        = {Matthias Koenig},
       title         = {libsbgnpy: Python bindings for SBGN},
-      month         = {Nov.},
+      month         = {Dec.},
       year          = {2016},
-      doi           = "{10.5281/zenodo.168076}",
-      url           = "{http://dx.doi.org/10.5281/zenodo.168076}",
+      doi           = "{10.5281/zenodo.192356}",
+      url           = "{http://dx.doi.org/10.5281/zenodo.192356}",
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
