@@ -7,14 +7,14 @@ from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn
 
 
-def read_from_file(f):
+def read_from_file(f, silence=True):
     """ Read an sbgn file (without validating against the schema).
 
     :param f: file to read
     :return: parsed SBGN
     :rtype:
     """
-    sbgn = libsbgn.parse(f)
+    sbgn = libsbgn.parse(f, silence=silence)
     return sbgn
 
 

@@ -12,11 +12,34 @@ import sys
 import os
 from lxml import isoschematron
 from lxml import etree
-
 from enum import Enum
+import libsbgnpy.libsbgnUtils as utils
+
+from libsbgnpy.libsbgnTypes import Language
+
 
 dir = os.path.dirname(os.path.realpath(__file__))
 XSD_SCHEMA = os.path.join(dir, '../schema/SBGN.xsd')
+
+
+def validate_xsd(f):
+    """ Validate SBGN file against XSD schema.
+
+    :param f: file to validate
+    :return: Returns None if valid, the error log otherwise.
+    """
+    xmlschema_doc = etree.parse(XSD_SCHEMA)
+    xmlschema = etree.XMLSchema(xmlschema_doc)
+    doc = etree.parse(f)
+    is_valid = xmlschema.validate(doc)
+    if not is_valid:
+        log = xmlschema.error_log
+        error = log.last_error
+        sys.stderr.write(str(log) + '\n')
+        return log
+
+    return None
+
 
 class Severity(Enum):
     WARNING = 1
@@ -59,26 +82,7 @@ class Issue(object):
                                                                      self.diagnostic_id, self.rule_id, self.message)
 
 
-def validate_xsd(f):
-    """ Validate SBGN file against XSD schema.
-
-    :param f: file to validate
-    :return: Returns None if valid, the error log otherwise.
-    """
-    xmlschema_doc = etree.parse(XSD_SCHEMA)
-    xmlschema = etree.XMLSchema(xmlschema_doc)
-    doc = etree.parse(f)
-    is_valid = xmlschema.validate(doc)
-    if not is_valid:
-        log = xmlschema.error_log
-        error = log.last_error
-        sys.stderr.write(str(log) + '\n')
-        return log
-
-    return None
-
-
-def validate_schematron(f):
+def validate_schematron(f_sbgn):
     """ Validate SBGN file with schematron.
 
     In Java this does the XSL Transformations on the ruleset and the exported Pathway Object
@@ -87,41 +91,53 @@ def validate_schematron(f):
     :param f: SBGN file
     :return:
     """
-    # Example adapted from http://lxml.de/validation.html#id2
+    # !!! NOT IMPLEMENTED !!!
 
-    # get the language of the SBGN file
-    lang = SbgnVersionFinder.getLanguage(inputFile);
-    String
-    schema = SbgnUtil.getResource("/sbgn_" + lang.name().toLowerCase() + ".sch");
+    # schema for language
+    language = utils.get_language(f_sbgn)
+    if language == Language.AF:
+        lang = 'af'
+    elif language == Language.PD:
+        lang = 'pd'
+    elif language == language.ER:
+        lang = 'er'
+    f_schema = os.path.join(dir, 'rules/sbgn_{}.sch'.format(lang))
+    print(f_schema)
 
+    # Create an svrl file via subsequent xslt transformations
+    f_xsl = os.path.join(dir, 'schematron/iso_svrl_for_xslt1.xsl')
 
+    # prepare schematron rules via transformation
+    doc_schema = etree.parse(f_schema)
 
-    xdoc = etree.parse(f)
-    # Parse schema for validation
-    sct_doc = etree.parse('./rules/sbgn_af.sch')
-    # sct_doc = etree.parse('./rules/sbgn_er.sch')
-    # sct_doc = etree.parse('./rules/sbgn_pd.sch')
-    # Validate against schema
-    schematron = isoschematron.Schematron(sct_doc, store_schematron=True, store_xslt=True, store_report=True)
-    if schematron.validate(xdoc):
-        print("ok")
-    else:
-        print("ko")
-    report = schematron.validation_report
+    doc_xslt = etree.parse(f_xsl)
+    transform_1 = etree.XSLT(doc_xslt)
+    doc_sct = transform_1(doc_schema)
+    print('*' * 80)
+    print(etree.tostring(doc_sct, pretty_print=True))
+    print('*' * 80)
 
-    print(type(report))
-    print(report)
+    # validation via transformation
+    doc_sbgn = etree.parse(f_sbgn)
+    transform_2 = etree.XSLT(doc_sct)
+    doc_svrlt = transform_2(doc_sbgn)
+    print('*' * 80)
+    print(etree.tostring(doc_svrlt, pretty_print=True))
+    print('*' * 80)
 
-
+    # from lxml.isoschematron import Schematron
+    # schematron = Schematron(doc_schema)
+    # schematron.validate(doc_sbgn)
 
 
 if __name__ == "__main__":
-    # f = "../examples/sbgn/adh.sbgn"
-    f = "../examples/sbgn/glycolysis.sbgn"
+    f = "../examples/sbgn/adh.sbgn"
+    # f = "error-test-files/PD/pd10101-pass.sbgn"
+    # f = "../examples/sbgn/glycolysis.sbgn"
 
     xsd_valid = validate_xsd(f) is None
     print('XSD valid ({}): {}'.format(f, xsd_valid))
 
-    # sct_valid = validate_schematron(f)
-    # print('Schematron valid ({}): {}'.format(f, xsd_valid))
+    sct_valid = validate_schematron(f)
+    print('Schematron valid ({}): {}'.format(f, xsd_valid))
 
