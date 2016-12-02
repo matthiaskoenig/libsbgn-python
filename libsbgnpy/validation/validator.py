@@ -79,12 +79,22 @@ def validate_xsd(f):
 
 
 def validate_schematron(f):
-    """ Validate SBGN file against schema.
+    """ Validate SBGN file with schematron.
+
+    In Java this does the XSL Transformations on the ruleset and the exported Pathway Object
+    and then invokes the SAX parser through "parseSVRL" method on the transformation's result.
 
     :param f: SBGN file
     :return:
     """
     # Example adapted from http://lxml.de/validation.html#id2
+
+    # get the language of the SBGN file
+    lang = SbgnVersionFinder.getLanguage(inputFile);
+    String
+    schema = SbgnUtil.getResource("/sbgn_" + lang.name().toLowerCase() + ".sch");
+
+
 
     xdoc = etree.parse(f)
     # Parse schema for validation
@@ -101,6 +111,8 @@ def validate_schematron(f):
 
     print(type(report))
     print(report)
+
+
 
 
 if __name__ == "__main__":

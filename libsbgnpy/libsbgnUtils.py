@@ -25,9 +25,43 @@ def write_to_file(sbgn, f):
     :param f:
     :return:
     """
-    sbgn.write_file(f)    
+    sbgn.write_file(f)
 
 
+def get_version(f):
+    """ SBGN version.
+
+    1: xmlns="http://sbgn.org/libsbgn/0.1
+    2: xmlns="http://sbgn.org/libsbgn/0.2
+    3: xmlns="http://sbgn.org/libsbgn/0.3
+
+    :param f:
+    :return: version as an integer, i.e. 1, 2, 3
+    """
+    import re
+    from xml.etree import ElementTree
+    tree = ElementTree.parse(f)
+    root = tree.getroot()
+    tag = root.tag
+    m = re.search("\d\.\d", tag)
+    version = m.group(0)  # full version, i.e. 0.2 or similar
+    tokens = version.split('.')
+    return int(tokens[-1])
+
+
+def get_language(f):
+    """ SBGN language of the map.
+    Returns a Language value.
+
+    :param f:
+    :return:
+    """
+    sbgn = read_from_file(f)
+    map = sbgn.get_map()
+    return map.get_language()
+
+
+### Printing ##################################################
 def print_bbox(b):
     """ Print bounding box representation.
 
