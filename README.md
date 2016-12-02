@@ -168,11 +168,12 @@ generateDS and than adapted to include GlyphClasses and ArcClasses.
 ```
 
 ## ChangeLog
-**v0.1.5dev**
+**v0.1.5**
 
 * py3 support bugfixes
-* SBGN validation
+* SBGN validation with XSD schema
 * update of bindings from latest schema
+* bug fix in writing some attributes
 
 **v0.1.4**
 
