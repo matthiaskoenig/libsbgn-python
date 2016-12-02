@@ -9,3 +9,4 @@ Steps for release are
 ```
 python setup.py sdist upload
 ```
+* switch to develop branch and increase version number
