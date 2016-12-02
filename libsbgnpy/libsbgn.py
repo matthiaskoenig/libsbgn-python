@@ -1,45 +1,52 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-Python SBGN bindings.
-Bindings generated with generateDS and subsequent implementation of
-support for GlyphClasses, ArcClasses & LanguageClasses.
-
------------------------------------------------------------------------------
-Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
- Command line options:
-   ('-o', 'libsbgn.py')
-   ('-s', 'libsbgnSubs.py')
-
- Command line arguments:
-   SBGN.xsd
-
- Command line:
-   /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
------------------------------------------------------------------------------
-
-"""
-
+#
+# Generated Mon Nov 28 14:10:23 2016 by generateDS.py version 2.24a.
+#
+# Command line options:
+#   ('-o', 'libsbgn.py')
+#   ('-s', 'libsbgnSubs.py')
+#
+# Command line arguments:
+#   SBGN.xsd
+#
+# Command line:
+#   /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
+#
+# Current working directory (os.getcwd()):
+#   schema
+#
+from __future__ import print_function
 import sys
 import re as re_
 import base64
 import datetime as datetime_
 import warnings as warnings_
-from lxml import etree as etree_
+try:
+    from lxml import etree as etree_
+except ImportError:
+    from xml.etree import ElementTree as etree_
 
 from .libsbgnTypes import Language, GlyphClass, ArcClass, Orientation
 
-
 Validate_simpletypes_ = True
+if sys.version_info.major == 2:
+    BaseStrType_ = basestring
+else:
+    BaseStrType_ = str
 
 
-def parsexml_(*args, **kwargs):
-    if 'parser' not in kwargs:
+def parsexml_(infile, parser=None, **kwargs):
+    if parser is None:
         # Use the lxml ElementTree compatible parser so that, e.g.,
         #   we ignore comments.
-        kwargs['parser'] = etree_.ETCompatXMLParser()
-    doc = etree_.parse(*args, **kwargs)
+        try:
+            parser = etree_.ETCompatXMLParser()
+        except AttributeError:
+            # fallback to xml.etree
+            parser = etree_.XMLParser()
+    doc = etree_.parse(infile, parser=parser, **kwargs)
     return doc
 
 #
@@ -225,7 +232,8 @@ except ImportError as exp:
                                 _svalue += '+'
                             hours = total_seconds // 3600
                             minutes = (total_seconds - (hours * 3600)) // 60
-                            _svalue += '{0:02d}:{1:02d}'.format(hours, minutes)
+                            _svalue += '{0:02d}:{1:02d}'.format(
+                                hours, minutes)
             except AttributeError:
                 pass
             return _svalue
@@ -350,6 +358,20 @@ except ImportError as exp:
         @classmethod
         def gds_reverse_node_mapping(cls, mapping):
             return dict(((v, k) for k, v in mapping.iteritems()))
+        @staticmethod
+        def gds_encode(instring):
+            if sys.version_info.major == 2:
+                return instring.encode(ExternalEncoding)
+            else:
+                return instring
+
+    def getSubclassFromModule_(module, class_):
+        '''Get the subclass of a class from a specific module.'''
+        name = class_.__name__ + 'Sub'
+        if hasattr(module, name):
+            return getattr(module, name)
+        else:
+            return None
 
 
 #
@@ -371,11 +393,15 @@ except ImportError as exp:
 # Globals
 #
 
-ExternalEncoding = 'ascii'
+ExternalEncoding = 'utf8'
 Tag_pattern_ = re_.compile(r'({.*})?(.*)')
 String_cleanup_pat_ = re_.compile(r"[\n\r\s]+")
 Namespace_extract_pat_ = re_.compile(r'{(.*)}(.*)')
 CDATA_pattern_ = re_.compile(r"<!\[CDATA\[.*?\]\]>", re_.DOTALL)
+
+# Change this to redirect the generated superclass module to use a
+# specific subclass module.
+CurrentSubclassModule_ = None
 
 #
 # Support/utility functions.
@@ -392,8 +418,7 @@ def quote_xml(inStr):
     "Escape markup chars, but do not modify CDATA sections."
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or
-          '%s' % inStr)
+    s1 = (isinstance(inStr, BaseStrType_) and inStr or '%s' % inStr)
     s2 = ''
     pos = 0
     matchobjects = CDATA_pattern_.finditer(s1)
@@ -415,8 +440,7 @@ def quote_xml_aux(inStr):
 
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or
-          '%s' % inStr)
+    s1 = (isinstance(inStr, BaseStrType_) and inStr or '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
     s1 = s1.replace('>', '&gt;')
@@ -476,11 +500,7 @@ class GDSParseError(Exception):
 
 
 def raise_parse_error(node, msg):
-    if XMLParser_import_library == XMLParser_import_lxml:
-        msg = '%s (element %s/line %d)' % (
-            msg, node.tag, node.sourceline, )
-    else:
-        msg = '%s (element %s)' % (msg, node.tag, )
+    msg = '%s (element %s/line %d)' % (msg, node.tag, node.sourceline, )
     raise GDSParseError(msg)
 
 
@@ -521,7 +541,8 @@ class MixedContainer:
         elif self.category == MixedContainer.CategorySimple:
             self.exportSimple(outfile, level, name)
         else:    # category == MixedContainer.CategoryComplex
-            self.value.export(outfile, level, namespace, name, pretty_print)
+            self.value.export(
+                outfile, level, namespace, name, pretty_print=pretty_print)
     def exportSimple(self, outfile, level, name):
         if self.content_type == MixedContainer.TypeString:
             outfile.write('<%s>%s</%s>' % (
@@ -637,6 +658,11 @@ class SBGNBase(GeneratedsSuper):
         self.extension = extension
         self.extensiontype_ = extensiontype_
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, SBGNBase)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if SBGNBase.subclass:
             return SBGNBase.subclass(*args_, **kwargs_)
         else:
@@ -656,7 +682,37 @@ class SBGNBase(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='sbgn:', name_='SBGNBase', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
+
+    def write_file(self, outfile, namespace='sbgn'):
+        """ Write SBGN to file
+
+        Necessary to fix the issue of the sbgn namespace prefix.
+
+        :param outfile:
+        :type outfile:
+        :return:
+        """
+        f = open(outfile, 'w')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        self.export(f, level=0, namespace_='sbgn', name_='')
+        f.close()
+
+        # this is a bad hack to remove the namespaces, because
+        # most of the SBGN tools do not support them.
+        import fileinput
+        f = fileinput.input(outfile, inplace=True)
+
+        for line in f:
+            # remove prefix from closing tags, and unnecessary namespace
+            line = line.replace(' xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', '')
+            line = line.replace('sbgn:', '')
+            line = line.replace('<sbgn>', '<sbgn xmlns="http://sbgn.org/libsbgn/0.2">')
+            print(line, end='')
+
+        f.close()
+
+
+    def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -666,20 +722,14 @@ class SBGNBase(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SBGNBase')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='sbgn')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='sbgn:', name_='SBGNBase', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='sbgn:', name_='sbgn', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def write_file(self, outfile):
-        '''Write SBGN to file,'''
-        f = open(outfile, 'w')
-        f.write('<?xml version="1.0" encoding="UTF-8"?>')
-        self.export(f, level=0, namespace_='sbgn', name_='', namespacedef_='xmlns="http://sbgn.org/libsbgn/0.2"')    
-        f.close()
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='SBGNBase'):
         if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')
@@ -695,27 +745,6 @@ class SBGNBase(GeneratedsSuper):
             self.notes.export(outfile, level, namespace_, name_='notes', pretty_print=pretty_print)
         if self.extension is not None:
             self.extension.export(outfile, level, namespace_, name_='extension', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='SBGNBase'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        if self.notes is not None:
-            showIndent(outfile, level)
-            outfile.write('notes=model_.notesType(\n')
-            self.notes.exportLiteral(outfile, level, name_='notes')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.extension is not None:
-            showIndent(outfile, level)
-            outfile.write('extension=model_.extensionType(\n')
-            self.extension.exportLiteral(outfile, level, name_='extension')
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -753,21 +782,26 @@ class point(SBGNBase):
     the corresponding *.sbgn file should be read as pixels."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, y=None, x=None):
+    def __init__(self, notes=None, extension=None, x=None, y=None):
         self.original_tagname_ = None
         super(point, self).__init__(notes, extension, )
-        self.y = _cast(float, y)
         self.x = _cast(float, x)
+        self.y = _cast(float, y)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, point)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if point.subclass:
             return point.subclass(*args_, **kwargs_)
         else:
             return point(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
     def get_x(self): return self.x
     def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
             super(point, self).hasContent_()
@@ -795,32 +829,14 @@ class point(SBGNBase):
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='point'):
         super(point, self).exportAttributes(outfile, level, already_processed, namespace_, name_='point')
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
             outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
-    def exportChildren(self, outfile, level, namespace_='sbgn:', name_='point', fromsubclass_=False, pretty_print=True):
-        super(point, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='point'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-        super(point, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(point, self).exportLiteralChildren(outfile, level, name_)
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+    def exportChildren(self, outfile, level, namespace_='sbgn:', name_='point', fromsubclass_=False, pretty_print=True):
+        super(point, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -829,13 +845,6 @@ class point(SBGNBase):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -843,6 +852,13 @@ class point(SBGNBase):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(point, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(point, self).buildChildren(child_, node, nodeName_, True)
@@ -863,27 +879,32 @@ class bbox(SBGNBase):
     glyphs, and is optional for labels."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, x=None, y=None, w=None,  h=None, notes=None, extension=None):
+    def __init__(self, x=None, y=None, w=None, h=None, notes=None, extension=None):
         self.original_tagname_ = None
         super(bbox, self).__init__(notes, extension, )
-        self.y = _cast(float, y)
-        self.h = _cast(float, h)
         self.w = _cast(float, w)
+        self.h = _cast(float, h)
         self.x = _cast(float, x)
+        self.y = _cast(float, y)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, bbox)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if bbox.subclass:
             return bbox.subclass(*args_, **kwargs_)
         else:
             return bbox(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
-    def get_h(self): return self.h
-    def set_h(self, h): self.h = h
     def get_w(self): return self.w
     def set_w(self, w): self.w = w
+    def get_h(self): return self.h
+    def set_h(self, h): self.h = h
     def get_x(self): return self.x
     def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
             super(bbox, self).hasContent_()
@@ -911,46 +932,20 @@ class bbox(SBGNBase):
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='bbox'):
         super(bbox, self).exportAttributes(outfile, level, already_processed, namespace_, name_='bbox')
+        if self.w is not None and 'w' not in already_processed:
+            already_processed.add('w')
+            outfile.write(' w="%s"' % self.gds_format_float(self.w, input_name='w'))
+        if self.h is not None and 'h' not in already_processed:
+            already_processed.add('h')
+            outfile.write(' h="%s"' % self.gds_format_float(self.h, input_name='h'))
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
             outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
-        if self.w is not None and 'w' not in already_processed:
-            already_processed.add('w')
-            outfile.write(' w="%s"' % self.gds_format_float(self.w, input_name='w'))        
-        if self.h is not None and 'h' not in already_processed:
-            already_processed.add('h')
-            outfile.write(' h="%s"' % self.gds_format_float(self.h, input_name='h'))        
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='bbox', fromsubclass_=False, pretty_print=True):
         super(bbox, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='bbox'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.h is not None and 'h' not in already_processed:
-            already_processed.add('h')
-            showIndent(outfile, level)
-            outfile.write('h=%f,\n' % (self.h,))
-        if self.w is not None and 'w' not in already_processed:
-            already_processed.add('w')
-            showIndent(outfile, level)
-            outfile.write('w=%f,\n' % (self.w,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-        super(bbox, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(bbox, self).exportLiteralChildren(outfile, level, name_)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -959,20 +954,6 @@ class bbox(SBGNBase):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
-        value = find_attr_value_('h', node)
-        if value is not None and 'h' not in already_processed:
-            already_processed.add('h')
-            try:
-                self.h = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (h): %s' % exp)
         value = find_attr_value_('w', node)
         if value is not None and 'w' not in already_processed:
             already_processed.add('w')
@@ -980,6 +961,13 @@ class bbox(SBGNBase):
                 self.w = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (w): %s' % exp)
+        value = find_attr_value_('h', node)
+        if value is not None and 'h' not in already_processed:
+            already_processed.add('h')
+            try:
+                self.h = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (h): %s' % exp)
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -987,6 +975,13 @@ class bbox(SBGNBase):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(bbox, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(bbox, self).buildChildren(child_, node, nodeName_, True)
@@ -1024,6 +1019,11 @@ class label(SBGNBase):
         self.text = _cast(None, text)
         self.bbox = bbox
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, label)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if label.subclass:
             return label.subclass(*args_, **kwargs_)
         else:
@@ -1063,7 +1063,7 @@ class label(SBGNBase):
         super(label, self).exportAttributes(outfile, level, already_processed, namespace_, name_='label')
         if self.text is not None and 'text' not in already_processed:
             already_processed.add('text')
-            outfile.write(' text=%s' % (self.gds_format_string(quote_attrib(self.text).encode(ExternalEncoding), input_name='text'), ))
+            outfile.write(' text=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.text), input_name='text')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='label', fromsubclass_=False, pretty_print=True):
         super(label, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1072,26 +1072,6 @@ class label(SBGNBase):
             eol_ = ''
         if self.bbox is not None:
             self.bbox.export(outfile, level, namespace_='sbgn:', name_='bbox', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='label'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.text is not None and 'text' not in already_processed:
-            already_processed.add('text')
-            showIndent(outfile, level)
-            outfile.write('text="%s",\n' % (self.text,))
-        super(label, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(label, self).exportLiteralChildren(outfile, level, name_)
-        if self.bbox is not None:
-            showIndent(outfile, level)
-            outfile.write('bbox=model_.bbox(\n')
-            self.bbox.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1125,6 +1105,11 @@ class sbgn(SBGNBase):
         super(sbgn, self).__init__(notes, extension, )
         self.map = map
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, sbgn)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if sbgn.subclass:
             return sbgn.subclass(*args_, **kwargs_)
         else:
@@ -1168,22 +1153,6 @@ class sbgn(SBGNBase):
             eol_ = ''
         if self.map is not None:
             self.map.export(outfile, level, namespace_='sbgn:', name_='map', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='sbgn'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        super(sbgn, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(sbgn, self).exportLiteralChildren(outfile, level, name_)
-        if self.map is not None:
-            showIndent(outfile, level)
-            outfile.write('map=model_.map(\n')
-            self.map.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1230,6 +1199,11 @@ class map(SBGNBase):
         else:
             self.arcgroup = arcgroup
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, map)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if map.subclass:
             return map.subclass(*args_, **kwargs_)
         else:
@@ -1252,14 +1226,26 @@ class map(SBGNBase):
     def add_arcgroup(self, value): self.arcgroup.append(value)
     def insert_arcgroup_at(self, index, value): self.arcgroup.insert(index, value)
     def replace_arcgroup_at(self, index, value): self.arcgroup[index] = value
-    def get_language(self): return Language(self.language)
-    def set_language(self, language): 
+
+    def get_language(self):
+        """ Get the Language.
+        :return: Language instance.
+        """
+        return Language(self.language)
+
+    def set_language(self, language):
+        """ Sets the language and checks that within allowed values.
+        :param language:
+        :return:
+        """
         if language and not isinstance(language, Language):
             raise TypeError('language must be of type Language')
         if language:
             self.language = _cast(None, language.value)
         else:
             self.language = _cast(None, language)
+
+
     def hasContent_(self):
         if (
             self.bbox is not None or
@@ -1278,7 +1264,7 @@ class map(SBGNBase):
             eol_ = ''
         if self.original_tagname_ is not None:
             name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)        
+        showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='map')
@@ -1293,7 +1279,7 @@ class map(SBGNBase):
         super(map, self).exportAttributes(outfile, level, already_processed, namespace_, name_='map')
         if self.language is not None and 'language' not in already_processed:
             already_processed.add('language')
-            outfile.write(' language=%s' % (self.gds_format_string(quote_attrib(self.language).encode(ExternalEncoding), input_name='language'), ))
+            outfile.write(' language=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.language), input_name='language')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='map', fromsubclass_=False, pretty_print=True):
         super(map, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1308,62 +1294,6 @@ class map(SBGNBase):
             arc_.export(outfile, level, namespace_='sbgn:', name_='arc', pretty_print=pretty_print)
         for arcgroup_ in self.arcgroup:
             arcgroup_.export(outfile, level, namespace_='sbgn:', name_='arcgroup', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='map'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.language is not None and 'language' not in already_processed:
-            already_processed.add('language')
-            showIndent(outfile, level)
-            outfile.write('language="%s",\n' % (self.language,))
-        super(map, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(map, self).exportLiteralChildren(outfile, level, name_)
-        if self.bbox is not None:
-            showIndent(outfile, level)
-            outfile.write('bbox=model_.bbox(\n')
-            self.bbox.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        showIndent(outfile, level)
-        outfile.write('glyph=[\n')
-        level += 1
-        for glyph_ in self.glyph:
-            showIndent(outfile, level)
-            outfile.write('model_.glyph(\n')
-            glyph_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        showIndent(outfile, level)
-        outfile.write('arc=[\n')
-        level += 1
-        for arc_ in self.arc:
-            showIndent(outfile, level)
-            outfile.write('model_.arc(\n')
-            arc_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        showIndent(outfile, level)
-        outfile.write('arcgroup=[\n')
-        level += 1
-        for arcgroup_ in self.arcgroup:
-            showIndent(outfile, level)
-            outfile.write('model_.arcgroup(\n')
-            arcgroup_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1417,24 +1347,29 @@ class port(SBGNBase):
     carrying any meaning."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, y=None, x=None, id=None):
+    def __init__(self, notes=None, extension=None, id=None, x=None, y=None):
         self.original_tagname_ = None
         super(port, self).__init__(notes, extension, )
-        self.y = _cast(float, y)
-        self.x = _cast(float, x)
         self.id = _cast(None, id)
+        self.x = _cast(float, x)
+        self.y = _cast(float, y)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, port)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if port.subclass:
             return port.subclass(*args_, **kwargs_)
         else:
             return port(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
-    def get_x(self): return self.x
-    def set_x(self, x): self.x = x
     def get_id(self): return self.id
     def set_id(self, id): self.id = id
+    def get_x(self): return self.x
+    def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
             super(port, self).hasContent_()
@@ -1462,39 +1397,17 @@ class port(SBGNBase):
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='port'):
         super(port, self).exportAttributes(outfile, level, already_processed, namespace_, name_='port')
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+        if self.id is not None and 'id' not in already_processed:
+            already_processed.add('id')
+            outfile.write(' id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.id), input_name='id')), ))
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
             outfile.write(' x="%s"' % self.gds_format_float(self.x, input_name='x'))
-        if self.id is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            outfile.write(' id=%s' % (self.gds_format_string(quote_attrib(self.id).encode(ExternalEncoding), input_name='id'), ))
-    def exportChildren(self, outfile, level, namespace_='sbgn:', name_='port', fromsubclass_=False, pretty_print=True):
-        super(port, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='port'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-        if self.id is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            showIndent(outfile, level)
-            outfile.write('id="%s",\n' % (self.id,))
-        super(port, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(port, self).exportLiteralChildren(outfile, level, name_)
+            outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+    def exportChildren(self, outfile, level, namespace_='sbgn:', name_='port', fromsubclass_=False, pretty_print=True):
+        super(port, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1503,13 +1416,10 @@ class port(SBGNBase):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
+        value = find_attr_value_('id', node)
+        if value is not None and 'id' not in already_processed:
+            already_processed.add('id')
+            self.id = value
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -1517,10 +1427,13 @@ class port(SBGNBase):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
-        value = find_attr_value_('id', node)
-        if value is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            self.id = value
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(port, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(port, self).buildChildren(child_, node, nodeName_, True)
@@ -1573,15 +1486,14 @@ class glyph(SBGNBase):
     attribute is optional and should only be used for compartments."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, id=None, compartmentRef=None, class_=None, compartmentOrder=None, orientation=Orientation.HORIZONTAL, 
-                 label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
+    def __init__(self, notes=None, extension=None, class_=None, orientation=Orientation.HORIZONTAL, id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
+        self.set_class(class_)
+        self.set_orientation(orientation)
         self.id = _cast(None, id)
         self.compartmentRef = _cast(None, compartmentRef)
-        self.set_class(class_)
         self.compartmentOrder = _cast(float, compartmentOrder)
-        self.set_orientation(orientation)
         self.label = label
         self.state = state
         self.clone = clone
@@ -1597,6 +1509,11 @@ class glyph(SBGNBase):
         else:
             self.port = port
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, glyph)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if glyph.subclass:
             return glyph.subclass(*args_, **kwargs_)
         else:
@@ -1624,25 +1541,47 @@ class glyph(SBGNBase):
     def add_port(self, value): self.port.append(value)
     def insert_port_at(self, index, value): self.port.insert(index, value)
     def replace_port_at(self, index, value): self.port[index] = value
-    def get_id(self): return self.id
-    def set_id(self, id): self.id = id
-    def get_compartmentRef(self): return self.compartmentRef
-    def set_compartmentRef(self, compartmentRef): self.compartmentRef = compartmentRef
-    def get_class(self): return GlyphClass(self.class_)
-    def set_class(self, class_): 
+
+    def get_class(self):
+        """ Get the Language.
+        :return: Language instance.
+        """
+        return GlyphClass(self.class_)
+
+    def set_class(self, class_):
+        """ Sets the class and checks that in allowed GlyphClasses
+        :param class_:
+        :return:
+        """
         if class_ and not isinstance(class_, GlyphClass):
             raise TypeError('class must be of type GlyphClass')
         if class_:
             self.class_ = _cast(None, class_.value)
         else:
             self.class_ = _cast(None, class_)
-    def get_compartmentOrder(self): return self.compartmentOrder
-    def set_compartmentOrder(self, compartmentOrder): self.compartmentOrder = compartmentOrder
-    def get_orientation(self): return Orientation(self.orientation)
-    def set_orientation(self, orientation): 
+
+    def get_orientation(self):
+        """ Get orientation.
+        :return: Orientation instance.
+        """
+        return Orientation(self.orientation)
+
+    def set_orientation(self, orientation):
+        """ Sets orientation and checks that allowed Orientation.
+
+        :param orientation:
+        :return:
+        """
         if not isinstance(orientation, Orientation):
             raise TypeError('orientation must be of type Orientation')
         self.orientation = _cast(None, orientation.value)
+
+    def get_id(self): return self.id
+    def set_id(self, id): self.id = id
+    def get_compartmentRef(self): return self.compartmentRef
+    def set_compartmentRef(self, compartmentRef): self.compartmentRef = compartmentRef
+    def get_compartmentOrder(self): return self.compartmentOrder
+    def set_compartmentOrder(self, compartmentOrder): self.compartmentOrder = compartmentOrder
     def hasContent_(self):
         if (
             self.label is not None or
@@ -1678,21 +1617,21 @@ class glyph(SBGNBase):
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='glyph'):
         super(glyph, self).exportAttributes(outfile, level, already_processed, namespace_, name_='glyph')
-        if self.id is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            outfile.write(' id=%s' % (self.gds_format_string(quote_attrib(self.id).encode(ExternalEncoding), input_name='id'), ))
-        if self.compartmentRef is not None and 'compartmentRef' not in already_processed:
-            already_processed.add('compartmentRef')
-            outfile.write(' compartmentRef=%s' % (self.gds_format_string(quote_attrib(self.compartmentRef).encode(ExternalEncoding), input_name='compartmentRef'), ))
         if self.class_ is not None and 'class_' not in already_processed:
             already_processed.add('class_')
-            outfile.write(' class=%s' % (self.gds_format_string(quote_attrib(self.class_).encode(ExternalEncoding), input_name='class'), ))
+            outfile.write(' class=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.class_), input_name='class')), ))
+        if self.orientation != "horizontal" and 'orientation' not in already_processed:
+            already_processed.add('orientation')
+            outfile.write(' orientation=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.orientation), input_name='orientation')), ))
+        if self.id is not None and 'id' not in already_processed:
+            already_processed.add('id')
+            outfile.write(' id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.id), input_name='id')), ))
+        if self.compartmentRef is not None and 'compartmentRef' not in already_processed:
+            already_processed.add('compartmentRef')
+            outfile.write(' compartmentRef=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.compartmentRef), input_name='compartmentRef')), ))
         if self.compartmentOrder is not None and 'compartmentOrder' not in already_processed:
             already_processed.add('compartmentOrder')
             outfile.write(' compartmentOrder="%s"' % self.gds_format_float(self.compartmentOrder, input_name='compartmentOrder'))
-        if self.orientation is not None and 'orientation' not in already_processed:
-            already_processed.add('orientation')
-            outfile.write(' orientation=%s' % (self.gds_format_string(quote_attrib(self.orientation).encode(ExternalEncoding), input_name='orientation'), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='glyph', fromsubclass_=False, pretty_print=True):
         super(glyph, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1715,96 +1654,6 @@ class glyph(SBGNBase):
             glyph_.export(outfile, level, namespace_='sbgn:', name_='glyph', pretty_print=pretty_print)
         for port_ in self.port:
             port_.export(outfile, level, namespace_='sbgn:', name_='port', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='glyph'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.id is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            showIndent(outfile, level)
-            outfile.write('id="%s",\n' % (self.id,))
-        if self.compartmentRef is not None and 'compartmentRef' not in already_processed:
-            already_processed.add('compartmentRef')
-            showIndent(outfile, level)
-            outfile.write('compartmentRef="%s",\n' % (self.compartmentRef,))
-        if self.class_ is not None and 'class_' not in already_processed:
-            already_processed.add('class_')
-            showIndent(outfile, level)
-            outfile.write('class_="%s",\n' % (self.class_,))
-        if self.compartmentOrder is not None and 'compartmentOrder' not in already_processed:
-            already_processed.add('compartmentOrder')
-            showIndent(outfile, level)
-            outfile.write('compartmentOrder=%f,\n' % (self.compartmentOrder,))
-        if self.orientation is not None and 'orientation' not in already_processed:
-            already_processed.add('orientation')
-            showIndent(outfile, level)
-            outfile.write('orientation="%s",\n' % (self.orientation,))
-        super(glyph, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(glyph, self).exportLiteralChildren(outfile, level, name_)
-        if self.label is not None:
-            showIndent(outfile, level)
-            outfile.write('label=model_.label(\n')
-            self.label.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.state is not None:
-            showIndent(outfile, level)
-            outfile.write('state=model_.stateType(\n')
-            self.state.exportLiteral(outfile, level, name_='state')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.clone is not None:
-            showIndent(outfile, level)
-            outfile.write('clone=model_.cloneType(\n')
-            self.clone.exportLiteral(outfile, level, name_='clone')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.callout is not None:
-            showIndent(outfile, level)
-            outfile.write('callout=model_.calloutType(\n')
-            self.callout.exportLiteral(outfile, level, name_='callout')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.entity is not None:
-            showIndent(outfile, level)
-            outfile.write('entity=model_.entityType(\n')
-            self.entity.exportLiteral(outfile, level, name_='entity')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        if self.bbox is not None:
-            showIndent(outfile, level)
-            outfile.write('bbox=model_.bbox(\n')
-            self.bbox.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        showIndent(outfile, level)
-        outfile.write('glyph=[\n')
-        level += 1
-        for glyph_ in self.glyph:
-            showIndent(outfile, level)
-            outfile.write('model_.glyph(\n')
-            glyph_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        showIndent(outfile, level)
-        outfile.write('port=[\n')
-        level += 1
-        for port_ in self.port:
-            showIndent(outfile, level)
-            outfile.write('model_.port(\n')
-            port_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1813,6 +1662,14 @@ class glyph(SBGNBase):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('class', node)
+        if value is not None and 'class' not in already_processed:
+            already_processed.add('class')
+            self.class_ = value
+        value = find_attr_value_('orientation', node)
+        if value is not None and 'orientation' not in already_processed:
+            already_processed.add('orientation')
+            self.orientation = value
         value = find_attr_value_('id', node)
         if value is not None and 'id' not in already_processed:
             already_processed.add('id')
@@ -1821,10 +1678,6 @@ class glyph(SBGNBase):
         if value is not None and 'compartmentRef' not in already_processed:
             already_processed.add('compartmentRef')
             self.compartmentRef = value
-        value = find_attr_value_('class', node)
-        if value is not None and 'class' not in already_processed:
-            already_processed.add('class')
-            self.class_ = value
         value = find_attr_value_('compartmentOrder', node)
         if value is not None and 'compartmentOrder' not in already_processed:
             already_processed.add('compartmentOrder')
@@ -1832,10 +1685,6 @@ class glyph(SBGNBase):
                 self.compartmentOrder = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (compartmentOrder): %s' % exp)
-        value = find_attr_value_('orientation', node)
-        if value is not None and 'orientation' not in already_processed:
-            already_processed.add('orientation')
-            self.orientation = value
         super(glyph, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'label':
@@ -1903,6 +1752,11 @@ class arcgroup(SBGNBase):
         else:
             self.arc = arc
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, arcgroup)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if arcgroup.subclass:
             return arcgroup.subclass(*args_, **kwargs_)
         else:
@@ -1951,7 +1805,7 @@ class arcgroup(SBGNBase):
         super(arcgroup, self).exportAttributes(outfile, level, already_processed, namespace_, name_='arcgroup')
         if self.class_ is not None and 'class_' not in already_processed:
             already_processed.add('class_')
-            outfile.write(' class=%s' % (self.gds_format_string(quote_attrib(self.class_).encode(ExternalEncoding), input_name='class'), ))
+            outfile.write(' class=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.class_), input_name='class')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='arcgroup', fromsubclass_=False, pretty_print=True):
         super(arcgroup, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1962,44 +1816,6 @@ class arcgroup(SBGNBase):
             glyph_.export(outfile, level, namespace_='sbgn:', name_='glyph', pretty_print=pretty_print)
         for arc_ in self.arc:
             arc_.export(outfile, level, namespace_='sbgn:', name_='arc', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='arcgroup'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.class_ is not None and 'class_' not in already_processed:
-            already_processed.add('class_')
-            showIndent(outfile, level)
-            outfile.write('class_="%s",\n' % (self.class_,))
-        super(arcgroup, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(arcgroup, self).exportLiteralChildren(outfile, level, name_)
-        showIndent(outfile, level)
-        outfile.write('glyph=[\n')
-        level += 1
-        for glyph_ in self.glyph:
-            showIndent(outfile, level)
-            outfile.write('model_.glyph(\n')
-            glyph_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        showIndent(outfile, level)
-        outfile.write('arc=[\n')
-        level += 1
-        for arc_ in self.arc:
-            showIndent(outfile, level)
-            outfile.write('model_.arc(\n')
-            arc_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2049,13 +1865,13 @@ class arc(SBGNBase):
     the id of a port on a glyph."""
     subclass = None
     superclass = SBGNBase
-    def __init__(self, notes=None, extension=None, source=None, target=None, class_=None, id=None, glyph=None, port=None, start=None, next=None, end=None):
+    def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
         self.original_tagname_ = None
         super(arc, self).__init__(notes, extension, )
-        self.source = _cast(None, source)
-        self.target = _cast(None, target)
         self.set_class(class_)
         self.id = _cast(None, id)
+        self.source = _cast(None, source)
+        self.target = _cast(None, target)
         if glyph is None:
             self.glyph = []
         else:
@@ -2071,6 +1887,11 @@ class arc(SBGNBase):
             self.next = next
         self.end = end
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, arc)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if arc.subclass:
             return arc.subclass(*args_, **kwargs_)
         else:
@@ -2095,20 +1916,29 @@ class arc(SBGNBase):
     def replace_next_at(self, index, value): self.next[index] = value
     def get_end(self): return self.end
     def set_end(self, end): self.end = end
-    def get_source(self): return self.source
-    def set_source(self, source): self.source = source
-    def get_target(self): return self.target
-    def set_target(self, target): self.target = target
-    def get_class(self): return ArcClass(self.class_)
-    def set_class(self, class_): 
+
+    def get_class(self):
+        """ Get the ArcClass. """
+        return ArcClass(self.class_)
+
+    def set_class(self, class_):
+        """ Set the ArcClass.
+        :param class_:
+        :return:
+        """
         if class_ and not isinstance(class_, ArcClass):
             raise TypeError('class must be of type ArcClass')
         if class_:
             self.class_ = _cast(None, class_.value)
         else:
             self.class_ = _cast(None, class_)
+
     def get_id(self): return self.id
     def set_id(self, id): self.id = id
+    def get_source(self): return self.source
+    def set_source(self, source): self.source = source
+    def get_target(self): return self.target
+    def set_target(self, target): self.target = target
     def hasContent_(self):
         if (
             self.glyph or
@@ -2141,18 +1971,18 @@ class arc(SBGNBase):
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='arc'):
         super(arc, self).exportAttributes(outfile, level, already_processed, namespace_, name_='arc')
-        if self.source is not None and 'source' not in already_processed:
-            already_processed.add('source')
-            outfile.write(' source=%s' % (self.gds_format_string(quote_attrib(self.source).encode(ExternalEncoding), input_name='source'), ))
-        if self.target is not None and 'target' not in already_processed:
-            already_processed.add('target')
-            outfile.write(' target=%s' % (self.gds_format_string(quote_attrib(self.target).encode(ExternalEncoding), input_name='target'), ))
         if self.class_ is not None and 'class_' not in already_processed:
             already_processed.add('class_')
-            outfile.write(' class=%s' % (self.gds_format_string(quote_attrib(self.class_).encode(ExternalEncoding), input_name='class'), ))
+            outfile.write(' class=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.class_), input_name='class')), ))
         if self.id is not None and 'id' not in already_processed:
             already_processed.add('id')
-            outfile.write(' id=%s' % (self.gds_format_string(quote_attrib(self.id).encode(ExternalEncoding), input_name='id'), ))
+            outfile.write(' id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.id), input_name='id')), ))
+        if self.source is not None and 'source' not in already_processed:
+            already_processed.add('source')
+            outfile.write(' source=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.source), input_name='source')), ))
+        if self.target is not None and 'target' not in already_processed:
+            already_processed.add('target')
+            outfile.write(' target=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.target), input_name='target')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='arc', fromsubclass_=False, pretty_print=True):
         super(arc, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -2169,80 +1999,6 @@ class arc(SBGNBase):
             next_.export(outfile, level, namespace_, name_='next', pretty_print=pretty_print)
         if self.end is not None:
             self.end.export(outfile, level, namespace_, name_='end', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='arc'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.source is not None and 'source' not in already_processed:
-            already_processed.add('source')
-            showIndent(outfile, level)
-            outfile.write('source="%s",\n' % (self.source,))
-        if self.target is not None and 'target' not in already_processed:
-            already_processed.add('target')
-            showIndent(outfile, level)
-            outfile.write('target="%s",\n' % (self.target,))
-        if self.class_ is not None and 'class_' not in already_processed:
-            already_processed.add('class_')
-            showIndent(outfile, level)
-            outfile.write('class_="%s",\n' % (self.class_,))
-        if self.id is not None and 'id' not in already_processed:
-            already_processed.add('id')
-            showIndent(outfile, level)
-            outfile.write('id="%s",\n' % (self.id,))
-        super(arc, self).exportLiteralAttributes(outfile, level, already_processed, name_)
-    def exportLiteralChildren(self, outfile, level, name_):
-        super(arc, self).exportLiteralChildren(outfile, level, name_)
-        showIndent(outfile, level)
-        outfile.write('glyph=[\n')
-        level += 1
-        for glyph_ in self.glyph:
-            showIndent(outfile, level)
-            outfile.write('model_.glyph(\n')
-            glyph_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        showIndent(outfile, level)
-        outfile.write('port=[\n')
-        level += 1
-        for port_ in self.port:
-            showIndent(outfile, level)
-            outfile.write('model_.port(\n')
-            port_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        if self.start is not None:
-            showIndent(outfile, level)
-            outfile.write('start=model_.startType(\n')
-            self.start.exportLiteral(outfile, level, name_='start')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        showIndent(outfile, level)
-        outfile.write('next=[\n')
-        level += 1
-        for next_ in self.next:
-            showIndent(outfile, level)
-            outfile.write('model_.nextType(\n')
-            next_.exportLiteral(outfile, level, name_='nextType')
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
-        if self.end is not None:
-            showIndent(outfile, level)
-            outfile.write('end=model_.endType(\n')
-            self.end.exportLiteral(outfile, level, name_='end')
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2251,14 +2007,6 @@ class arc(SBGNBase):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('source', node)
-        if value is not None and 'source' not in already_processed:
-            already_processed.add('source')
-            self.source = value
-        value = find_attr_value_('target', node)
-        if value is not None and 'target' not in already_processed:
-            already_processed.add('target')
-            self.target = value
         value = find_attr_value_('class', node)
         if value is not None and 'class' not in already_processed:
             already_processed.add('class')
@@ -2267,6 +2015,14 @@ class arc(SBGNBase):
         if value is not None and 'id' not in already_processed:
             already_processed.add('id')
             self.id = value
+        value = find_attr_value_('source', node)
+        if value is not None and 'source' not in already_processed:
+            already_processed.add('source')
+            self.source = value
+        value = find_attr_value_('target', node)
+        if value is not None and 'target' not in already_processed:
+            already_processed.add('target')
+            self.target = value
         super(arc, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'glyph':
@@ -2308,6 +2064,11 @@ class notesType(GeneratedsSuper):
         else:
             self.anytypeobjs_ = anytypeobjs_
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, notesType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if notesType.subclass:
             return notesType.subclass(*args_, **kwargs_)
         else:
@@ -2351,23 +2112,6 @@ class notesType(GeneratedsSuper):
             eol_ = ''
         for obj_ in self.anytypeobjs_:
             obj_.export(outfile, level, namespace_, pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='notesType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        showIndent(outfile, level)
-        outfile.write('anytypeobjs_=[\n')
-        level += 1
-        for anytypeobjs_ in self.anytypeobjs_:
-            anytypeobjs_.exportLiteral(outfile, level)
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2394,6 +2138,11 @@ class extensionType(GeneratedsSuper):
         else:
             self.anytypeobjs_ = anytypeobjs_
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, extensionType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if extensionType.subclass:
             return extensionType.subclass(*args_, **kwargs_)
         else:
@@ -2437,23 +2186,6 @@ class extensionType(GeneratedsSuper):
             eol_ = ''
         for obj_ in self.anytypeobjs_:
             obj_.export(outfile, level, namespace_, pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='extensionType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        showIndent(outfile, level)
-        outfile.write('anytypeobjs_=[\n')
-        level += 1
-        for anytypeobjs_ in self.anytypeobjs_:
-            anytypeobjs_.exportLiteral(outfile, level)
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2481,20 +2213,25 @@ class stateType(GeneratedsSuper):
     the parent EPN."""
     subclass = None
     superclass = None
-    def __init__(self, variable=None, value=None):
+    def __init__(self, value=None, variable=None):
         self.original_tagname_ = None
-        self.variable = _cast(None, variable)
         self.value = _cast(None, value)
+        self.variable = _cast(None, variable)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, stateType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if stateType.subclass:
             return stateType.subclass(*args_, **kwargs_)
         else:
             return stateType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_variable(self): return self.variable
-    def set_variable(self, variable): self.variable = variable
     def get_value(self): return self.value
     def set_value(self, value): self.value = value
+    def get_variable(self): return self.variable
+    def set_variable(self, variable): self.variable = variable
     def hasContent_(self):
         if (
 
@@ -2520,30 +2257,13 @@ class stateType(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='stateType'):
-        if self.variable is not None and 'variable' not in already_processed:
-            already_processed.add('variable')
-            outfile.write(' variable=%s' % (self.gds_format_string(quote_attrib(self.variable).encode(ExternalEncoding), input_name='variable'), ))
         if self.value is not None and 'value' not in already_processed:
             already_processed.add('value')
-            outfile.write(' value=%s' % (self.gds_format_string(quote_attrib(self.value).encode(ExternalEncoding), input_name='value'), ))
+            outfile.write(' value=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.value), input_name='value')), ))
+        if self.variable is not None and 'variable' not in already_processed:
+            already_processed.add('variable')
+            outfile.write(' variable=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.variable), input_name='variable')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='stateType', fromsubclass_=False, pretty_print=True):
-        pass
-    def exportLiteral(self, outfile, level, name_='stateType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.variable is not None and 'variable' not in already_processed:
-            already_processed.add('variable')
-            showIndent(outfile, level)
-            outfile.write('variable="%s",\n' % (self.variable,))
-        if self.value is not None and 'value' not in already_processed:
-            already_processed.add('value')
-            showIndent(outfile, level)
-            outfile.write('value="%s",\n' % (self.value,))
-    def exportLiteralChildren(self, outfile, level, name_):
         pass
     def build(self, node):
         already_processed = set()
@@ -2553,14 +2273,14 @@ class stateType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('variable', node)
-        if value is not None and 'variable' not in already_processed:
-            already_processed.add('variable')
-            self.variable = value
         value = find_attr_value_('value', node)
         if value is not None and 'value' not in already_processed:
             already_processed.add('value')
             self.value = value
+        value = find_attr_value_('variable', node)
+        if value is not None and 'variable' not in already_processed:
+            already_processed.add('variable')
+            self.variable = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
 # end class stateType
@@ -2573,6 +2293,11 @@ class cloneType(GeneratedsSuper):
         self.original_tagname_ = None
         self.label = label
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, cloneType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if cloneType.subclass:
             return cloneType.subclass(*args_, **kwargs_)
         else:
@@ -2614,21 +2339,6 @@ class cloneType(GeneratedsSuper):
             eol_ = ''
         if self.label is not None:
             self.label.export(outfile, level, namespace_='sbgn:', name_='label', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='cloneType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        if self.label is not None:
-            showIndent(outfile, level)
-            outfile.write('label=model_.label(\n')
-            self.label.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2655,6 +2365,11 @@ class calloutType(GeneratedsSuper):
         self.target = _cast(None, target)
         self.point = point
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, calloutType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if calloutType.subclass:
             return calloutType.subclass(*args_, **kwargs_)
         else:
@@ -2664,6 +2379,13 @@ class calloutType(GeneratedsSuper):
     def set_point(self, point): self.point = point
     def get_target(self): return self.target
     def set_target(self, target): self.target = target
+
+    def set_target(self, target):
+        if isinstance(target, glyph):
+            self.target = target.get_id()
+        else:
+            self.target = target
+
     def hasContent_(self):
         if (
             self.point is not None
@@ -2692,7 +2414,7 @@ class calloutType(GeneratedsSuper):
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='calloutType'):
         if self.target is not None and 'target' not in already_processed:
             already_processed.add('target')
-            outfile.write(' target=%s' % (self.gds_format_string(quote_attrib(self.target).encode(ExternalEncoding), input_name='target'), ))
+            outfile.write(' target=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.target), input_name='target')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='calloutType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2700,24 +2422,6 @@ class calloutType(GeneratedsSuper):
             eol_ = ''
         if self.point is not None:
             self.point.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='calloutType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.target is not None and 'target' not in already_processed:
-            already_processed.add('target')
-            showIndent(outfile, level)
-            outfile.write('target="%s",\n' % (self.target,))
-    def exportLiteralChildren(self, outfile, level, name_):
-        if self.point is not None:
-            showIndent(outfile, level)
-            outfile.write('point=model_.point(\n')
-            self.point.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2746,6 +2450,11 @@ class entityType(GeneratedsSuper):
         self.original_tagname_ = None
         self.name = _cast(None, name)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, entityType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if entityType.subclass:
             return entityType.subclass(*args_, **kwargs_)
         else:
@@ -2780,21 +2489,8 @@ class entityType(GeneratedsSuper):
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='entityType'):
         if self.name is not None and 'name' not in already_processed:
             already_processed.add('name')
-            outfile.write(' name=%s' % (self.gds_format_string(quote_attrib(self.name).encode(ExternalEncoding), input_name='name'), ))
+            outfile.write(' name=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.name), input_name='name')), ))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='entityType', fromsubclass_=False, pretty_print=True):
-        pass
-    def exportLiteral(self, outfile, level, name_='entityType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.name is not None and 'name' not in already_processed:
-            already_processed.add('name')
-            showIndent(outfile, level)
-            outfile.write('name="%s",\n' % (self.name,))
-    def exportLiteralChildren(self, outfile, level, name_):
         pass
     def build(self, node):
         already_processed = set()
@@ -2816,20 +2512,25 @@ class entityType(GeneratedsSuper):
 class startType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, y=None, x=None):
+    def __init__(self, x=None, y=None):
         self.original_tagname_ = None
-        self.y = _cast(float, y)
         self.x = _cast(float, x)
+        self.y = _cast(float, y)
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, startType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if startType.subclass:
             return startType.subclass(*args_, **kwargs_)
         else:
             return startType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
     def get_x(self): return self.x
     def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
 
@@ -2863,23 +2564,6 @@ class startType(GeneratedsSuper):
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='startType', fromsubclass_=False, pretty_print=True):
         pass
-    def exportLiteral(self, outfile, level, name_='startType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-    def exportLiteralChildren(self, outfile, level, name_):
-        pass
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2888,13 +2572,6 @@ class startType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -2902,6 +2579,13 @@ class startType(GeneratedsSuper):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
 # end class startType
@@ -2913,15 +2597,20 @@ class nextType(GeneratedsSuper):
     linear (0), quadratic (1) or cubic (2)"""
     subclass = None
     superclass = None
-    def __init__(self, y=None, x=None, point=None):
+    def __init__(self, x=None, y=None, point=None):
         self.original_tagname_ = None
-        self.y = _cast(float, y)
         self.x = _cast(float, x)
+        self.y = _cast(float, y)
         if point is None:
             self.point = []
         else:
             self.point = point
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, nextType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if nextType.subclass:
             return nextType.subclass(*args_, **kwargs_)
         else:
@@ -2932,10 +2621,10 @@ class nextType(GeneratedsSuper):
     def add_point(self, value): self.point.append(value)
     def insert_point_at(self, index, value): self.point.insert(index, value)
     def replace_point_at(self, index, value): self.point[index] = value
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
     def get_x(self): return self.x
     def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
             self.point
@@ -2975,34 +2664,6 @@ class nextType(GeneratedsSuper):
             eol_ = ''
         for point_ in self.point:
             point_.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='nextType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-    def exportLiteralChildren(self, outfile, level, name_):
-        showIndent(outfile, level)
-        outfile.write('point=[\n')
-        level += 1
-        for point_ in self.point:
-            showIndent(outfile, level)
-            outfile.write('model_.point(\n')
-            point_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -3011,13 +2672,6 @@ class nextType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -3025,6 +2679,13 @@ class nextType(GeneratedsSuper):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'point':
             obj_ = point.factory()
@@ -3040,15 +2701,20 @@ class endType(GeneratedsSuper):
     linear (0), quadratic (1) or cubic (2)"""
     subclass = None
     superclass = None
-    def __init__(self, y=None, x=None, point=None):
+    def __init__(self, x=None, y=None, point=None):
         self.original_tagname_ = None
-        self.y = _cast(float, y)
         self.x = _cast(float, x)
+        self.y = _cast(float, y)
         if point is None:
             self.point = []
         else:
             self.point = point
     def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, endType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
         if endType.subclass:
             return endType.subclass(*args_, **kwargs_)
         else:
@@ -3059,10 +2725,10 @@ class endType(GeneratedsSuper):
     def add_point(self, value): self.point.append(value)
     def insert_point_at(self, index, value): self.point.insert(index, value)
     def replace_point_at(self, index, value): self.point[index] = value
-    def get_y(self): return self.y
-    def set_y(self, y): self.y = y
     def get_x(self): return self.x
     def set_x(self, x): self.x = x
+    def get_y(self): return self.y
+    def set_y(self, y): self.y = y
     def hasContent_(self):
         if (
             self.point
@@ -3102,34 +2768,6 @@ class endType(GeneratedsSuper):
             eol_ = ''
         for point_ in self.point:
             point_.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
-    def exportLiteral(self, outfile, level, name_='endType'):
-        level += 1
-        already_processed = set()
-        self.exportLiteralAttributes(outfile, level, already_processed, name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        if self.y is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            showIndent(outfile, level)
-            outfile.write('y=%f,\n' % (self.y,))
-        if self.x is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            showIndent(outfile, level)
-            outfile.write('x=%f,\n' % (self.x,))
-    def exportLiteralChildren(self, outfile, level, name_):
-        showIndent(outfile, level)
-        outfile.write('point=[\n')
-        level += 1
-        for point_ in self.point:
-            showIndent(outfile, level)
-            outfile.write('model_.point(\n')
-            point_.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -3138,13 +2776,6 @@ class endType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -3152,6 +2783,13 @@ class endType(GeneratedsSuper):
                 self.x = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (x): %s' % exp)
+        value = find_attr_value_('y', node)
+        if value is not None and 'y' not in already_processed:
+            already_processed.add('y')
+            try:
+                self.y = float(value)
+            except ValueError as exp:
+                raise ValueError('Bad float/double attribute (y): %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'point':
             obj_ = point.factory()
@@ -3162,15 +2800,15 @@ class endType(GeneratedsSuper):
 
 
 GDSClassesMapping = {
-    'end': endType,
-    'extension': extensionType,
-    'clone': cloneType,
     'callout': calloutType,
+    'clone': cloneType,
+    'end': endType,
     'entity': entityType,
-    'start': startType,
-    'state': stateType,
+    'extension': extensionType,
     'next': nextType,
     'notes': notesType,
+    'start': startType,
+    'state': stateType,
 }
 
 
@@ -3193,7 +2831,8 @@ def get_root_tag(node):
 
 
 def parse(inFileName, silence=False):
-    doc = parsexml_(inFileName)
+    parser = None
+    doc = parsexml_(inFileName, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -3213,7 +2852,8 @@ def parse(inFileName, silence=False):
 
 
 def parseEtree(inFileName, silence=False):
-    doc = parsexml_(inFileName)
+    parser = None
+    doc = parsexml_(inFileName, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -3237,7 +2877,8 @@ def parseEtree(inFileName, silence=False):
 
 def parseString(inString, silence=False):
     from StringIO import StringIO
-    doc = parsexml_(StringIO(inString))
+    parser = None
+    doc = parsexml_(StringIO(inString), parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -3256,7 +2897,8 @@ def parseString(inString, silence=False):
 
 
 def parseLiteral(inFileName, silence=False):
-    doc = parsexml_(inFileName)
+    parser = None
+    doc = parsexml_(inFileName, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:

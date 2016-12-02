@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# Generated Mon Apr 20 18:58:07 2015 by generateDS.py version 2.15a.
+# Generated Mon Nov 28 14:10:23 2016 by generateDS.py version 2.24a.
 #
 # Command line options:
 #   ('-o', 'libsbgn.py')
@@ -14,20 +14,20 @@
 #   /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
 #
 # Current working directory (os.getcwd()):
-#   generateDS
+#   schema
 #
 
 import sys
 from lxml import etree as etree_
 
-import libsbgn as supermod
+import ??? as supermod
 
-def parsexml_(*args, **kwargs):
-    if 'parser' not in kwargs:
+def parsexml_(infile, parser=None, **kwargs):
+    if parser is None:
         # Use the lxml ElementTree compatible parser so that, e.g.,
         #   we ignore comments.
-        kwargs['parser'] = etree_.ETCompatXMLParser()
-    doc = etree_.parse(*args, **kwargs)
+        parser = etree_.ETCompatXMLParser()
+    doc = etree_.parse(infile, parser=parser, **kwargs)
     return doc
 
 #
@@ -49,15 +49,15 @@ supermod.SBGNBase.subclass = SBGNBaseSub
 
 
 class pointSub(supermod.point):
-    def __init__(self, notes=None, extension=None, y=None, x=None):
-        super(pointSub, self).__init__(notes, extension, y, x, )
+    def __init__(self, notes=None, extension=None, x=None, y=None):
+        super(pointSub, self).__init__(notes, extension, x, y, )
 supermod.point.subclass = pointSub
 # end class pointSub
 
 
 class bboxSub(supermod.bbox):
-    def __init__(self, notes=None, extension=None, y=None, h=None, w=None, x=None):
-        super(bboxSub, self).__init__(notes, extension, y, h, w, x, )
+    def __init__(self, notes=None, extension=None, w=None, h=None, x=None, y=None):
+        super(bboxSub, self).__init__(notes, extension, w, h, x, y, )
 supermod.bbox.subclass = bboxSub
 # end class bboxSub
 
@@ -84,15 +84,15 @@ supermod.map.subclass = mapSub
 
 
 class portSub(supermod.port):
-    def __init__(self, notes=None, extension=None, y=None, x=None, id=None):
-        super(portSub, self).__init__(notes, extension, y, x, id, )
+    def __init__(self, notes=None, extension=None, id=None, x=None, y=None):
+        super(portSub, self).__init__(notes, extension, id, x, y, )
 supermod.port.subclass = portSub
 # end class portSub
 
 
 class glyphSub(supermod.glyph):
-    def __init__(self, notes=None, extension=None, id=None, compartmentRef=None, class_=None, compartmentOrder=None, orientation='horizontal', label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
-        super(glyphSub, self).__init__(notes, extension, id, compartmentRef, class_, compartmentOrder, orientation, label, state, clone, callout, entity, bbox, glyph_member, port, )
+    def __init__(self, notes=None, extension=None, class_=None, orientation='horizontal', id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
+        super(glyphSub, self).__init__(notes, extension, class_, orientation, id, compartmentRef, compartmentOrder, label, state, clone, callout, entity, bbox, glyph_member, port, )
 supermod.glyph.subclass = glyphSub
 # end class glyphSub
 
@@ -105,8 +105,8 @@ supermod.arcgroup.subclass = arcgroupSub
 
 
 class arcSub(supermod.arc):
-    def __init__(self, notes=None, extension=None, source=None, target=None, class_=None, id=None, glyph=None, port=None, start=None, next=None, end=None):
-        super(arcSub, self).__init__(notes, extension, source, target, class_, id, glyph, port, start, next, end, )
+    def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
+        super(arcSub, self).__init__(notes, extension, class_, id, source, target, glyph, port, start, next, end, )
 supermod.arc.subclass = arcSub
 # end class arcSub
 
@@ -126,8 +126,8 @@ supermod.extensionType.subclass = extensionTypeSub
 
 
 class stateTypeSub(supermod.stateType):
-    def __init__(self, variable=None, value=None):
-        super(stateTypeSub, self).__init__(variable, value, )
+    def __init__(self, value=None, variable=None):
+        super(stateTypeSub, self).__init__(value, variable, )
 supermod.stateType.subclass = stateTypeSub
 # end class stateTypeSub
 
@@ -154,22 +154,22 @@ supermod.entityType.subclass = entityTypeSub
 
 
 class startTypeSub(supermod.startType):
-    def __init__(self, y=None, x=None):
-        super(startTypeSub, self).__init__(y, x, )
+    def __init__(self, x=None, y=None):
+        super(startTypeSub, self).__init__(x, y, )
 supermod.startType.subclass = startTypeSub
 # end class startTypeSub
 
 
 class nextTypeSub(supermod.nextType):
-    def __init__(self, y=None, x=None, point=None):
-        super(nextTypeSub, self).__init__(y, x, point, )
+    def __init__(self, x=None, y=None, point=None):
+        super(nextTypeSub, self).__init__(x, y, point, )
 supermod.nextType.subclass = nextTypeSub
 # end class nextTypeSub
 
 
 class endTypeSub(supermod.endType):
-    def __init__(self, y=None, x=None, point=None):
-        super(endTypeSub, self).__init__(y, x, point, )
+    def __init__(self, x=None, y=None, point=None):
+        super(endTypeSub, self).__init__(x, y, point, )
 supermod.endType.subclass = endTypeSub
 # end class endTypeSub
 
@@ -184,7 +184,8 @@ def get_root_tag(node):
 
 
 def parse(inFilename, silence=False):
-    doc = parsexml_(inFilename)
+    parser = None
+    doc = parsexml_(inFilename, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -204,7 +205,8 @@ def parse(inFilename, silence=False):
 
 
 def parseEtree(inFilename, silence=False):
-    doc = parsexml_(inFilename)
+    parser = None
+    doc = parsexml_(inFilename, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -228,7 +230,8 @@ def parseEtree(inFilename, silence=False):
 
 def parseString(inString, silence=False):
     from StringIO import StringIO
-    doc = parsexml_(StringIO(inString))
+    parser = None
+    doc = parsexml_(StringIO(inString), parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
@@ -247,7 +250,8 @@ def parseString(inString, silence=False):
 
 
 def parseLiteral(inFilename, silence=False):
-    doc = parsexml_(inFilename)
+    parser = None
+    doc = parsexml_(inFilename, parser)
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:

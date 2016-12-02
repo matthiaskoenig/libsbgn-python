@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Defintion of Language, GlyphClass and ArcClass types.
-
-@author: Matthias Koenig
-@date: 2015-04-20
+Definition of Language, GlyphClass and ArcClass types.
+Created manually from schema file.
 """
+from __future__ import print_function
 from enum import Enum, unique
 
 @unique
 class Language(Enum):
-    ''' Enum representing the three languages of SBGN.'''
+    """
+    Enum representing the three languages of SBGN.
+    """
     AF = "activity flow"
     ER = "entity relationship"
     PD = "process description"
@@ -21,10 +22,10 @@ class Orientation(Enum):
 
 @unique	
 class GlyphClass(Enum):
-    '''
+    """
     Enumeration with all possible values for the class attribute of Glyphs in SBGN-ML. 
     This includes both top-level glyphs and sub-glyphs.
-    '''
+    """
     # glyphs
     UNSPECIFIED_ENTITY = "unspecified entity"
     SIMPLE_CHEMICAL = "simple chemical"
@@ -54,7 +55,7 @@ class GlyphClass(Enum):
     NOT = "not"
     STATE_VARIABLE = "state variable"
     UNIT_OF_INFORMATION = "unit of information"
-	
+
     # @deprecated
     # By mistake, we used STOICHIOMETRY in instead of {@link CARDINALITY} in LibSBGN M1.
     # We keep this constant here to support reading old documents.
@@ -62,7 +63,7 @@ class GlyphClass(Enum):
     STOICHIOMETRY = "stoichiometry"
     ENTITY = "entity"
     OUTCOME = "outcome"
-	 
+
     # @deprecated
     # Observable was used in old versions of SBGN, but has been replaced with {@link PHENOTYPE}. 
     # However, because older versions of SBGN are supported by LibSBGN, this constant will never be removed.
@@ -79,7 +80,9 @@ class GlyphClass(Enum):
 
 @unique
 class ArcClass(Enum):
-    ''' Enumeration with all possible values for the class attribute of Arcs in SBGN-ML. '''
+    """
+    Enumeration with all possible values for the class attribute of Arcs in SBGN-ML.
+    """
     # arcs
     PRODUCTION = "production"
     CONSUMPTION = "consumption"
@@ -97,3 +100,7 @@ class ArcClass(Enum):
     EQUIVALENCE_ARC = "equivalence arc"
     NECESSARY_STIMULATION = "necessary stimulation"
     LOGIC_ARC = "logic arc"
+
+
+if __name__ == "__main__":
+    print(ArcClass('production'))

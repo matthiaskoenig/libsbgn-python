@@ -9,3 +9,8 @@ libsbgnpy.egg-info/
 .settings/
 .metadata
 .idea
+# coverage information
+.coverage
+htmlcov/
+libsbgnpy/examples/sbgn/test-output.sbgn
+libsbgnpy/examples/sbgn/test-output-annotation.sbgn

@@ -6,14 +6,21 @@ branches:
   - develop
 
 python:
-  - "2.6"
   - "2.7"
   - "3.4"
   - "3.5"
   - "nightly"
 
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
 
 # command to run tests
-script: nosetests
+script:
+  # nosetests
+  nosetests --with-coverage --cover-package=libsbgnpy
+after_success:
+  coveralls
+
+# nosetests --with-coverage --cover-package=libsbgnpy

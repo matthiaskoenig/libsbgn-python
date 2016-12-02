@@ -87,6 +87,7 @@ class TestLibSBGN(unittest.TestCase):
     
     def test_glyph_classes(self):
         glyphs = self.sbgn.get_map().get_glyph()
+        print(glyphs[0].class_)
         self.assertEqual(glyphs[0].get_class(), GlyphClass.SIMPLE_CHEMICAL, 'glyph class')
         self.assertEqual(glyphs[1].get_class(), GlyphClass.PROCESS, 'glyph class')
     
@@ -135,7 +136,16 @@ class TestLibSBGN(unittest.TestCase):
         self.assertTrue(end is not None, 'end of arc exists')
         self.assertEqual(end.get_x(), 136, 'arc start x coordinate')
         self.assertEqual(end.get_y(), 180, 'arc start y coordinate')
-        
+
+    def test_glyph_class(self):
+        g1 = libsbgn.glyph(class_=GlyphClass.SIMPLE_CHEMICAL, id='glyph1')
+        self.assertEqual(g1.get_id(), 'glyph1')
+        self.assertEqual(g1.get_class(), GlyphClass.SIMPLE_CHEMICAL)
+
+        g2 = libsbgn.glyph(id='glyph1')
+        g2.set_class(GlyphClass.SIMPLE_CHEMICAL)
+        self.assertEqual(g2.get_id(), 'glyph1')
+        self.assertEqual(g2.get_class(), GlyphClass.SIMPLE_CHEMICAL)
 
 if __name__ == '__main__':
     unittest.main()

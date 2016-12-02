@@ -1,4 +1,5 @@
-"""Setup module for libsbgn.
+"""
+Setup module for libsbgn.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -10,14 +11,15 @@ python setup.py sdist
 
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
-from codecs import open # To use a consistent encoding
+from codecs import open  # To use a consistent encoding
 from os import path
+import re
 
 here = path.abspath(path.dirname(__file__))
 
 # get the version
-import re
-VERSIONFILE="libsbgnpy/_version.py"
+
+VERSIONFILE = "libsbgnpy/_version.py"
 verstrline = open(VERSIONFILE, "rt").read()
 VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
@@ -37,7 +39,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version = verstr,
+    version=verstr,
 
     description='libsbgn python bindings',
     long_description=long_description,
@@ -47,10 +49,10 @@ setup(
 
     # Author details
     author='Matthias Koenig',
-    author_email='konigmatt@googlemails.com',
+    author_email='konigmatt@googlemail.com',
 
     # Choose your license
-    license='MIT',
+    license='LGPL-v3',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -65,7 +67,7 @@ setup(
         'Topic :: Scientific/Engineering :: Visualization',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: LGPL-v3',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
@@ -84,7 +86,7 @@ setup(
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     # exclude=['contrib', 'docs', 'tests*']
-    packages = find_packages(),
+    packages=find_packages(),
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
