@@ -32,7 +32,7 @@ To cite libsbgnpy use the following BibTex or equivalent
 
 The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
 ```
-sudo pip install libsbgnpy
+pip install libsbgnpy
 ```
 
 ## Support

@@ -3,7 +3,7 @@
 """
 Read all the test files.
 """
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 import unittest
 import tempfile
 import os
@@ -12,19 +12,20 @@ import libsbgnpy.libsbgn as libsbgn
 ##############################################
 # Test files
 ##############################################
-dir = os.path.dirname(os.path.realpath(__file__))
-testfile_dir = os.path.join(dir, 'test-files')
+current_dir = os.path.dirname(os.path.realpath(__file__))
+testfile_dir = os.path.join(current_dir, 'test-files')
 
-def find_sbgn_files(dir):
+
+def find_sbgn_files(directory):
     sbgn_files = []
-    for root, dirs, files in os.walk(dir):
+    for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".sbgn"):
                 f = os.path.join(root, file)
                 sbgn_files.append(f)
     return sbgn_files
 
-sbgn_files = find_sbgn_files(dir=testfile_dir)
+sbgn_files = find_sbgn_files(directory=testfile_dir)
 ##############################################
 
 
