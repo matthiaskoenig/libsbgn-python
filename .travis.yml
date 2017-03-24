@@ -9,7 +9,7 @@ python:
   - "2.7"
   - "3.4"
   - "3.5"
-  - "nightly"
+  - "3.6"
 
 # command to install dependencies
 install:
