@@ -1,4 +1,4 @@
-![libsbgn-python logo](./docs/images/libsbgn-python-logo-small.png)
+![libsbgn-python logo](./docs/images/libsbgn-python-logo-small.png)  
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.192356.svg)](https://doi.org/10.5281/zenodo.192356)
@@ -6,7 +6,7 @@
 # libsbgnpy : Python bindings for SBGN
 
 Python bindings for [SBGN](http://sbgn.github.io/sbgn/) based on the XML schema.
-Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder. Currently, validation against schema files is not implemented.
+Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder.
 
 * `libsbgn.py` python bindings
 * `libsbgnTypes.py` SBGN type definitions (GlyphClasses, ArcClasses, Languages)
@@ -37,9 +37,10 @@ pip install libsbgnpy
 ```
 
 ## Support
-
 For bugs, feature requests and support file an [issue](https://github.com/matthiaskoenig/libsbgn-python/issues).
 
+## Contributing
+You want to fix a typo/bug or implement a feature. Please follow the [contribution guidelines](./CONTRIBUTING.rst).
 
 ## Software using libsbgnpy
 
