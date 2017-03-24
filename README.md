@@ -1,10 +1,11 @@
+![libsbgn-python logo](./docs/images/libsbgn-python-logo-small.png)
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.192356.svg)](https://doi.org/10.5281/zenodo.192356)
 [![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg?branch=develop)](https://coveralls.io/github/matthiaskoenig/libsbgn-python?branch=develop)
 # libsbgnpy : Python bindings for SBGN
 
-Python bindings for SBGN based on the XML schema.
+Python bindings for [SBGN](http://sbgn.github.io/sbgn/) based on the XML schema.
 Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder. Currently, validation against schema files is not implemented.
 
 * `libsbgn.py` python bindings
@@ -14,7 +15,7 @@ Initial bindings were generated with generateDS. The necessary constraints for G
 * `examples/` python examples
 * `validation/` validation of SBGN files
 
-libsbgnpy supports py2 and py3.
+libsbgnpy supports python 2 and python 3.
 
 To cite libsbgnpy use the following BibTex or equivalent
 
