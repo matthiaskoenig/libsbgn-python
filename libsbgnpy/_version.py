@@ -1,2 +1,2 @@
 # version information (here only placed defined)
-__version__ = "0.1.6dev"
+__version__ = "0.1.6a1"

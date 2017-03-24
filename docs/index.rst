@@ -1,15 +1,14 @@
-.. libsbgn-python documentation master file, created by
-   sphinx-quickstart on Fri Mar 24 18:52:46 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Documentation for libsbgn-python
+================================
 
-Welcome to libsbgn-python's documentation!
-==========================================
+The source code is available at `https://github.com/matthiaskoenig/libsbgn-python
+<https://github.com/matthiaskoenig/libsbgn-python>`_.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :numbered:
+    :maxdepth: 2
 
+    getting_started
 
 
 Indices and tables
