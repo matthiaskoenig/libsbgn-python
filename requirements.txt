@@ -1,3 +1,5 @@
 lxml
 enum34
 six
+pytest
+pytest-cov
