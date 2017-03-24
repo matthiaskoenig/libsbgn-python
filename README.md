@@ -37,8 +37,8 @@ sudo pip install libsbgnpy
 
 ## Support
 
-For bugs, feature requests and support file an issue at
-https://github.com/matthiaskoenig/libsbgn-python/issues
+For bugs, feature requests and support file an [issue](https://github.com/matthiaskoenig/libsbgn-python/issues).
+
 
 ## Software using libsbgnpy
 

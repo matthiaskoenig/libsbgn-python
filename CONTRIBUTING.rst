@@ -107,10 +107,6 @@ features or changes that you can implement yourself.
 
 8. Setup libsbgn-python for development::
 
-    (libsbgn-python)$ python setup.py develop
-
-   or::
-
     (libsbgn-python)$ pip install -e .
 
 9. When you are done making changes, check that your changes pass pep8
@@ -118,11 +114,12 @@ features or changes that you can implement yourself.
 
      (libsbgn-python)$ tox -e pep8
 
-    and likely one of::
+    and one of the py2 and py3 tests via::
 
      (libsbgn-python)$ tox -e py27
      (libsbgn-python)$ tox -e py34
      (libsbgn-python)$ tox -e py35
+     (libsbgn-python)$ tox -e py36
 
 10. Commit your changes and push your branch to GitHub::
 
@@ -167,32 +164,9 @@ Unit tests and benchmarks
 
 libsbgn-python uses `pytest <http://docs.pytest.org/en/latest/>`_ for its
 unit-tests and new features should in general always come with new
-tests that make sure that the code runs as intended. We use `pytest-benchmark
-<https://pytest-benchmark.readthedocs.io/en/latest/>`_ to compare
-different implementations to make sure that new code do not come with
-unacceptable increased computation time. If you add benchmarked tests,
-make sure to also include a test with and without the benchmark as we
-do not want to slow down continuous integration by running benchmarks.
-Benchmarks can be skipped via::
+tests that make sure that the code runs as intended::
 
     (libsbgn-python)$ pytest
-
-When the test function itself is small and can safely be assumed to
-not take many resources, we can directly profile the test as in
-``test_subtract_metabolite_benchmark`` which calls
-``benchmark(self.test_subtract_metabolite, model)``.
-
-To run all tests and benchmarks do::
-
-    (sbmmlutils)$ pytest
-
-and to compare two implementations you may keep them in two branches
-e.g. ``old`` and ``new`` and then do::
-
-    (libsbgn-python)$ git checkout old
-    (libsbgn-python)$ pytest --benchmark-save
-    (libsbgn-python)$ git checkout new
-    (libsbgn-python)$ pytest --benchmark-compare
 
 
 Branching model
