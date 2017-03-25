@@ -750,12 +750,12 @@ class SBGNBase(GeneratedsSuper):
             return False
 
     def write_file(self, outfile, namespace='sbgn'):
-        """ Write SBGN to file
+        """ Write SBGN to file.
 
-        Necessary to fix the issue of the sbgn namespace prefix.
+        This also fixes the issues of the sbgn namespace prefix.
 
-        :param outfile:
-        :type outfile:
+        :param outfile: SBGN file to write
+        :param namespace:
         :return:
         """
         f = open(outfile, 'w')
@@ -776,6 +776,7 @@ class SBGNBase(GeneratedsSuper):
             print(line, end='')
 
         f.close()
+
 
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:

@@ -6,7 +6,7 @@ import pytest
 import os
 import tempfile
 
-from libsbgnpy import libsbgnUtils as utils
+from libsbgnpy import utils as utils
 from libsbgnpy.libsbgnTypes import Language
 
 
@@ -28,6 +28,14 @@ def test_write_to_file(f_adh):
     utils.write_to_file(sbgn, f_out.name)
     sbgn2 = utils.read_from_file(f_out)
     assert sbgn2 is not None
+
+
+def test_write_to_string(f_adh):
+    sbgn = utils.read_from_file(f_adh)
+    sbgn_str = utils.write_to_string(sbgn)
+
+    assert sbgn_str is not None
+    assert 'xml' in sbgn_str
 
 
 def test_get_version(f_adh):

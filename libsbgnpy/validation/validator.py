@@ -13,7 +13,7 @@ import os
 from lxml import isoschematron
 from lxml import etree
 from enum import Enum
-import libsbgnpy.libsbgnUtils as utils
+import libsbgnpy.utils as utils
 
 from libsbgnpy.libsbgnTypes import Language
 

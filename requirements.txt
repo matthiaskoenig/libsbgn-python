@@ -1,5 +1,6 @@
 lxml
 enum34
+requests
 six
 pytest
 pytest-cov

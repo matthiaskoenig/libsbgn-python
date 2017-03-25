@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Some helper functions to work with SBGN.
+Helper functions to work with SBGN.
 """
 
 from __future__ import absolute_import, print_function
@@ -27,6 +27,22 @@ def write_to_file(sbgn, f):
     :return:
     """
     sbgn.write_file(f)
+
+
+def write_to_string(sbgn):
+    """ Write SBGN to string.
+    Returns None if problems.
+
+    :param namespace:  
+    :return: SBGN xml string
+    """
+    import tempfile
+    f = tempfile.NamedTemporaryFile(suffix='.sbgn')
+    write_to_file(sbgn, f.name)
+    with f as fin:
+        sbgn_str = fin.read()
+        return sbgn_str
+    return None
 
 
 def get_version(f):
