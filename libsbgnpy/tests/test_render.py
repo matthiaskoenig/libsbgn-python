@@ -21,4 +21,3 @@ def test_render_sbgn(f_adh):
     sbgn = utils.read_from_file(f_adh)
     tmp_file = tempfile.NamedTemporaryFile(suffix=".png")
     render.render_sbgn(sbgn, image_file=tmp_file.name, file_format="png")
-

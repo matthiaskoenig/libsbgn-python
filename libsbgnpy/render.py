@@ -4,7 +4,7 @@ Helper functions for rendering SBGN.
 
 Currently uses the webservice provided at "http://sysbioapps.dyndns.org/Layout/GenerateImage".
 For documentation see
-    http://sysbioapps.dyndns.org/Home/Services
+http://sysbioapps.dyndns.org/Home/Services
 """
 
 from __future__ import absolute_import, print_function
@@ -15,20 +15,17 @@ import tempfile
 
 def render_sbgn(sbgn, image_file, file_format="png"):
     """ Render given sbgn object to image.
-     
+
     Currently supports the following file_formats:
-        - "png"
+    - "png"
     The image file must end in .file_format, e.g. in '.png'
-    
+
     Performs a request analogue to:
     curl -X POST -F file=@".\BorisEJB.xml" http://sysbioapps.dyndns.org/Layout/GenerateImage -o out.png
-    
-    :param sbgn: 
-    :type sbgn: 
-    :param out_file: 
-    :type out_file: 
-    :return: 
-    :rtype: 
+
+    :param sbgn: sbgn object
+    :param image_file: image to create
+    :return: None
     """
     if file_format is not "png":
         raise ValueError("Only png rendering supported.")

@@ -777,7 +777,6 @@ class SBGNBase(GeneratedsSuper):
 
         f.close()
 
-
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'

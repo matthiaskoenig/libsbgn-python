@@ -55,6 +55,7 @@ for mod_name in MOCK_MODULES:
 extensions = [
     'nbsphinx',
     'sphinx.ext.mathjax',
+    'sphinx.ext.autodoc'
 ]
 nbsphinx_execute = 'always'
 

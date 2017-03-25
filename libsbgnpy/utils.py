@@ -33,7 +33,7 @@ def write_to_string(sbgn):
     """ Write SBGN to string.
     Returns None if problems.
 
-    :param namespace:  
+    :param sbgn: sbgn object
     :return: SBGN xml string
     """
     import tempfile
@@ -52,7 +52,7 @@ def get_version(f):
     2: xmlns="http://sbgn.org/libsbgn/0.2
     3: xmlns="http://sbgn.org/libsbgn/0.3
 
-    :param f:
+    :param f: file for which version should be found.
     :return: version as an integer, i.e. 1, 2, 3
     """
     import re
