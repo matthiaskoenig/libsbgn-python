@@ -7,6 +7,7 @@ from __future__ import absolute_import, print_function
 import os
 from libsbgnpy.examples.read_example import read_sbgn_01
 from libsbgnpy.examples.write_example import write_sbgn_01, write_sbgn_02, write_sbgn_03
+from libsbgnpy.examples.info_example import info_example
 
 directory = os.path.dirname(os.path.realpath(__file__))
 
@@ -66,3 +67,7 @@ def test_write_read_example_03():
     write_sbgn_03(f)
     sbgn = read_sbgn_01(f)
     assert sbgn is not None
+
+
+def test_info_example():
+    info_example()
