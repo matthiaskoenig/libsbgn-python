@@ -39,7 +39,7 @@ def write_to_string(sbgn):
     import tempfile
     f = tempfile.NamedTemporaryFile(suffix='.sbgn')
     write_to_file(sbgn, f.name)
-    with f as fin:
+    with open(f, 'wt') as fin:
         sbgn_str = fin.read()
         return sbgn_str
     return None
