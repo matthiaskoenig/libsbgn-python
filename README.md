@@ -25,7 +25,7 @@ To cite libsbgnpy use the following BibTex or equivalent
 
     @MISC{libsbgnpy,
       author        = {Matthias König},
-      title         = {libsbgnpy: Python bindings for SBGN},
+      title         = {libsbgnpy: Python library for SBGN},
       month         = {Mar.},
       year          = {2017},
       doi           = "{10.5281/zenodo.438137}",
