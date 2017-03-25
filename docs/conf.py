@@ -20,6 +20,8 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('.'))
+
 
 # In order to build documentation that requires libraries to import
 class Mock(object):
