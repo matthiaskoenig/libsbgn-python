@@ -2,9 +2,13 @@
 # can be build via
 #   cd docs
 #   make html
+lxml
+enum34
+requests
+six
 
-
-
-sphinx
+# documentation
+sphinx>=1.4
+ipykernel
 nbsphinx
 sphinx_rtd_theme
