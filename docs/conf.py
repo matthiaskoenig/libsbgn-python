@@ -39,8 +39,7 @@ class Mock(object):
             return Mock()
 
 
-MOCK_MODULES = ['numpy', 'scipy',
-                'libsbml', 'pandas', 'tabulate', 'cobra' 'future', 'future.utils']
+MOCK_MODULES = ['future', 'future.utils']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
 
@@ -59,7 +58,8 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.autodoc'
 ]
-nbsphinx_execute = 'always'
+# nbsphinx_execute = 'always'
+nbsphinx_execute = 'auto'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
