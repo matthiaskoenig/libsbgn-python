@@ -1,14 +1,19 @@
 Documentation for libsbgn-python
 ================================
 
-The source code is available at `https://github.com/matthiaskoenig/libsbgn-python
+.. image:: ./images/libsbgn-python-logo-small.png
+
+Source code and support is available at
+`https://github.com/matthiaskoenig/libsbgn-python
 <https://github.com/matthiaskoenig/libsbgn-python>`_.
 
 .. toctree::
     :numbered:
-    :maxdepth: 2
+    :maxdepth: 3
 
-    getting_started
+    introduction
+    examples
+    libsbgnpy
 
 
 Indices and tables

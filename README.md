@@ -1,26 +1,27 @@
-![libsbgn-python logo](./docs/images/libsbgn-python-logo-small.png)  
+![libsbgn-python logo](docs/images/libsbgn-python-logo-small.png)  
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.192356.svg)](https://doi.org/10.5281/zenodo.192356)
 [![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg?branch=develop)](https://coveralls.io/github/matthiaskoenig/libsbgn-python?branch=develop)
-# libsbgnpy : Python bindings for SBGN
+# libsbgnpy : Python library for SBGN
 
-Python bindings for [SBGN](http://sbgn.github.io/sbgn/) based on the XML schema generated with [generateDS](https://bitbucket.org/dkuhlman/generateds).
-Initial bindings were generated with generateDS. The necessary constraints for GlyphClasses, ArcClasses and Languages were added and some utility functions created. Python examples for reading and writing can be found in the examples folder.
+Python library to work with [SBGN](http://sbgn.github.io/sbgn/). This library is based on the SBGN XML schema and supports reading, 
+writing and validation of SBGN files. Python 2 and python 3 are supported. 
+The initial library was generated using [generateDS](https://bitbucket.org/dkuhlman/generateds). Additional utility functions for 
+reading, writing and rendering SBGN documents are provided.
 
-* `libsbgn.py` python bindings
+* `libsbgn.py` python library
 * `libsbgnTypes.py` SBGN type definitions (GlyphClasses, ArcClasses, Languages)
-* `libsbgnUtils.py` SBGN helper functions
+* `utils.py` SBGN utility function like writing & reading of files
+* `render.py` SBGN rendering
 * `tests` unittests
 * `examples/` python examples
 * `validation/` validation of SBGN files
 
-libsbgnpy supports python 2 and python 3.
-
 To cite libsbgnpy use the following BibTex or equivalent
 
     @MISC{libsbgnpy,
-      author        = {Matthias Koenig},
+      author        = {Matthias König},
       title         = {libsbgnpy: Python bindings for SBGN},
       month         = {Dec.},
       year          = {2016},
@@ -30,29 +31,27 @@ To cite libsbgnpy use the following BibTex or equivalent
     }
 
 ## Installation
-
 The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
 ```
 pip install libsbgnpy
 ```
+The latest develop version can be installed via
+```
+pip install git+https://github.com/matthiaskoenig/libsbgn-python.git@develop
+```
 
 ## Support
-For bugs, feature requests and support file an [issue](https://github.com/matthiaskoenig/libsbgn-python/issues).
+To report bugs, request features or asking questions please file an [issue](https://github.com/matthiaskoenig/libsbgn-python/issues).
 
 ## Contributing
-You want to fix a typo/bug or implement a feature. Please follow the [contribution guidelines](./CONTRIBUTING.rst).
+Contributions are very welcome. The easiest way to fix a typo/bug or implement a feature is by 
+following the [contribution guidelines](./CONTRIBUTING.rst).
 
 ## Software using libsbgnpy
 
 * [Mimoza](http://mimoza.bordeaux.inria.fr/) takes a model in
 SBML format and visualizes it in several formats (downloadable as a
 COMBINE archive)
-
-## Usage example
-
-```python
-
-```
 
 ## License
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
@@ -64,6 +63,9 @@ generateDS and than adapted to include GlyphClasses and ArcClasses.
 ```
 /usr/local/bin/generateDS.py -o "libsbgn.py" -s "libsbgnSubs.py" SBGN.xsd
 ```
+The necessary constraints for GlyphClasses, ArcClasses and Languages were added and
+some utility functions created.
+
 
 ## ChangeLog
 **v0.1.5**

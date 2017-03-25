@@ -1,0 +1,10 @@
+# requirements to build the sphinx documentation
+# can be build via
+#   cd docs
+#   make html
+
+
+
+sphinx
+nbsphinx
+sphinx_rtd_theme
