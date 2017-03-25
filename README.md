@@ -71,6 +71,17 @@ some utility functions created.
 
 
 ## ChangeLog
+**v0.1.6**
+Improved testing and documentation
+
+* New documentation: http://libsbgn-python.readthedocs.io/en/latest/index.html
+* Some python 3 bugfixes
+* Additional examples 
+* Additional tests, coverage & switch to py-test
+* pep8 fixes
+* tox support and tox testing
+* logo
+
 **v0.1.5**
 
 * py3 support bugfixes
