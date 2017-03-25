@@ -1,15 +1,17 @@
 language: python
-
-branches:
-  only:
-  - master
-  - develop
+cache: pip
 
 python:
   - "2.7"
   - "3.4"
   - "3.5"
-  - "nightly"
+  - "3.6"
+sudo: required
+
+branches:
+  only:
+  - master
+  - develop
 
 # command to install dependencies
 install:
@@ -18,9 +20,6 @@ install:
 
 # command to run tests
 script:
-  # nosetests
-  nosetests --with-coverage --cover-package=libsbgnpy
+  pytest --cov=libsbgnpy
 after_success:
   coveralls
-
-# nosetests --with-coverage --cover-package=libsbgnpy

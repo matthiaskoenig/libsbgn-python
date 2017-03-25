@@ -3,8 +3,9 @@
 Definition of Language, GlyphClass and ArcClass types.
 Created manually from schema file.
 """
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 from enum import Enum, unique
+
 
 @unique
 class Language(Enum):
@@ -15,15 +16,17 @@ class Language(Enum):
     ER = "entity relationship"
     PD = "process description"
 
+
 @unique
 class Orientation(Enum):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
 
-@unique	
+
+@unique
 class GlyphClass(Enum):
     """
-    Enumeration with all possible values for the class attribute of Glyphs in SBGN-ML. 
+    Enumeration with all possible values for the class attribute of Glyphs in SBGN-ML.
     This includes both top-level glyphs and sub-glyphs.
     """
     # glyphs
@@ -65,7 +68,7 @@ class GlyphClass(Enum):
     OUTCOME = "outcome"
 
     # @deprecated
-    # Observable was used in old versions of SBGN, but has been replaced with {@link PHENOTYPE}. 
+    # Observable was used in old versions of SBGN, but has been replaced with {@link PHENOTYPE}.
     # However, because older versions of SBGN are supported by LibSBGN, this constant will never be removed.
     OBSERVABLE = "observable"
     INTERACTION = "interaction"

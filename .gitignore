@@ -14,3 +14,8 @@ libsbgnpy.egg-info/
 htmlcov/
 libsbgnpy/examples/sbgn/test-output.sbgn
 libsbgnpy/examples/sbgn/test-output-annotation.sbgn
+
+.cache
+.tox
+docs/_build/
+docs/.ipynb_checkpoints

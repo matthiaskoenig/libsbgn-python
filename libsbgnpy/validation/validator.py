@@ -13,7 +13,7 @@ import os
 from lxml import isoschematron
 from lxml import etree
 from enum import Enum
-import libsbgnpy.libsbgnUtils as utils
+import libsbgnpy.utils as utils
 
 from libsbgnpy.libsbgnTypes import Language
 
@@ -140,4 +140,3 @@ if __name__ == "__main__":
 
     sct_valid = validate_schematron(f)
     print('Schematron valid ({}): {}'.format(f, xsd_valid))
-

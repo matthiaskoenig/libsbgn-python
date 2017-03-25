@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Some helper functions to work with SBGN.
+Helper functions to work with SBGN.
 """
 
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 import libsbgnpy.libsbgn as libsbgn
 
 
 def read_from_file(f, silence=True):
     """ Read an sbgn file (without validating against the schema).
 
+    :param silence: display no information
     :param f: file to read
     :return: parsed SBGN
     :rtype:
@@ -28,6 +29,22 @@ def write_to_file(sbgn, f):
     sbgn.write_file(f)
 
 
+def write_to_string(sbgn):
+    """ Write SBGN to string.
+    Returns None if problems.
+
+    :param sbgn: sbgn object
+    :return: SBGN xml string
+    """
+    import tempfile
+    f = tempfile.NamedTemporaryFile(suffix='.sbgn')
+    write_to_file(sbgn, f.name)
+    with open(f.name, 'rt') as fin:
+        sbgn_str = fin.read()
+        return sbgn_str
+    return None
+
+
 def get_version(f):
     """ SBGN version.
 
@@ -35,7 +52,7 @@ def get_version(f):
     2: xmlns="http://sbgn.org/libsbgn/0.2
     3: xmlns="http://sbgn.org/libsbgn/0.3
 
-    :param f:
+    :param f: file for which version should be found.
     :return: version as an integer, i.e. 1, 2, 3
     """
     import re
@@ -61,7 +78,6 @@ def get_language(f):
     return map.get_language()
 
 
-### Printing ##################################################
 def print_bbox(b):
     """ Print bounding box representation.
 

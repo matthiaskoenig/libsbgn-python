@@ -3,6 +3,7 @@
 from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn
 
+
 def read_sbgn_01(f):
     """ Read example file and display content.
 
@@ -34,4 +35,3 @@ def read_sbgn_01(f):
 
 if __name__ == "__main__":
     read_sbgn_01('sbgn/adh.sbgn')
-
