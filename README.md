@@ -1,4 +1,5 @@
 ![libsbgn-python logo](docs/images/libsbgn-python-logo-small.png)  
+[![Documentation Status](https://readthedocs.org/projects/libsbgn-python/badge/?version=latest)](http://libsbgn-python.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.192356.svg)](https://doi.org/10.5281/zenodo.192356)
@@ -9,6 +10,8 @@ Python library to work with [SBGN](http://sbgn.github.io/sbgn/). This library is
 writing and validation of SBGN files. Python 2 and python 3 are supported. 
 The initial library was generated using [generateDS](https://bitbucket.org/dkuhlman/generateds). Additional utility functions for 
 reading, writing and rendering SBGN documents are provided.
+
+Documentation with examples is available at [http://libsbgn-python.readthedocs.io/en/latest/](http://libsbgn-python.readthedocs.io/en/latest/).
 
 * `libsbgn.py` python library
 * `libsbgnTypes.py` SBGN type definitions (GlyphClasses, ArcClasses, Languages)
