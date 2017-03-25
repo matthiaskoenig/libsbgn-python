@@ -140,4 +140,3 @@ if __name__ == "__main__":
 
     sct_valid = validate_schematron(f)
     print('Schematron valid ({}): {}'.format(f, xsd_valid))
-

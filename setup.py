@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
-Setup module for libsbgn.
+Setup module for libsbgn-python.
 
 source distribution generation via
 python setup.py sdist

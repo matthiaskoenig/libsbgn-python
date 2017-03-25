@@ -3,13 +3,14 @@
 Some helper functions to work with SBGN.
 """
 
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 import libsbgnpy.libsbgn as libsbgn
 
 
 def read_from_file(f, silence=True):
     """ Read an sbgn file (without validating against the schema).
 
+    :param silence: display no information
     :param f: file to read
     :return: parsed SBGN
     :rtype:
@@ -61,7 +62,6 @@ def get_language(f):
     return map.get_language()
 
 
-### Printing ##################################################
 def print_bbox(b):
     """ Print bounding box representation.
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#
 # Generated Mon Nov 28 14:10:23 2016 by generateDS.py version 2.24a.
 #
 # Command line options:
@@ -16,8 +15,8 @@
 #
 # Current working directory (os.getcwd()):
 #   schema
-#
-from __future__ import print_function
+
+from __future__ import absolute_import, print_function
 import sys
 import re as re_
 import base64
@@ -62,33 +61,45 @@ except ImportError as exp:
 
     class GeneratedsSuper(object):
         tzoff_pattern = re_.compile(r'(\+|-)((0\d|1[0-3]):[0-5]\d|14:00)$')
+
         class _FixedOffsetTZ(datetime_.tzinfo):
             def __init__(self, offset, name):
                 self.__offset = datetime_.timedelta(minutes=offset)
                 self.__name = name
+
             def utcoffset(self, dt):
                 return self.__offset
+
             def tzname(self, dt):
                 return self.__name
+
             def dst(self, dt):
                 return None
+
         def gds_format_string(self, input_data, input_name=''):
             return input_data
+
         def gds_validate_string(self, input_data, node=None, input_name=''):
             if not input_data:
                 return ''
             else:
                 return input_data
+
         def gds_format_base64(self, input_data, input_name=''):
             return base64.b64encode(input_data)
+
         def gds_validate_base64(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_integer(self, input_data, input_name=''):
             return '%d' % input_data
+
         def gds_validate_integer(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_integer_list(self, input_data, input_name=''):
             return '%s' % ' '.join(input_data)
+
         def gds_validate_integer_list(
                 self, input_data, node=None, input_name=''):
             values = input_data.split()
@@ -98,12 +109,16 @@ except ImportError as exp:
                 except (TypeError, ValueError):
                     raise_parse_error(node, 'Requires sequence of integers')
             return values
+
         def gds_format_float(self, input_data, input_name=''):
             return ('%.15f' % input_data).rstrip('0')
+
         def gds_validate_float(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_float_list(self, input_data, input_name=''):
             return '%s' % ' '.join(input_data)
+
         def gds_validate_float_list(
                 self, input_data, node=None, input_name=''):
             values = input_data.split()
@@ -113,12 +128,16 @@ except ImportError as exp:
                 except (TypeError, ValueError):
                     raise_parse_error(node, 'Requires sequence of floats')
             return values
+
         def gds_format_double(self, input_data, input_name=''):
             return '%e' % input_data
+
         def gds_validate_double(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_double_list(self, input_data, input_name=''):
             return '%s' % ' '.join(input_data)
+
         def gds_validate_double_list(
                 self, input_data, node=None, input_name=''):
             values = input_data.split()
@@ -128,12 +147,16 @@ except ImportError as exp:
                 except (TypeError, ValueError):
                     raise_parse_error(node, 'Requires sequence of doubles')
             return values
+
         def gds_format_boolean(self, input_data, input_name=''):
             return ('%s' % input_data).lower()
+
         def gds_validate_boolean(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_boolean_list(self, input_data, input_name=''):
             return '%s' % ' '.join(input_data)
+
         def gds_validate_boolean_list(
                 self, input_data, node=None, input_name=''):
             values = input_data.split()
@@ -144,8 +167,10 @@ except ImportError as exp:
                         'Requires sequence of booleans '
                         '("true", "1", "false", "0")')
             return values
+
         def gds_validate_datetime(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_datetime(self, input_data, input_name=''):
             if input_data.microsecond == 0:
                 _svalue = '%04d-%02d-%02dT%02d:%02d:%02d' % (
@@ -182,6 +207,7 @@ except ImportError as exp:
                         minutes = (total_seconds - (hours * 3600)) // 60
                         _svalue += '{0:02d}:{1:02d}'.format(hours, minutes)
             return _svalue
+
         @classmethod
         def gds_parse_datetime(cls, input_data):
             tz = None
@@ -209,8 +235,10 @@ except ImportError as exp:
                     input_data, '%Y-%m-%dT%H:%M:%S')
             dt = dt.replace(tzinfo=tz)
             return dt
+
         def gds_validate_date(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_date(self, input_data, input_name=''):
             _svalue = '%04d-%02d-%02d' % (
                 input_data.year,
@@ -237,6 +265,7 @@ except ImportError as exp:
             except AttributeError:
                 pass
             return _svalue
+
         @classmethod
         def gds_parse_date(cls, input_data):
             tz = None
@@ -256,8 +285,10 @@ except ImportError as exp:
             dt = datetime_.datetime.strptime(input_data, '%Y-%m-%d')
             dt = dt.replace(tzinfo=tz)
             return dt.date()
+
         def gds_validate_time(self, input_data, node=None, input_name=''):
             return input_data
+
         def gds_format_time(self, input_data, input_name=''):
             if input_data.microsecond == 0:
                 _svalue = '%02d:%02d:%02d' % (
@@ -288,6 +319,7 @@ except ImportError as exp:
                         minutes = (total_seconds - (hours * 3600)) // 60
                         _svalue += '{0:02d}:{1:02d}'.format(hours, minutes)
             return _svalue
+
         def gds_validate_simple_patterns(self, patterns, target):
             # pat is a list of lists of strings/patterns.  We should:
             # - AND the outer elements
@@ -303,6 +335,7 @@ except ImportError as exp:
                     found1 = False
                     break
             return found1
+
         @classmethod
         def gds_parse_time(cls, input_data):
             tz = None
@@ -325,8 +358,10 @@ except ImportError as exp:
                 dt = datetime_.datetime.strptime(input_data, '%H:%M:%S')
             dt = dt.replace(tzinfo=tz)
             return dt.time()
+
         def gds_str_lower(self, instring):
             return instring.lower()
+
         def get_path_(self, node):
             path_list = []
             self.get_path_list_(node, path_list)
@@ -334,6 +369,7 @@ except ImportError as exp:
             path = '/'.join(path_list)
             return path
         Tag_strip_pattern_ = re_.compile(r'\{.*\}')
+
         def get_path_list_(self, node, path_list):
             if node is None:
                 return
@@ -341,6 +377,7 @@ except ImportError as exp:
             if tag:
                 path_list.append(tag)
             self.get_path_list_(node.getparent(), path_list)
+
         def get_class_obj_(self, node, default_class=None):
             class_obj1 = default_class
             if 'xsi' in node.nsmap:
@@ -353,11 +390,14 @@ except ImportError as exp:
                     if class_obj2 is not None:
                         class_obj1 = class_obj2
             return class_obj1
+
         def gds_build_any(self, node, type_name=None):
             return None
+
         @classmethod
         def gds_reverse_node_mapping(cls, mapping):
             return dict(((v, k) for k, v in mapping.iteritems()))
+
         @staticmethod
         def gds_encode(instring):
             if sys.version_info.major == 2:
@@ -379,11 +419,11 @@ except ImportError as exp:
 # IPython is available from http://ipython.scipy.org/.
 #
 
-## from IPython.Shell import IPShellEmbed
-## args = ''
-## ipshell = IPShellEmbed(args,
-##     banner = 'Dropping into IPython',
-##     exit_msg = 'Leaving Interpreter, back to program.')
+# from IPython.Shell import IPShellEmbed
+# args = ''
+# ipshell = IPShellEmbed(args,
+#     banner = 'Dropping into IPython',
+# exit_msg = 'Leaving Interpreter, back to program.')
 
 # Then use the following line where and when you want to drop into the
 # IPython shell:
@@ -520,19 +560,25 @@ class MixedContainer:
     TypeDouble = 6
     TypeBoolean = 7
     TypeBase64 = 8
+
     def __init__(self, category, content_type, name, value):
         self.category = category
         self.content_type = content_type
         self.name = name
         self.value = value
+
     def getCategory(self):
         return self.category
+
     def getContenttype(self, content_type):
         return self.content_type
+
     def getValue(self):
         return self.value
+
     def getName(self):
         return self.name
+
     def export(self, outfile, level, name, namespace, pretty_print=True):
         if self.category == MixedContainer.CategoryText:
             # Prevent exporting empty content as empty lines.
@@ -543,6 +589,7 @@ class MixedContainer:
         else:    # category == MixedContainer.CategoryComplex
             self.value.export(
                 outfile, level, namespace, name, pretty_print=pretty_print)
+
     def exportSimple(self, outfile, level, name):
         if self.content_type == MixedContainer.TypeString:
             outfile.write('<%s>%s</%s>' % (
@@ -561,6 +608,7 @@ class MixedContainer:
         elif self.content_type == MixedContainer.TypeBase64:
             outfile.write('<%s>%s</%s>' % (
                 self.name, base64.b64encode(self.value), self.name))
+
     def to_etree(self, element):
         if self.category == MixedContainer.CategoryText:
             # Prevent exporting empty content as empty lines.
@@ -580,6 +628,7 @@ class MixedContainer:
             subelement.text = self.to_etree_simple()
         else:    # category == MixedContainer.CategoryComplex
             self.value.to_etree(element)
+
     def to_etree_simple(self):
         if self.content_type == MixedContainer.TypeString:
             text = self.value
@@ -594,6 +643,7 @@ class MixedContainer:
         elif self.content_type == MixedContainer.TypeBase64:
             text = '%s' % base64.b64encode(self.value)
         return text
+
     def exportLiteral(self, outfile, level, name):
         if self.category == MixedContainer.CategoryText:
             showIndent(outfile, level)
@@ -620,10 +670,15 @@ class MemberSpec_(object):
         self.name = name
         self.data_type = data_type
         self.container = container
+
     def set_name(self, name): self.name = name
+
     def get_name(self): return self.name
+
     def set_data_type(self, data_type): self.data_type = data_type
+
     def get_data_type_chain(self): return self.data_type
+
     def get_data_type(self):
         if isinstance(self.data_type, list):
             if len(self.data_type) > 0:
@@ -632,7 +687,9 @@ class MemberSpec_(object):
                 return 'xs:string'
         else:
             return self.data_type
+
     def set_container(self, container): self.container = container
+
     def get_container(self): return self.container
 
 
@@ -652,11 +709,13 @@ class SBGNBase(GeneratedsSuper):
     components."""
     subclass = None
     superclass = None
+
     def __init__(self, notes=None, extension=None, extensiontype_=None):
         self.original_tagname_ = None
         self.notes = notes
         self.extension = extension
         self.extensiontype_ = extensiontype_
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -668,12 +727,19 @@ class SBGNBase(GeneratedsSuper):
         else:
             return SBGNBase(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_notes(self): return self.notes
+
     def set_notes(self, notes): self.notes = notes
+
     def get_extension(self): return self.extension
+
     def set_extension(self, extension): self.extension = extension
+
     def get_extensiontype_(self): return self.extensiontype_
+
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
+
     def hasContent_(self):
         if (
             self.notes is not None or
@@ -711,7 +777,6 @@ class SBGNBase(GeneratedsSuper):
 
         f.close()
 
-
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -730,12 +795,14 @@ class SBGNBase(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='SBGNBase'):
         if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')
             outfile.write(' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
             outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='SBGNBase', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -745,6 +812,7 @@ class SBGNBase(GeneratedsSuper):
             self.notes.export(outfile, level, namespace_, name_='notes', pretty_print=pretty_print)
         if self.extension is not None:
             self.extension.export(outfile, level, namespace_, name_='extension', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -752,11 +820,13 @@ class SBGNBase(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('xsi:type', node)
         if value is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')
             self.extensiontype_ = value
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'notes':
             obj_ = notesType.factory()
@@ -782,11 +852,13 @@ class point(SBGNBase):
     the corresponding *.sbgn file should be read as pixels."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, x=None, y=None):
         self.original_tagname_ = None
         super(point, self).__init__(notes, extension, )
         self.x = _cast(float, x)
         self.y = _cast(float, y)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -798,10 +870,15 @@ class point(SBGNBase):
         else:
             return point(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
             super(point, self).hasContent_()
@@ -809,6 +886,7 @@ class point(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='point', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -827,6 +905,7 @@ class point(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='point'):
         super(point, self).exportAttributes(outfile, level, already_processed, namespace_, name_='point')
         if self.x is not None and 'x' not in already_processed:
@@ -835,8 +914,10 @@ class point(SBGNBase):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='point', fromsubclass_=False, pretty_print=True):
         super(point, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -844,6 +925,7 @@ class point(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
@@ -860,6 +942,7 @@ class point(SBGNBase):
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(point, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(point, self).buildChildren(child_, node, nodeName_, True)
         pass
@@ -879,6 +962,7 @@ class bbox(SBGNBase):
     glyphs, and is optional for labels."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, x=None, y=None, w=None, h=None, notes=None, extension=None):
         self.original_tagname_ = None
         super(bbox, self).__init__(notes, extension, )
@@ -886,6 +970,7 @@ class bbox(SBGNBase):
         self.h = _cast(float, h)
         self.x = _cast(float, x)
         self.y = _cast(float, y)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -897,14 +982,23 @@ class bbox(SBGNBase):
         else:
             return bbox(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_w(self): return self.w
+
     def set_w(self, w): self.w = w
+
     def get_h(self): return self.h
+
     def set_h(self, h): self.h = h
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
             super(bbox, self).hasContent_()
@@ -912,6 +1006,7 @@ class bbox(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='bbox', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -930,6 +1025,7 @@ class bbox(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='bbox'):
         super(bbox, self).exportAttributes(outfile, level, already_processed, namespace_, name_='bbox')
         if self.w is not None and 'w' not in already_processed:
@@ -944,8 +1040,10 @@ class bbox(SBGNBase):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='bbox', fromsubclass_=False, pretty_print=True):
         super(bbox, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -953,6 +1051,7 @@ class bbox(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('w', node)
         if value is not None and 'w' not in already_processed:
@@ -983,6 +1082,7 @@ class bbox(SBGNBase):
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(bbox, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(bbox, self).buildChildren(child_, node, nodeName_, True)
         pass
@@ -1013,11 +1113,13 @@ class label(SBGNBase):
     the XML standard."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, text=None, bbox=None):
         self.original_tagname_ = None
         super(label, self).__init__(notes, extension, )
         self.text = _cast(None, text)
         self.bbox = bbox
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1029,10 +1131,15 @@ class label(SBGNBase):
         else:
             return label(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_bbox(self): return self.bbox
+
     def set_bbox(self, bbox): self.bbox = bbox
+
     def get_text(self): return self.text
+
     def set_text(self, text): self.text = text
+
     def hasContent_(self):
         if (
             self.bbox is not None or
@@ -1041,6 +1148,7 @@ class label(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='label', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1059,11 +1167,13 @@ class label(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='label'):
         super(label, self).exportAttributes(outfile, level, already_processed, namespace_, name_='label')
         if self.text is not None and 'text' not in already_processed:
             already_processed.add('text')
             outfile.write(' text=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.text), input_name='text')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='label', fromsubclass_=False, pretty_print=True):
         super(label, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1072,6 +1182,7 @@ class label(SBGNBase):
             eol_ = ''
         if self.bbox is not None:
             self.bbox.export(outfile, level, namespace_='sbgn:', name_='bbox', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1079,12 +1190,14 @@ class label(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('text', node)
         if value is not None and 'text' not in already_processed:
             already_processed.add('text')
             self.text = value
         super(label, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'bbox':
             obj_ = bbox.factory()
@@ -1100,10 +1213,12 @@ class sbgn(SBGNBase):
     document must contain exactly one map element."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, map=None):
         self.original_tagname_ = None
         super(sbgn, self).__init__(notes, extension, )
         self.map = map
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1115,8 +1230,11 @@ class sbgn(SBGNBase):
         else:
             return sbgn(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_map(self): return self.map
+
     def set_map(self, map): self.map = map
+
     def hasContent_(self):
         if (
             self.map is not None or
@@ -1125,6 +1243,7 @@ class sbgn(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='sbgn', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1143,8 +1262,10 @@ class sbgn(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='sbgn'):
         super(sbgn, self).exportAttributes(outfile, level, already_processed, namespace_, name_='sbgn')
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='sbgn', fromsubclass_=False, pretty_print=True):
         super(sbgn, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1153,6 +1274,7 @@ class sbgn(SBGNBase):
             eol_ = ''
         if self.map is not None:
             self.map.export(outfile, level, namespace_='sbgn:', name_='map', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1160,8 +1282,10 @@ class sbgn(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         super(sbgn, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'map':
             obj_ = map.factory()
@@ -1181,6 +1305,7 @@ class map(SBGNBase):
     in this schema but must be validated with an external validator)"""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, language=None, bbox=None, glyph=None, arc=None, arcgroup=None):
         self.original_tagname_ = None
         super(map, self).__init__(notes, extension, )
@@ -1198,6 +1323,7 @@ class map(SBGNBase):
             self.arcgroup = []
         else:
             self.arcgroup = arcgroup
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1209,22 +1335,39 @@ class map(SBGNBase):
         else:
             return map(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_bbox(self): return self.bbox
+
     def set_bbox(self, bbox): self.bbox = bbox
+
     def get_glyph(self): return self.glyph
+
     def set_glyph(self, glyph): self.glyph = glyph
+
     def add_glyph(self, value): self.glyph.append(value)
+
     def insert_glyph_at(self, index, value): self.glyph.insert(index, value)
+
     def replace_glyph_at(self, index, value): self.glyph[index] = value
+
     def get_arc(self): return self.arc
+
     def set_arc(self, arc): self.arc = arc
+
     def add_arc(self, value): self.arc.append(value)
+
     def insert_arc_at(self, index, value): self.arc.insert(index, value)
+
     def replace_arc_at(self, index, value): self.arc[index] = value
+
     def get_arcgroup(self): return self.arcgroup
+
     def set_arcgroup(self, arcgroup): self.arcgroup = arcgroup
+
     def add_arcgroup(self, value): self.arcgroup.append(value)
+
     def insert_arcgroup_at(self, index, value): self.arcgroup.insert(index, value)
+
     def replace_arcgroup_at(self, index, value): self.arcgroup[index] = value
 
     def get_language(self):
@@ -1245,7 +1388,6 @@ class map(SBGNBase):
         else:
             self.language = _cast(None, language)
 
-
     def hasContent_(self):
         if (
             self.bbox is not None or
@@ -1257,6 +1399,7 @@ class map(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='map', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1275,11 +1418,13 @@ class map(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='map'):
         super(map, self).exportAttributes(outfile, level, already_processed, namespace_, name_='map')
         if self.language is not None and 'language' not in already_processed:
             already_processed.add('language')
             outfile.write(' language=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.language), input_name='language')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='map', fromsubclass_=False, pretty_print=True):
         super(map, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1294,6 +1439,7 @@ class map(SBGNBase):
             arc_.export(outfile, level, namespace_='sbgn:', name_='arc', pretty_print=pretty_print)
         for arcgroup_ in self.arcgroup:
             arcgroup_.export(outfile, level, namespace_='sbgn:', name_='arcgroup', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1301,12 +1447,14 @@ class map(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('language', node)
         if value is not None and 'language' not in already_processed:
             already_processed.add('language')
             self.language = value
         super(map, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'bbox':
             obj_ = bbox.factory()
@@ -1347,12 +1495,14 @@ class port(SBGNBase):
     carrying any meaning."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, id=None, x=None, y=None):
         self.original_tagname_ = None
         super(port, self).__init__(notes, extension, )
         self.id = _cast(None, id)
         self.x = _cast(float, x)
         self.y = _cast(float, y)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1364,12 +1514,19 @@ class port(SBGNBase):
         else:
             return port(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_id(self): return self.id
+
     def set_id(self, id): self.id = id
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
             super(port, self).hasContent_()
@@ -1377,6 +1534,7 @@ class port(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='port', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1395,6 +1553,7 @@ class port(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='port'):
         super(port, self).exportAttributes(outfile, level, already_processed, namespace_, name_='port')
         if self.id is not None and 'id' not in already_processed:
@@ -1406,8 +1565,10 @@ class port(SBGNBase):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='port', fromsubclass_=False, pretty_print=True):
         super(port, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1415,6 +1576,7 @@ class port(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('id', node)
         if value is not None and 'id' not in already_processed:
@@ -1435,6 +1597,7 @@ class port(SBGNBase):
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
         super(port, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         super(port, self).buildChildren(child_, node, nodeName_, True)
         pass
@@ -1486,6 +1649,7 @@ class glyph(SBGNBase):
     attribute is optional and should only be used for compartments."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, class_=None, orientation=Orientation.HORIZONTAL, id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
         self.original_tagname_ = None
         super(glyph, self).__init__(notes, extension, )
@@ -1508,6 +1672,7 @@ class glyph(SBGNBase):
             self.port = []
         else:
             self.port = port
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1519,27 +1684,49 @@ class glyph(SBGNBase):
         else:
             return glyph(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_label(self): return self.label
+
     def set_label(self, label): self.label = label
+
     def get_state(self): return self.state
+
     def set_state(self, state): self.state = state
+
     def get_clone(self): return self.clone
+
     def set_clone(self, clone): self.clone = clone
+
     def get_callout(self): return self.callout
+
     def set_callout(self, callout): self.callout = callout
+
     def get_entity(self): return self.entity
+
     def set_entity(self, entity): self.entity = entity
+
     def get_bbox(self): return self.bbox
+
     def set_bbox(self, bbox): self.bbox = bbox
+
     def get_glyph(self): return self.glyph
+
     def set_glyph(self, glyph): self.glyph = glyph
+
     def add_glyph(self, value): self.glyph.append(value)
+
     def insert_glyph_at(self, index, value): self.glyph.insert(index, value)
+
     def replace_glyph_at(self, index, value): self.glyph[index] = value
+
     def get_port(self): return self.port
+
     def set_port(self, port): self.port = port
+
     def add_port(self, value): self.port.append(value)
+
     def insert_port_at(self, index, value): self.port.insert(index, value)
+
     def replace_port_at(self, index, value): self.port[index] = value
 
     def get_class(self):
@@ -1577,11 +1764,17 @@ class glyph(SBGNBase):
         self.orientation = _cast(None, orientation.value)
 
     def get_id(self): return self.id
+
     def set_id(self, id): self.id = id
+
     def get_compartmentRef(self): return self.compartmentRef
+
     def set_compartmentRef(self, compartmentRef): self.compartmentRef = compartmentRef
+
     def get_compartmentOrder(self): return self.compartmentOrder
+
     def set_compartmentOrder(self, compartmentOrder): self.compartmentOrder = compartmentOrder
+
     def hasContent_(self):
         if (
             self.label is not None or
@@ -1597,6 +1790,7 @@ class glyph(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='glyph', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1615,6 +1809,7 @@ class glyph(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='glyph'):
         super(glyph, self).exportAttributes(outfile, level, already_processed, namespace_, name_='glyph')
         if self.class_ is not None and 'class_' not in already_processed:
@@ -1632,6 +1827,7 @@ class glyph(SBGNBase):
         if self.compartmentOrder is not None and 'compartmentOrder' not in already_processed:
             already_processed.add('compartmentOrder')
             outfile.write(' compartmentOrder="%s"' % self.gds_format_float(self.compartmentOrder, input_name='compartmentOrder'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='glyph', fromsubclass_=False, pretty_print=True):
         super(glyph, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1654,6 +1850,7 @@ class glyph(SBGNBase):
             glyph_.export(outfile, level, namespace_='sbgn:', name_='glyph', pretty_print=pretty_print)
         for port_ in self.port:
             port_.export(outfile, level, namespace_='sbgn:', name_='port', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1661,6 +1858,7 @@ class glyph(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('class', node)
         if value is not None and 'class' not in already_processed:
@@ -1686,6 +1884,7 @@ class glyph(SBGNBase):
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (compartmentOrder): %s' % exp)
         super(glyph, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'label':
             obj_ = label.factory()
@@ -1739,6 +1938,7 @@ class arcgroup(SBGNBase):
     defines the semantic of the arcgroup."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, class_=None, glyph=None, arc=None):
         self.original_tagname_ = None
         super(arcgroup, self).__init__(notes, extension, )
@@ -1751,6 +1951,7 @@ class arcgroup(SBGNBase):
             self.arc = []
         else:
             self.arc = arc
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1762,18 +1963,31 @@ class arcgroup(SBGNBase):
         else:
             return arcgroup(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_glyph(self): return self.glyph
+
     def set_glyph(self, glyph): self.glyph = glyph
+
     def add_glyph(self, value): self.glyph.append(value)
+
     def insert_glyph_at(self, index, value): self.glyph.insert(index, value)
+
     def replace_glyph_at(self, index, value): self.glyph[index] = value
+
     def get_arc(self): return self.arc
+
     def set_arc(self, arc): self.arc = arc
+
     def add_arc(self, value): self.arc.append(value)
+
     def insert_arc_at(self, index, value): self.arc.insert(index, value)
+
     def replace_arc_at(self, index, value): self.arc[index] = value
+
     def get_class(self): return self.class_
+
     def set_class(self, class_): self.class_ = class_
+
     def hasContent_(self):
         if (
             self.glyph or
@@ -1783,6 +1997,7 @@ class arcgroup(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='arcgroup', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1801,11 +2016,13 @@ class arcgroup(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='arcgroup'):
         super(arcgroup, self).exportAttributes(outfile, level, already_processed, namespace_, name_='arcgroup')
         if self.class_ is not None and 'class_' not in already_processed:
             already_processed.add('class_')
             outfile.write(' class=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.class_), input_name='class')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='arcgroup', fromsubclass_=False, pretty_print=True):
         super(arcgroup, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1816,6 +2033,7 @@ class arcgroup(SBGNBase):
             glyph_.export(outfile, level, namespace_='sbgn:', name_='glyph', pretty_print=pretty_print)
         for arc_ in self.arc:
             arc_.export(outfile, level, namespace_='sbgn:', name_='arc', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1823,12 +2041,14 @@ class arcgroup(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('class', node)
         if value is not None and 'class' not in already_processed:
             already_processed.add('class')
             self.class_ = value
         super(arcgroup, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'glyph':
             obj_ = glyph.factory()
@@ -1865,6 +2085,7 @@ class arc(SBGNBase):
     the id of a port on a glyph."""
     subclass = None
     superclass = SBGNBase
+
     def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
         self.original_tagname_ = None
         super(arc, self).__init__(notes, extension, )
@@ -1886,6 +2107,7 @@ class arc(SBGNBase):
         else:
             self.next = next
         self.end = end
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1897,24 +2119,43 @@ class arc(SBGNBase):
         else:
             return arc(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_glyph(self): return self.glyph
+
     def set_glyph(self, glyph): self.glyph = glyph
+
     def add_glyph(self, value): self.glyph.append(value)
+
     def insert_glyph_at(self, index, value): self.glyph.insert(index, value)
+
     def replace_glyph_at(self, index, value): self.glyph[index] = value
+
     def get_port(self): return self.port
+
     def set_port(self, port): self.port = port
+
     def add_port(self, value): self.port.append(value)
+
     def insert_port_at(self, index, value): self.port.insert(index, value)
+
     def replace_port_at(self, index, value): self.port[index] = value
+
     def get_start(self): return self.start
+
     def set_start(self, start): self.start = start
+
     def get_next(self): return self.next
+
     def set_next(self, next): self.next = next
+
     def add_next(self, value): self.next.append(value)
+
     def insert_next_at(self, index, value): self.next.insert(index, value)
+
     def replace_next_at(self, index, value): self.next[index] = value
+
     def get_end(self): return self.end
+
     def set_end(self, end): self.end = end
 
     def get_class(self):
@@ -1934,11 +2175,17 @@ class arc(SBGNBase):
             self.class_ = _cast(None, class_)
 
     def get_id(self): return self.id
+
     def set_id(self, id): self.id = id
+
     def get_source(self): return self.source
+
     def set_source(self, source): self.source = source
+
     def get_target(self): return self.target
+
     def set_target(self, target): self.target = target
+
     def hasContent_(self):
         if (
             self.glyph or
@@ -1951,6 +2198,7 @@ class arc(SBGNBase):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='arc', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -1969,6 +2217,7 @@ class arc(SBGNBase):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='arc'):
         super(arc, self).exportAttributes(outfile, level, already_processed, namespace_, name_='arc')
         if self.class_ is not None and 'class_' not in already_processed:
@@ -1983,6 +2232,7 @@ class arc(SBGNBase):
         if self.target is not None and 'target' not in already_processed:
             already_processed.add('target')
             outfile.write(' target=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.target), input_name='target')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='arc', fromsubclass_=False, pretty_print=True):
         super(arc, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
@@ -1999,6 +2249,7 @@ class arc(SBGNBase):
             next_.export(outfile, level, namespace_, name_='next', pretty_print=pretty_print)
         if self.end is not None:
             self.end.export(outfile, level, namespace_, name_='end', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2006,6 +2257,7 @@ class arc(SBGNBase):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('class', node)
         if value is not None and 'class' not in already_processed:
@@ -2024,6 +2276,7 @@ class arc(SBGNBase):
             already_processed.add('target')
             self.target = value
         super(arc, self).buildAttributes(node, attrs, already_processed)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'glyph':
             obj_ = glyph.factory()
@@ -2057,12 +2310,14 @@ class arc(SBGNBase):
 class notesType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, anytypeobjs_=None):
         self.original_tagname_ = None
         if anytypeobjs_ is None:
             self.anytypeobjs_ = []
         else:
             self.anytypeobjs_ = anytypeobjs_
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2074,10 +2329,15 @@ class notesType(GeneratedsSuper):
         else:
             return notesType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_anytypeobjs_(self): return self.anytypeobjs_
+
     def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
+
     def add_anytypeobjs_(self, value): self.anytypeobjs_.append(value)
+
     def insert_anytypeobjs_(self, index, value): self._anytypeobjs_[index] = value
+
     def hasContent_(self):
         if (
             self.anytypeobjs_
@@ -2085,6 +2345,7 @@ class notesType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='notesType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2103,8 +2364,10 @@ class notesType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='notesType'):
         pass
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='notesType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2112,6 +2375,7 @@ class notesType(GeneratedsSuper):
             eol_ = ''
         for obj_ in self.anytypeobjs_:
             obj_.export(outfile, level, namespace_, pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2119,8 +2383,10 @@ class notesType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         pass
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         obj_ = self.gds_build_any(child_, 'notesType')
         if obj_ is not None:
@@ -2131,12 +2397,14 @@ class notesType(GeneratedsSuper):
 class extensionType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, anytypeobjs_=None):
         self.original_tagname_ = None
         if anytypeobjs_ is None:
             self.anytypeobjs_ = []
         else:
             self.anytypeobjs_ = anytypeobjs_
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2148,10 +2416,15 @@ class extensionType(GeneratedsSuper):
         else:
             return extensionType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_anytypeobjs_(self): return self.anytypeobjs_
+
     def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
+
     def add_anytypeobjs_(self, value): self.anytypeobjs_.append(value)
+
     def insert_anytypeobjs_(self, index, value): self._anytypeobjs_[index] = value
+
     def hasContent_(self):
         if (
             self.anytypeobjs_
@@ -2159,6 +2432,7 @@ class extensionType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='extensionType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2177,8 +2451,10 @@ class extensionType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='extensionType'):
         pass
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='extensionType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2186,6 +2462,7 @@ class extensionType(GeneratedsSuper):
             eol_ = ''
         for obj_ in self.anytypeobjs_:
             obj_.export(outfile, level, namespace_, pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2193,8 +2470,10 @@ class extensionType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         pass
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         obj_ = self.gds_build_any(child_, 'extensionType')
         if obj_ is not None:
@@ -2213,10 +2492,12 @@ class stateType(GeneratedsSuper):
     the parent EPN."""
     subclass = None
     superclass = None
+
     def __init__(self, value=None, variable=None):
         self.original_tagname_ = None
         self.value = _cast(None, value)
         self.variable = _cast(None, variable)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2228,10 +2509,15 @@ class stateType(GeneratedsSuper):
         else:
             return stateType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_value(self): return self.value
+
     def set_value(self, value): self.value = value
+
     def get_variable(self): return self.variable
+
     def set_variable(self, variable): self.variable = variable
+
     def hasContent_(self):
         if (
 
@@ -2239,6 +2525,7 @@ class stateType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='stateType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2256,6 +2543,7 @@ class stateType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='stateType'):
         if self.value is not None and 'value' not in already_processed:
             already_processed.add('value')
@@ -2263,8 +2551,10 @@ class stateType(GeneratedsSuper):
         if self.variable is not None and 'variable' not in already_processed:
             already_processed.add('variable')
             outfile.write(' variable=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.variable), input_name='variable')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='stateType', fromsubclass_=False, pretty_print=True):
         pass
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2272,6 +2562,7 @@ class stateType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('value', node)
         if value is not None and 'value' not in already_processed:
@@ -2281,6 +2572,7 @@ class stateType(GeneratedsSuper):
         if value is not None and 'variable' not in already_processed:
             already_processed.add('variable')
             self.variable = value
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
 # end class stateType
@@ -2289,9 +2581,11 @@ class stateType(GeneratedsSuper):
 class cloneType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, label=None):
         self.original_tagname_ = None
         self.label = label
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2303,8 +2597,11 @@ class cloneType(GeneratedsSuper):
         else:
             return cloneType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_label(self): return self.label
+
     def set_label(self, label): self.label = label
+
     def hasContent_(self):
         if (
             self.label is not None
@@ -2312,6 +2609,7 @@ class cloneType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='cloneType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2330,8 +2628,10 @@ class cloneType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='cloneType'):
         pass
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='cloneType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2339,6 +2639,7 @@ class cloneType(GeneratedsSuper):
             eol_ = ''
         if self.label is not None:
             self.label.export(outfile, level, namespace_='sbgn:', name_='label', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2346,8 +2647,10 @@ class cloneType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         pass
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'label':
             obj_ = label.factory()
@@ -2360,10 +2663,12 @@ class cloneType(GeneratedsSuper):
 class calloutType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, target=None, point=None):
         self.original_tagname_ = None
         self.target = _cast(None, target)
         self.point = point
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2375,9 +2680,13 @@ class calloutType(GeneratedsSuper):
         else:
             return calloutType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_point(self): return self.point
+
     def set_point(self, point): self.point = point
+
     def get_target(self): return self.target
+
     def set_target(self, target): self.target = target
 
     def set_target(self, target):
@@ -2393,6 +2702,7 @@ class calloutType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='calloutType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2411,10 +2721,12 @@ class calloutType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='calloutType'):
         if self.target is not None and 'target' not in already_processed:
             already_processed.add('target')
             outfile.write(' target=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.target), input_name='target')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='calloutType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2422,6 +2734,7 @@ class calloutType(GeneratedsSuper):
             eol_ = ''
         if self.point is not None:
             self.point.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2429,11 +2742,13 @@ class calloutType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('target', node)
         if value is not None and 'target' not in already_processed:
             already_processed.add('target')
             self.target = value
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'point':
             obj_ = point.factory()
@@ -2446,9 +2761,11 @@ class calloutType(GeneratedsSuper):
 class entityType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, name=None):
         self.original_tagname_ = None
         self.name = _cast(None, name)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2460,8 +2777,11 @@ class entityType(GeneratedsSuper):
         else:
             return entityType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_name(self): return self.name
+
     def set_name(self, name): self.name = name
+
     def hasContent_(self):
         if (
 
@@ -2469,6 +2789,7 @@ class entityType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='entityType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2486,12 +2807,15 @@ class entityType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='entityType'):
         if self.name is not None and 'name' not in already_processed:
             already_processed.add('name')
             outfile.write(' name=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.name), input_name='name')), ))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='entityType', fromsubclass_=False, pretty_print=True):
         pass
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2499,11 +2823,13 @@ class entityType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('name', node)
         if value is not None and 'name' not in already_processed:
             already_processed.add('name')
             self.name = value
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
 # end class entityType
@@ -2512,10 +2838,12 @@ class entityType(GeneratedsSuper):
 class startType(GeneratedsSuper):
     subclass = None
     superclass = None
+
     def __init__(self, x=None, y=None):
         self.original_tagname_ = None
         self.x = _cast(float, x)
         self.y = _cast(float, y)
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2527,10 +2855,15 @@ class startType(GeneratedsSuper):
         else:
             return startType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
 
@@ -2538,6 +2871,7 @@ class startType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='startType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2555,6 +2889,7 @@ class startType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='startType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -2562,8 +2897,10 @@ class startType(GeneratedsSuper):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='startType', fromsubclass_=False, pretty_print=True):
         pass
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2571,6 +2908,7 @@ class startType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
@@ -2586,6 +2924,7 @@ class startType(GeneratedsSuper):
                 self.y = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
 # end class startType
@@ -2597,6 +2936,7 @@ class nextType(GeneratedsSuper):
     linear (0), quadratic (1) or cubic (2)"""
     subclass = None
     superclass = None
+
     def __init__(self, x=None, y=None, point=None):
         self.original_tagname_ = None
         self.x = _cast(float, x)
@@ -2605,6 +2945,7 @@ class nextType(GeneratedsSuper):
             self.point = []
         else:
             self.point = point
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2616,15 +2957,25 @@ class nextType(GeneratedsSuper):
         else:
             return nextType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_point(self): return self.point
+
     def set_point(self, point): self.point = point
+
     def add_point(self, value): self.point.append(value)
+
     def insert_point_at(self, index, value): self.point.insert(index, value)
+
     def replace_point_at(self, index, value): self.point[index] = value
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
             self.point
@@ -2632,6 +2983,7 @@ class nextType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='nextType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2650,6 +3002,7 @@ class nextType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='nextType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -2657,6 +3010,7 @@ class nextType(GeneratedsSuper):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='nextType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2664,6 +3018,7 @@ class nextType(GeneratedsSuper):
             eol_ = ''
         for point_ in self.point:
             point_.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2671,6 +3026,7 @@ class nextType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
@@ -2686,6 +3042,7 @@ class nextType(GeneratedsSuper):
                 self.y = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'point':
             obj_ = point.factory()
@@ -2701,6 +3058,7 @@ class endType(GeneratedsSuper):
     linear (0), quadratic (1) or cubic (2)"""
     subclass = None
     superclass = None
+
     def __init__(self, x=None, y=None, point=None):
         self.original_tagname_ = None
         self.x = _cast(float, x)
@@ -2709,6 +3067,7 @@ class endType(GeneratedsSuper):
             self.point = []
         else:
             self.point = point
+
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2720,15 +3079,25 @@ class endType(GeneratedsSuper):
         else:
             return endType(*args_, **kwargs_)
     factory = staticmethod(factory)
+
     def get_point(self): return self.point
+
     def set_point(self, point): self.point = point
+
     def add_point(self, value): self.point.append(value)
+
     def insert_point_at(self, index, value): self.point.insert(index, value)
+
     def replace_point_at(self, index, value): self.point[index] = value
+
     def get_x(self): return self.x
+
     def set_x(self, x): self.x = x
+
     def get_y(self): return self.y
+
     def set_y(self, y): self.y = y
+
     def hasContent_(self):
         if (
             self.point
@@ -2736,6 +3105,7 @@ class endType(GeneratedsSuper):
             return True
         else:
             return False
+
     def export(self, outfile, level, namespace_='sbgn:', name_='endType', namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2754,6 +3124,7 @@ class endType(GeneratedsSuper):
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='sbgn:', name_='endType'):
         if self.x is not None and 'x' not in already_processed:
             already_processed.add('x')
@@ -2761,6 +3132,7 @@ class endType(GeneratedsSuper):
         if self.y is not None and 'y' not in already_processed:
             already_processed.add('y')
             outfile.write(' y="%s"' % self.gds_format_float(self.y, input_name='y'))
+
     def exportChildren(self, outfile, level, namespace_='sbgn:', name_='endType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
@@ -2768,6 +3140,7 @@ class endType(GeneratedsSuper):
             eol_ = ''
         for point_ in self.point:
             point_.export(outfile, level, namespace_='sbgn:', name_='point', pretty_print=pretty_print)
+
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2775,6 +3148,7 @@ class endType(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
+
     def buildAttributes(self, node, attrs, already_processed):
         value = find_attr_value_('x', node)
         if value is not None and 'x' not in already_processed:
@@ -2790,6 +3164,7 @@ class endType(GeneratedsSuper):
                 self.y = float(value)
             except ValueError as exp:
                 raise ValueError('Bad float/double attribute (y): %s' % exp)
+
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'point':
             obj_ = point.factory()
@@ -2926,7 +3301,7 @@ def main():
 
 
 if __name__ == '__main__':
-    #import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     main()
 
 

@@ -42,6 +42,7 @@ def create_method(f):
     :param f:
     :return:
     """
+
     def f_expected(self):
         print('*' * 80)
         print(f)

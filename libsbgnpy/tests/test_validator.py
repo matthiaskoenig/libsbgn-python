@@ -17,4 +17,3 @@ def test_validate_xsd_02():
     f = os.path.join(directory, '../examples/sbgn/glycolysis.sbgn')
     is_valid = validator.validate_xsd(f) is None
     assert is_valid
-

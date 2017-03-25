@@ -66,4 +66,3 @@ if __name__ == "__main__":
     sbo2sbgn = read_sbo2sbgn(infile)
     print(sbo2sbgn)
     write_sbo2sbgn(outfile, sbo2sbgn)
-
