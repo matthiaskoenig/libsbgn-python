@@ -71,6 +71,12 @@ some utility functions created.
 
 
 ## ChangeLog
+**v0.1.7**
+Support for notes and extensions
+
+* Extension and Notes reading and writing
+* Extension and Notes examples
+
 **v0.1.6**
 Improved testing and documentation
 
