@@ -19,18 +19,18 @@ see https://github.com/sbgn/sbgn/wiki/SBGN-ML_Extensions
 from __future__ import print_function, absolute_import
 import os
 import libsbgnpy.libsbgn as libsbgn  # import the bindings
-from libsbgnpy.libsbgnTypes import Extension
+from libsbgnpy.libsbgnTypes import Language
+from libsbgnpy.libsbgnSubs import Extension
+from libsbgnpy.utils import write_to_string
 
 
-def write_extension():
+def set_extension():
     sbgn = libsbgn.sbgn()
     map = libsbgn.map()
     map.set_language(Language.PD)
     sbgn.set_map(map)
 
-    extension = Extension()
-    extension.set_xml_string("""
-    <renderInformation id="example" programName="SBML Layout" programVersion="3.0"
+    extension = Extension("""<renderInformation id="example" programName="SBML Layout" programVersion="3.0"
      xmlns="http://projects.eml.org/bcb/sbml/render/level2">
         <listOfColorDefinitions>
         <colorDefinition id="yelloComp" value="#ffffccff" />
@@ -80,10 +80,11 @@ def write_extension():
             <g stroke="blue" stroke-width="2"  />
         </style>
         </listOfStyles>
-    </renderInformation>
-    """)
+    </renderInformation>""")
     map.set_extension(extension)
+
+    print(write_to_string(sbgn))
 
 
 if __name__ == "__main__":
-    pass
+    set_extension()
