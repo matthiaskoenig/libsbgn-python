@@ -16,11 +16,13 @@
 # Current working directory (os.getcwd()):
 #   schema
 #
+from __future__ import print_function, absolute_import
 
 import sys
 from lxml import etree as etree_
 
-import ??? as supermod
+import libsbgnpy.libsbgn as supermod
+from libsbgnpy.libsbgn import showIndent
 
 
 def parsexml_(infile, parser=None, **kwargs):
@@ -37,142 +39,41 @@ def parsexml_(infile, parser=None, **kwargs):
 
 ExternalEncoding = 'ascii'
 
-#
-# Data representation classes
-#
 
-
-class SBGNBaseSub(supermod.SBGNBase):
-    def __init__(self, notes=None, extension=None, extensiontype_=None):
-        super(SBGNBaseSub, self).__init__(notes, extension, extensiontype_, )
-supermod.SBGNBase.subclass = SBGNBaseSub
-# end class SBGNBaseSub
-
-
-class pointSub(supermod.point):
-    def __init__(self, notes=None, extension=None, x=None, y=None):
-        super(pointSub, self).__init__(notes, extension, x, y, )
-supermod.point.subclass = pointSub
-# end class pointSub
-
-
-class bboxSub(supermod.bbox):
-    def __init__(self, notes=None, extension=None, w=None, h=None, x=None, y=None):
-        super(bboxSub, self).__init__(notes, extension, w, h, x, y, )
-supermod.bbox.subclass = bboxSub
-# end class bboxSub
-
-
-class labelSub(supermod.label):
-    def __init__(self, notes=None, extension=None, text=None, bbox=None):
-        super(labelSub, self).__init__(notes, extension, text, bbox, )
-supermod.label.subclass = labelSub
-# end class labelSub
-
-
-class sbgnSub(supermod.sbgn):
-    def __init__(self, notes=None, extension=None, map=None):
-        super(sbgnSub, self).__init__(notes, extension, map, )
-supermod.sbgn.subclass = sbgnSub
-# end class sbgnSub
-
-
-class mapSub(supermod.map):
-    def __init__(self, notes=None, extension=None, language=None, bbox=None, glyph=None, arc=None, arcgroup=None):
-        super(mapSub, self).__init__(notes, extension, language, bbox, glyph, arc, arcgroup, )
-supermod.map.subclass = mapSub
-# end class mapSub
-
-
-class portSub(supermod.port):
-    def __init__(self, notes=None, extension=None, id=None, x=None, y=None):
-        super(portSub, self).__init__(notes, extension, id, x, y, )
-supermod.port.subclass = portSub
-# end class portSub
-
-
-class glyphSub(supermod.glyph):
-    def __init__(self, notes=None, extension=None, class_=None, orientation='horizontal', id=None, compartmentRef=None, compartmentOrder=None, label=None, state=None, clone=None, callout=None, entity=None, bbox=None, glyph_member=None, port=None):
-        super(glyphSub, self).__init__(notes, extension, class_, orientation, id, compartmentRef, compartmentOrder, label, state, clone, callout, entity, bbox, glyph_member, port, )
-supermod.glyph.subclass = glyphSub
-# end class glyphSub
-
-
-class arcgroupSub(supermod.arcgroup):
-    def __init__(self, notes=None, extension=None, class_=None, glyph=None, arc=None):
-        super(arcgroupSub, self).__init__(notes, extension, class_, glyph, arc, )
-supermod.arcgroup.subclass = arcgroupSub
-# end class arcgroupSub
-
-
-class arcSub(supermod.arc):
-    def __init__(self, notes=None, extension=None, class_=None, id=None, source=None, target=None, glyph=None, port=None, start=None, next=None, end=None):
-        super(arcSub, self).__init__(notes, extension, class_, id, source, target, glyph, port, start, next, end, )
-supermod.arc.subclass = arcSub
-# end class arcSub
-
-
-class notesTypeSub(supermod.notesType):
+class Notes(supermod.notesType):
     def __init__(self, anytypeobjs_=None):
-        super(notesTypeSub, self).__init__(anytypeobjs_, )
-supermod.notesType.subclass = notesTypeSub
+
+        super(Notes, self).__init__(anytypeobjs_, )
+
+    def hasContent_(self):
+        return self.anytypeobjs_ is not None
+
+    def export(self, outfile, level, namespace_='sbgn:', name_='notes',
+               namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
+
+        print("CUSTOM NOTES EXPORT CALLED")
+        name_ = self.__class__.__name__.lower()
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+
+        if self.hasContent_():
+            # notes defined as sequence, so handle the normal case of just having string
+            notes_items = self.anytypeobjs_
+            if type(self.anytypeobjs_) not in [list, tuple]:
+                notes_items = [notes_items]
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%s%s%s>%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', eol_))
+            for obj_ in notes_items:
+                showIndent(outfile, level, pretty_print)
+                outfile.write('%s%s' % (obj_, eol_))
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s%s>%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', eol_))
+
+
+supermod.notesType.subclass = Notes
 # end class notesTypeSub
-
-
-class extensionTypeSub(supermod.extensionType):
-    def __init__(self, anytypeobjs_=None):
-        super(extensionTypeSub, self).__init__(anytypeobjs_, )
-supermod.extensionType.subclass = extensionTypeSub
-# end class extensionTypeSub
-
-
-class stateTypeSub(supermod.stateType):
-    def __init__(self, value=None, variable=None):
-        super(stateTypeSub, self).__init__(value, variable, )
-supermod.stateType.subclass = stateTypeSub
-# end class stateTypeSub
-
-
-class cloneTypeSub(supermod.cloneType):
-    def __init__(self, label=None):
-        super(cloneTypeSub, self).__init__(label, )
-supermod.cloneType.subclass = cloneTypeSub
-# end class cloneTypeSub
-
-
-class calloutTypeSub(supermod.calloutType):
-    def __init__(self, target=None, point=None):
-        super(calloutTypeSub, self).__init__(target, point, )
-supermod.calloutType.subclass = calloutTypeSub
-# end class calloutTypeSub
-
-
-class entityTypeSub(supermod.entityType):
-    def __init__(self, name=None):
-        super(entityTypeSub, self).__init__(name, )
-supermod.entityType.subclass = entityTypeSub
-# end class entityTypeSub
-
-
-class startTypeSub(supermod.startType):
-    def __init__(self, x=None, y=None):
-        super(startTypeSub, self).__init__(x, y, )
-supermod.startType.subclass = startTypeSub
-# end class startTypeSub
-
-
-class nextTypeSub(supermod.nextType):
-    def __init__(self, x=None, y=None, point=None):
-        super(nextTypeSub, self).__init__(x, y, point, )
-supermod.nextType.subclass = nextTypeSub
-# end class nextTypeSub
-
-
-class endTypeSub(supermod.endType):
-    def __init__(self, x=None, y=None, point=None):
-        super(endTypeSub, self).__init__(x, y, point, )
-supermod.endType.subclass = endTypeSub
-# end class endTypeSub
 
 
 def get_root_tag(node):

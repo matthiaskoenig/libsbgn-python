@@ -50,7 +50,6 @@
     </xsd:sequence>
   </xsd:complexType>
 
-
   
 <!-- PointAttributes attribute group -->
 	<xsd:attributeGroup name="PointAttributes">

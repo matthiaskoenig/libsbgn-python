@@ -162,41 +162,7 @@ class Information(object):
         else:
             outfile.write('/>%s' % (eol_,))
 
-    @staticmethod
-    def showIndent(outfile, level, pretty_print=True):
-        if pretty_print:
-            for idx in range(level):
-                outfile.write('    ')
 
-    def build(self, node):
-        print("Building Informations")
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-
-    def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('x', node)
-        if value is not None and 'x' not in already_processed:
-            already_processed.add('x')
-            try:
-                self.x = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (x): %s' % exp)
-        value = find_attr_value_('y', node)
-        if value is not None and 'y' not in already_processed:
-            already_processed.add('y')
-            try:
-                self.y = float(value)
-            except ValueError as exp:
-                raise ValueError('Bad float/double attribute (y): %s' % exp)
-        super(point, self).buildAttributes(node, attrs, already_processed)
-
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        super(point, self).buildChildren(child_, node, nodeName_, True)
-        pass
 
 
 

@@ -11,8 +11,11 @@ Notes must be XML elements in a <notes>Tag</notes>
 from __future__ import print_function, absolute_import
 import os
 import libsbgnpy.libsbgn as libsbgn  # import the bindings
-from libsbgnpy.libsbgnTypes import Language, ArcClass, GlyphClass, Extension, Notes
+from libsbgnpy.libsbgnTypes import Language, ArcClass, GlyphClass  # Extension, Notes
 from libsbgnpy.utils import write_to_string
+
+
+from libsbgnpy.libsbgnSubs import Notes
 
 
 def write_glyph_notes(f):
@@ -37,12 +40,22 @@ def write_glyph_notes(f):
     g.set_bbox(bbox)
     map.add_glyph(g)
 
-    # add notes
-    g_notes = Notes()
-    g_notes.set_xml_string('<body xmlns="http://www.w3.org/1999/xhtml">\n'
-                          'This is an example note describing the INSR glyph.\n'
-                          '</body>')
-    g.set_notes(g_notes)
+    # add notes (via custom type)
+    # g_notes = Notes()
+    # g_notes.set_xml_string('<body xmlns="http://www.w3.org/1999/xhtml">\n'
+    #                       'This is an example note describing the INSR glyph.\n'
+    #                       '</body>')
+    # g.set_notes(g_notes)
+    # notes = libsbgn.notesType('<body xmlns="http://www.w3.org/1999/xhtml">\n'
+    #                        'This is an example note describing the INSR glyph.\n'
+    #                       '</body>')
+    notes = Notes('<body xmlns="http://www.w3.org/1999/xhtml">\n'
+                              'This is an example note describing the INSR glyph.\n'
+                              '</body>')
+
+    print(type(notes))
+    g.set_notes(notes)
+
 
     # print all notes
     glyphs = map.get_glyph()
@@ -51,7 +64,11 @@ def write_glyph_notes(f):
         print('\n*** {} {} ***'.format(g.get_id(), type(notes)))
         print(notes)
 
+
+    from libsbgnpy.utils import write_to_string
+    print(write_to_string(sbgn))
     sbgn.write_file(f)
+
 
 def read_glyph_notes(f):
     """ Read notes from glyphs.
@@ -68,11 +85,14 @@ def read_glyph_notes(f):
         notes = g.get_notes()
         print('\n*** {} {} ***'.format(g.get_id(), type(notes)))
         print(notes)
+        print(notes.anytypeobjs_)
 
 
 if __name__ == "__main__":
     f = 'sbgn/notes.sbgn'
     write_glyph_notes(f)
+
+    print("_"*80)
 
     read_glyph_notes(f)
 
