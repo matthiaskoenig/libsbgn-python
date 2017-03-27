@@ -2,7 +2,12 @@
 Overwritten classes (Notes & Extension)
 """
 from __future__ import print_function, absolute_import
-from lxml import etree as etree_
+
+try:
+    from lxml import etree as etree_
+except ImportError:
+    from xml.etree import ElementTree as etree_
+
 
 import libsbgnpy.libsbgn as supermod
 from libsbgnpy.libsbgn import showIndent
@@ -11,8 +16,8 @@ from libsbgnpy.libsbgn import showIndent
 def _process_xml_input(input):
     """ Helper function for input to Notes and Extension.
 
-    :param input: xml_string 
-    :return: 
+    :param input: xml_string
+    :return: anytypeobjs_
     """
     anytypeobjs_ = None
     if input is not None:
@@ -33,9 +38,9 @@ class _Information(object):
 
     def export(self, outfile, level, namespace_='sbgn:', name_=None,
                namespacedef_='xmlns:sbgn="http://sbgn.org/libsbgn/0.2"', pretty_print=True):
-        """ Custom export function. 
+        """ Custom export function.
 
-        Necessary to provide handling for the xsd:any. 
+        Necessary to provide handling for the xsd:any.
         """
         name_ = self.__class__.__name__.lower()
         if pretty_print:
@@ -69,7 +74,8 @@ class _Information(object):
 
 
 class Notes(_Information, supermod.notesType):
-    """ 
+    """ SBGN Notes class.
+
     The optional SBGN element named 'notes', present on every major SBGN
     component type, is intended as a place for storing optional
     information intended to be seen by humans.  An example use of the
@@ -79,7 +85,7 @@ class Notes(_Information, supermod.notesType):
     value for 'notes', allowing users considerable freedom when adding
     comments to their models.
 
-    The format of 'notes' elements must be XHTML 1.0 (http://www.w3.org/1999/xhtml). 
+    The format of 'notes' elements must be XHTML 1.0 (http://www.w3.org/1999/xhtml).
     """
     def __init__(self, xml_string=None):
         super(Notes, self).__init__(_process_xml_input(xml_string), )
@@ -88,14 +94,13 @@ supermod.notesType.subclass = Notes
 
 
 class Extension(_Information, supermod.extensionType):
-    """ SBGN Extension.
+    """ SBGN Extension class.
 
     Any well-formed XML content, and with each top-level element placed in a unique XML namespace; see text.
     Whereas Notes is a container for content to be shown directly to humans, Extension is a container for
     optional software-generated content not meant to be shown to humans. Every SBGN object can
     have its own Extension object instance. In XML, the Extension content type is any, allowing essentially
     arbitrary well-formed XML data content.
-
     """
 
     def __init__(self, xml_string=None):

@@ -2,8 +2,6 @@
 """
 Write and read notes information.
 Notes must be XML elements in a <notes>Tag</notes>
-
-
 """
 from __future__ import print_function, absolute_import
 
@@ -13,8 +11,8 @@ from libsbgnpy import utils
 
 def write_glyph_notes(f):
     """ Set notes on element.
-    
-    :return: 
+
+    :return: None
     """
     sbgn = libsbgn.sbgn()
     map = libsbgn.map()
@@ -45,8 +43,8 @@ def write_glyph_notes(f):
 
 def read_glyph_notes(f):
     """ Read notes from glyphs.
-    
-    :return: 
+
+    :return: None
     """
     sbgn = utils.read_from_file(f=f)
 
@@ -65,4 +63,3 @@ if __name__ == "__main__":
     write_glyph_notes(f)
     print("_"*80, '\n')
     read_glyph_notes(f)
-

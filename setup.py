@@ -65,9 +65,9 @@ setup(
     keywords='SBGN, libsbgn',
     packages=find_packages(),
     install_requires=[
+        'lxml',
         'enum34',
         'requests',
-        'lxml',
         'six'
     ],
 

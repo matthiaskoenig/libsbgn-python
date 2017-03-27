@@ -89,7 +89,7 @@ def test_create_extension():
            <colorDefinition id="green" value="#378f5cff" />
            <colorDefinition id="Color_0" value="#969696" />
            <colorDefinition id="Color_1" value="#ff9900" />
-           <colorDefinition id="Color_2" value="#000000" />			
+           <colorDefinition id="Color_2" value="#000000" />
            </listOfColorDefinitions>
            <listOfGradientDefinitions>
            <linearGradient x1="0%" y1="0%" z1="0%" x2="100%" y2="0%" z2="100%" id="LinearGradient_0" spreadMethod="reflect">
@@ -111,10 +111,10 @@ def test_create_extension():
            </listOfGradientDefinitions>
            <listOfStyles>
            <style idList="glyph0 glyph2 glyph14 glyph34 ">
-               <g stroke="Color_2" stroke-width="5" fill="yelloComp"  />			
+               <g stroke="Color_2" stroke-width="5" fill="yelloComp"  />
            </style>
            <style idList="glyph1">
-               <g stroke="Color_2" stroke-width="5" fill="grayComp"  />			
+               <g stroke="Color_2" stroke-width="5" fill="grayComp"  />
            </style>
            <style idList="glyph8 glyph23 glyph5 glyph12 glyph21 glyph13 glyph4 glyph6 glyph7 glyph20 glyph22">
                <g stroke="orange" stroke-width="2" fill="OrangeGradient_0" />
@@ -154,7 +154,7 @@ def test_read_extension():
            <colorDefinition id="green" value="#378f5cff" />
            <colorDefinition id="Color_0" value="#969696" />
            <colorDefinition id="Color_1" value="#ff9900" />
-           <colorDefinition id="Color_2" value="#000000" />			
+           <colorDefinition id="Color_2" value="#000000" />
            </listOfColorDefinitions>
        </renderInformation>""")
 
