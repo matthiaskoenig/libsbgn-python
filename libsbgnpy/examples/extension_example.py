@@ -2,29 +2,18 @@
 """
 Write and read extension information.
 see https://github.com/sbgn/sbgn/wiki/SBGN-ML_Extensions
-
-   <extension>
-   <renderInformation id="example" programName="SBML Layout" programVersion="3.0"
-     ns="http://projects.eml.org/bcb/sbml/render/level2">
-       <listOfColorDefinitions>
-       <colorDefinition id="yelloComp" value="#ffffccff" />
-       ...
-       </listOfColorDefinitions>
-       ...
-   </renderInformation>
-   </extension>
-
-
 """
 from __future__ import print_function, absolute_import
-import os
-import libsbgnpy.libsbgn as libsbgn  # import the bindings
-from libsbgnpy.libsbgnTypes import Language
-from libsbgnpy.libsbgnSubs import Extension
-from libsbgnpy.utils import write_to_string
+from libsbgnpy import libsbgn
+from libsbgnpy import utils
+from libsbgnpy import Extension, Language
 
 
-def set_extension():
+def write_map_extension(f):
+    """ Write extension information on map.
+    
+    :return: 
+    """
     sbgn = libsbgn.sbgn()
     map = libsbgn.map()
     map.set_language(Language.PD)
@@ -83,8 +72,30 @@ def set_extension():
     </renderInformation>""")
     map.set_extension(extension)
 
-    print(write_to_string(sbgn))
+    print(utils.write_to_string(sbgn))
+    utils.write_to_file(sbgn=sbgn, f=f)
+
+
+def read_map_extension(f):
+    """ Read notes from glyphs.
+
+    :return: 
+    """
+    sbgn = utils.read_from_file(f=f)
+
+    # map is a container for the glyphs and arcs
+    map = sbgn.get_map()
+
+    glyphs = map.get_glyph()
+    for g in glyphs:
+        extension = g.get_extension()
+        if extension:
+            print(g.get_id())
+            print(extension)
 
 
 if __name__ == "__main__":
-    set_extension()
+    f = 'sbgn/notes.sbgn'
+    write_map_extension(f)
+    print("_" * 80, '\n')
+    read_map_extension(f)

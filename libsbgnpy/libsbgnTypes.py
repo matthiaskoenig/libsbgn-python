@@ -103,4 +103,3 @@ class ArcClass(Enum):
     EQUIVALENCE_ARC = "equivalence arc"
     NECESSARY_STIMULATION = "necessary stimulation"
     LOGIC_ARC = "logic arc"
-
