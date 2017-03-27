@@ -28,8 +28,8 @@ To cite libsbgnpy use the following BibTex or equivalent
       title         = {libsbgnpy: Python library for SBGN},
       month         = {Mar.},
       year          = {2017},
-      doi           = "{10.5281/zenodo.438137}",
-      url           = "{http://dx.doi.org/10.5281/zenodo.438137}",
+      doi           = "{10.5281/zenodo.438327}",
+      url           = "{http://dx.doi.org/10.5281/zenodo.438327}",
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
