@@ -13,11 +13,11 @@ To cite libsbgnpy use the following BibTex or equivalent::
 
     @MISC{libsbgnpy,
       author        = {Matthias König},
-      title         = {libsbgnpy: Python bindings for SBGN},
-      month         = {Dec.},
-      year          = {2016},
+      title         = {libsbgnpy: Python library for SBGN},
+      month         = {Mar.},
+      year          = {2017},
       doi           = "{10.5281/zenodo.192356}",
-      url           = "{http://dx.doi.org/10.5281/zenodo.192356}",
+      url           = "{http://dx.doi.org/10.5281/zenodo.438137}",
       howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
     }
 
