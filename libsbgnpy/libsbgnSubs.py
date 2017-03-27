@@ -98,7 +98,7 @@ class Extension(_Information, supermod.extensionType):
 
     """
 
-    def __init__(self, anytypeobjs_=None):
-        super(Extension, self).__init__(anytypeobjs_, )
+    def __init__(self, xml_string=None):
+        super(Extension, self).__init__(_process_xml_input(xml_string), )
 
-supermod.notesType.subclass = Notes
+supermod.extensionType.subclass = Extension

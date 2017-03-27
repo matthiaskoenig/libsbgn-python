@@ -86,12 +86,10 @@ def read_map_extension(f):
     # map is a container for the glyphs and arcs
     map = sbgn.get_map()
 
-    glyphs = map.get_glyph()
-    for g in glyphs:
-        extension = g.get_extension()
-        if extension:
-            print(g.get_id())
-            print(extension)
+    extension = map.get_extension()
+    if extension:
+        print(extension)
+        print(str(extension))
 
 
 if __name__ == "__main__":

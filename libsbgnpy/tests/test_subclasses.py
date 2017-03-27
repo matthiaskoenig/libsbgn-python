@@ -138,6 +138,40 @@ def test_create_extension():
     assert "<linearGradient" in extension_str
 
 
+def test_read_extension():
+    sbgn = libsbgn.sbgn()
+    map = libsbgn.map()
+    map.set_language(Language.PD)
+    sbgn.set_map(map)
+
+    extension = Extension("""<renderInformation id="example" programName="SBML Layout" programVersion="3.0"
+        xmlns="http://projects.eml.org/bcb/sbml/render/level2">
+           <listOfColorDefinitions>
+           <colorDefinition id="yelloComp" value="#ffffccff" />
+           <colorDefinition id="grayComp" value="#e0e0e0ff" />
+           <colorDefinition id="orange" value="#fa9e2fff" />
+           <colorDefinition id="blue" value="#2958acff" />
+           <colorDefinition id="green" value="#378f5cff" />
+           <colorDefinition id="Color_0" value="#969696" />
+           <colorDefinition id="Color_1" value="#ff9900" />
+           <colorDefinition id="Color_2" value="#000000" />			
+           </listOfColorDefinitions>
+       </renderInformation>""")
+
+    map.set_extension(extension)
+    assert map.get_extension() is not None
+
+    f = tempfile.NamedTemporaryFile(suffix=".sbgn")
+    utils.write_to_file(sbgn, f.name)
+    del map, sbgn, extension
+
+    sbgn = utils.read_from_file(f.name)
+    map = sbgn.get_map()
+    extension = map.get_extension()
+    assert extension is not None
+    assert "<colorDefinition" in str(extension)
+
+
 def test_extension_example():
     f = tempfile.NamedTemporaryFile(suffix=".sbgn")
     extension_example.write_map_extension(f.name)
