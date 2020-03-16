@@ -6,7 +6,9 @@ Steps for release are
 * create release from master branch in github
 * release on [pypi](https://pypi.python.org/pypi/libsbgnpy)
 ```
-python setup.py sdist upload
+git branch master
+git pull
+python setup.py sdist
+twine upload dist/*
 ```
 * switch to develop branch and increase version number
-* update zenodo information (DOI & citation)

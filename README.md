@@ -1,10 +1,12 @@
 ![libsbgn-python logo](docs_builder/images/libsbgn-python-logo-small.png)  
+[![PyPI version](https://badge.fury.io/py/libsbgnpy.svg)](https://badge.fury.io/py/libsbgnpy)
 [![Documentation Status](https://readthedocs.org/projects/libsbgn-python/badge/?version=latest)](http://libsbgn-python.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/matthiaskoenig/libsbgn-python.svg?branch=develop)](https://travis-ci.org/matthiaskoenig/libsbgn-python)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
-[![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.597155.svg)](https://doi.org/10.5281/zenodo.597155)
 [![Coverage Status](https://coveralls.io/repos/github/matthiaskoenig/libsbgn-python/badge.svg?branch=develop)](https://coveralls.io/github/matthiaskoenig/libsbgn-python?branch=develop)
 # libsbgnpy : Python library for SBGN
+
 
 Python library to work with [SBGN](http://sbgn.github.io/sbgn/). This library is based on the SBGN XML schema and supports reading, 
 writing and validation of SBGN files. Python >=3.5 is supported. 
@@ -22,7 +24,7 @@ Documentation with examples is available at [http://libsbgn-python.readthedocs.i
 * `validation/` validation of SBGN files
 
 To cite libsbgnpy use 
-[![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.597155.svg)](https://doi.org/10.5281/zenodo.597155)
 
 ## Installation
 The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
@@ -103,3 +105,5 @@ Improved testing and documentation
 **v0.1.2**
 
 * initial release
+
+&copy; 2016-2020 Matthias König
