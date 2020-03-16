@@ -1,7 +1,6 @@
 """
 Tests the SBGN utility functions.
 """
-from __future__ import print_function, absolute_import
 import pytest
 import os
 import tempfile

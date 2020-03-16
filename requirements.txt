@@ -1,8 +1,5 @@
-# libsbgnpy
 lxml
-enum34
 requests
-six
 
 # testing
 pytest

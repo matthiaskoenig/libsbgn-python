@@ -3,7 +3,6 @@
 Some examples for the creation of SBGN files from scratch.
 """
 
-from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn
 from libsbgnpy.libsbgnTypes import GlyphClass, ArcClass, Language, Orientation
 
@@ -201,6 +200,7 @@ def write_sbgn_03(f):
 
     # now write everything to disk
     doc.write_file(f)
+
 
 if __name__ == "__main__":
     write_sbgn_01("sbgn/test-output-01.sbgn")

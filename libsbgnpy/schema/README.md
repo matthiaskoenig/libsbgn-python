@@ -47,11 +47,6 @@ class SBGNBase ->
 
         f.close()
 ```
-**Future imports**
-```{python}
-future imports:
-    from __future__ import print_function
-```    
 
 **Adding type checks**
 ```{python}

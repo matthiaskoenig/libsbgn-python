@@ -1,7 +1,6 @@
 """
 Example tests.
 """
-from __future__ import absolute_import, print_function
 import pytest
 import libsbgnpy.libsbgn as libsbgn
 from libsbgnpy.libsbgnTypes import Language, GlyphClass, ArcClass, Orientation

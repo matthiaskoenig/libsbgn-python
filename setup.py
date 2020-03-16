@@ -8,7 +8,6 @@ python setup.py sdist
 """
 
 # Always prefer setuptools over distutils
-from __future__ import absolute_import, print_function
 from setuptools import setup, find_packages
 from codecs import open  # To use a consistent encoding
 from os import path
@@ -53,10 +52,8 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
@@ -65,11 +62,10 @@ setup(
     keywords='SBGN, libsbgn',
     packages=find_packages(),
     install_requires=[
-        'enum34',
-        'requests',
         'lxml',
-        'six'
+        'requests',
     ],
+    python_requires='>=3.5',
 
     # include the package data (SBGN, XSD)
     include_package_data=True,

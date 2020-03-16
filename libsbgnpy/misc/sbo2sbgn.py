@@ -3,7 +3,6 @@ SBOTerm to SBGN mapping.
 
 Cleanup based on initial mapping provided by Augustin.
 """
-from __future__ import print_function
 import os
 import re
 from collections import defaultdict

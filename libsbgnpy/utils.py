@@ -2,8 +2,6 @@
 """
 Helper functions to work with SBGN.
 """
-
-from __future__ import absolute_import, print_function
 import libsbgnpy.libsbgn as libsbgn
 
 
@@ -60,7 +58,7 @@ def get_version(f):
     tree = ElementTree.parse(f)
     root = tree.getroot()
     tag = root.tag
-    m = re.search("\d\.\d", tag)
+    m = re.search(r"\d\.\d", tag)
     version = m.group(0)  # full version, i.e. 0.2 or similar
     tokens = version.split('.')
     return int(tokens[-1])

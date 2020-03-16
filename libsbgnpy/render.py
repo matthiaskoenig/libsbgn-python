@@ -6,11 +6,11 @@ Currently uses the webservice provided at "http://sysbioapps.dyndns.org/Layout/G
 For documentation see
 http://sysbioapps.dyndns.org/Home/Services
 """
-
-from __future__ import absolute_import, print_function
 from libsbgnpy import utils
 import requests
 import tempfile
+
+RENDER_URL = "http://sysbioapps.spdns.org/Layout"
 
 
 def render_sbgn(sbgn, image_file, file_format="png"):
@@ -21,7 +21,7 @@ def render_sbgn(sbgn, image_file, file_format="png"):
     The image file must end in .file_format, e.g. in '.png'
 
     Performs a request analogue to:
-    curl -X POST -F file=@".\BorisEJB.xml" http://sysbioapps.dyndns.org/Layout/GenerateImage -o out.png
+    curl -X POST -F file=@".\BorisEJB.xml" http://sysbioapps.spdns.org/Layout/GenerateImage -o out.png
 
     :param sbgn: sbgn object
     :param image_file: image to create
@@ -41,7 +41,7 @@ def render_sbgn(sbgn, image_file, file_format="png"):
         ('file', open(f_in.name, 'rb')),
     ]
 
-    r = requests.post('http://sysbioapps.dyndns.org/Layout/GenerateImage', files=files)
+    r = requests.post("{}/GenerateImage".format(RENDER_URL), files=files)
     r.raise_for_status()
 
     with open(image_file, 'wb') as fd:

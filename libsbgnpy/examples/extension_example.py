@@ -3,7 +3,6 @@
 Write and read extension information.
 see https://github.com/sbgn/sbgn/wiki/SBGN-ML_Extensions
 """
-from __future__ import print_function, absolute_import
 from libsbgnpy import libsbgn
 from libsbgnpy import utils
 from libsbgnpy import Extension, Language
@@ -11,8 +10,9 @@ from libsbgnpy import Extension, Language
 
 def write_map_extension(f):
     """ Write extension information on map.
-    
-    :return: 
+
+    :param f: file input
+    :return: None
     """
     sbgn = libsbgn.sbgn()
     map = libsbgn.map()
@@ -29,7 +29,7 @@ def write_map_extension(f):
         <colorDefinition id="green" value="#378f5cff" />
         <colorDefinition id="Color_0" value="#969696" />
         <colorDefinition id="Color_1" value="#ff9900" />
-        <colorDefinition id="Color_2" value="#000000" />			
+        <colorDefinition id="Color_2" value="#000000" />
         </listOfColorDefinitions>
         <listOfGradientDefinitions>
         <linearGradient x1="0%" y1="0%" z1="0%" x2="100%" y2="0%" z2="100%" id="LinearGradient_0" spreadMethod="reflect">
@@ -51,10 +51,10 @@ def write_map_extension(f):
         </listOfGradientDefinitions>
         <listOfStyles>
         <style idList="glyph0 glyph2 glyph14 glyph34 ">
-            <g stroke="Color_2" stroke-width="5" fill="yelloComp"  />			
+            <g stroke="Color_2" stroke-width="5" fill="yelloComp" />
         </style>
         <style idList="glyph1">
-            <g stroke="Color_2" stroke-width="5" fill="grayComp"  />			
+            <g stroke="Color_2" stroke-width="5" fill="grayComp" />
         </style>
         <style idList="glyph8 glyph23 glyph5 glyph12 glyph21 glyph13 glyph4 glyph6 glyph7 glyph20 glyph22">
             <g stroke="orange" stroke-width="2" fill="OrangeGradient_0" />
@@ -79,7 +79,8 @@ def write_map_extension(f):
 def read_map_extension(f):
     """ Read notes from glyphs.
 
-    :return: 
+    :param f: file input
+    :return: None
     """
     sbgn = utils.read_from_file(f=f)
 
