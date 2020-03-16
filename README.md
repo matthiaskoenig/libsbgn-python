@@ -66,6 +66,9 @@ some utility functions created.
 **v0.2.0**
 - dropping support of python 2.7, 3.4
 - adding support for python 3.7, 3.8
+- fixing render endpoints (#31, #32)
+- fixing documentation builder
+- removing py2 legacy code
 
 **v0.1.7**
 Support for notes and extensions
