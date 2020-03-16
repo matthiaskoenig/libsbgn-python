@@ -3,7 +3,6 @@
 """
 Test the example scripts in the examples folder.
 """
-from __future__ import absolute_import, print_function
 import os
 from libsbgnpy.examples.read_example import read_sbgn_01
 from libsbgnpy.examples.write_example import write_sbgn_01, write_sbgn_02, write_sbgn_03

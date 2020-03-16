@@ -8,7 +8,6 @@ python setup.py sdist
 """
 
 # Always prefer setuptools over distutils
-from __future__ import absolute_import, print_function
 from setuptools import setup, find_packages
 from codecs import open  # To use a consistent encoding
 from os import path

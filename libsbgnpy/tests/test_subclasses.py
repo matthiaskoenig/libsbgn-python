@@ -1,7 +1,6 @@
 """
 Test Notes and Extensions.
 """
-from __future__ import print_function, absolute_import
 import tempfile
 from libsbgnpy import libsbgn, Notes, Extension, Language
 from libsbgnpy import utils

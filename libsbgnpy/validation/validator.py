@@ -6,8 +6,6 @@ and high-level validation using schematron.
 At this point only the XSD validation is implemented.
 see [#7](https://github.com/matthiaskoenig/libsbgn-python/issues/7)
 """
-
-from __future__ import print_function
 import sys
 import os
 from lxml import isoschematron
