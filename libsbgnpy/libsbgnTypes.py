@@ -20,7 +20,10 @@ class Language(Enum):
 class Orientation(Enum):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
-
+    UP = "up"
+    DOWN = "down"
+    RIGHT = "right"
+    LEFT = "left"
 
 @unique
 class GlyphClass(Enum):
