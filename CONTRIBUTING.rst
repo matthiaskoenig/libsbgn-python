@@ -116,10 +116,10 @@ features or changes that you can implement yourself.
 
     and one of the py2 and py3 tests via::
 
-     (libsbgn-python)$ tox -e py27
-     (libsbgn-python)$ tox -e py34
      (libsbgn-python)$ tox -e py35
      (libsbgn-python)$ tox -e py36
+     (libsbgn-python)$ tox -e py37
+     (libsbgn-python)$ tox -e py38
 
 10. Commit your changes and push your branch to GitHub::
 

@@ -25,6 +25,7 @@ class Orientation(Enum):
     RIGHT = "right"
     LEFT = "left"
 
+
 @unique
 class GlyphClass(Enum):
     """
