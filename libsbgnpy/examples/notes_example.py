@@ -3,8 +3,6 @@
 Write and read notes information.
 Notes must be XML elements in a <notes>Tag</notes>
 """
-from __future__ import print_function, absolute_import
-
 from libsbgnpy import libsbgn, Notes, Language
 from libsbgnpy import utils
 
@@ -57,6 +55,7 @@ def read_glyph_notes(f):
         if notes:
             print(g.get_id())
             print(notes)
+
 
 if __name__ == "__main__":
     f = 'sbgn/notes.sbgn'

@@ -53,10 +53,8 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
@@ -66,10 +64,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         'lxml',
-        'enum34',
         'requests',
-        'six'
     ],
+    python_requires='>=3.5',
 
     # include the package data (SBGN, XSD)
     include_package_data=True,

@@ -1,8 +1,6 @@
 """
 Overwritten classes (Notes & Extension)
 """
-from __future__ import print_function, absolute_import
-
 try:
     from lxml import etree as etree_
 except ImportError:

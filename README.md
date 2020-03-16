@@ -7,7 +7,7 @@
 # libsbgnpy : Python library for SBGN
 
 Python library to work with [SBGN](http://sbgn.github.io/sbgn/). This library is based on the SBGN XML schema and supports reading, 
-writing and validation of SBGN files. Python 2 and python 3 are supported. 
+writing and validation of SBGN files. Python >=3.5 is supported. 
 The initial library was generated using [generateDS](https://bitbucket.org/dkuhlman/generateds). Additional utility functions for 
 reading, writing and rendering SBGN documents are provided.
 
@@ -21,17 +21,8 @@ Documentation with examples is available at [http://libsbgn-python.readthedocs.i
 * `examples/` python examples
 * `validation/` validation of SBGN files
 
-To cite libsbgnpy use the following BibTex or equivalent
-
-    @MISC{libsbgnpy,
-      author        = {Matthias König},
-      title         = {libsbgnpy: Python library for SBGN},
-      month         = {Mar.},
-      year          = {2017},
-      doi           = "{10.5281/zenodo.438327}",
-      url           = "{http://dx.doi.org/10.5281/zenodo.438327}",
-      howpublished  = {https://github.com/matthiaskoenig/libsbgn-python/blob/master/README.md}
-    }
+To cite libsbgnpy use 
+[![DOI](https://zenodo.org/badge/34289486.svg)](https://zenodo.org/badge/latestdoi/34289486)
 
 ## Installation
 The package is available from [pypi](https://pypi.python.org/pypi/libsbgnpy)
@@ -69,8 +60,11 @@ generateDS and than adapted to include GlyphClasses and ArcClasses.
 The necessary constraints for GlyphClasses, ArcClasses and Languages were added and
 some utility functions created.
 
-
 ## ChangeLog
+**v0.2.0**
+- dropping support of python 2.7, 3.4
+- adding support for python 3.7, 3.8
+
 **v0.1.7**
 Support for notes and extensions
 

@@ -6,11 +6,11 @@ Currently uses the webservice provided at "http://sysbioapps.dyndns.org/Layout/G
 For documentation see
 http://sysbioapps.dyndns.org/Home/Services
 """
-
-from __future__ import absolute_import, print_function
 from libsbgnpy import utils
 import requests
 import tempfile
+
+RENDER_URL = "http://sysbioapps.spdns.org/Layout"
 
 
 def render_sbgn(sbgn, image_file, file_format="png"):
@@ -41,7 +41,7 @@ def render_sbgn(sbgn, image_file, file_format="png"):
         ('file', open(f_in.name, 'rb')),
     ]
 
-    r = requests.post('http://sysbioapps.dyndns.org/Layout/GenerateImage', files=files)
+    r = requests.post(f"{RENDER_URL}/GenerateImage", files=files)
     r.raise_for_status()
 
     with open(image_file, 'wb') as fd:

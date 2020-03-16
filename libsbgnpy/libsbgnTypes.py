@@ -3,7 +3,6 @@
 Definition of Language, GlyphClass and ArcClass types.
 Created manually from schema file.
 """
-from __future__ import absolute_import, print_function
 from enum import Enum, unique
 
 

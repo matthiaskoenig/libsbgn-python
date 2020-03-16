@@ -3,7 +3,6 @@
 Write and read extension information.
 see https://github.com/sbgn/sbgn/wiki/SBGN-ML_Extensions
 """
-from __future__ import print_function, absolute_import
 from libsbgnpy import libsbgn
 from libsbgnpy import utils
 from libsbgnpy import Extension, Language

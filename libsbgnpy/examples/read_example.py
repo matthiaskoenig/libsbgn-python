@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from __future__ import print_function
 import libsbgnpy.libsbgn as libsbgn
 
 
@@ -32,6 +30,7 @@ def read_sbgn_01(f):
         print(" Arc with class ", a.get_class())
 
     return sbgn
+
 
 if __name__ == "__main__":
     read_sbgn_01('sbgn/adh.sbgn')

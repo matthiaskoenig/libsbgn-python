@@ -2,7 +2,6 @@
 """
 Display information from SBGN files.
 """
-from __future__ import print_function, absolute_import
 import os
 import libsbgnpy.libsbgn as libsbgn  # import the bindings
 from libsbgnpy.utils import print_bbox  # some additional helpers
@@ -63,6 +62,7 @@ def info_example():
         print(start.x, start.y)
         end = a.get_end()
         print(end.x, end.y)
+
 
 if __name__ == "__main__":
     info_example()
