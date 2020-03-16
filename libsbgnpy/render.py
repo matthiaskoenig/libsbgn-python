@@ -41,7 +41,7 @@ def render_sbgn(sbgn, image_file, file_format="png"):
         ('file', open(f_in.name, 'rb')),
     ]
 
-    r = requests.post(f"{RENDER_URL}/GenerateImage", files=files)
+    r = requests.post("{}/GenerateImage".format(RENDER_URL), files=files)
     r.raise_for_status()
 
     with open(image_file, 'wb') as fd:
