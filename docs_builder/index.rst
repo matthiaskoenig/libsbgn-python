@@ -3,7 +3,7 @@ Documentation for libsbgn-python
 
 .. image:: ./images/libsbgn-python-logo-small.png
 
-Source code and support is available at
+Source code and support are available at
 `https://github.com/matthiaskoenig/libsbgn-python
 <https://github.com/matthiaskoenig/libsbgn-python>`_.
 
