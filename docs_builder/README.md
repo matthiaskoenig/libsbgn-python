@@ -15,5 +15,5 @@ make html
 ## Update jupyter notebooks
 ```
 pip install jupyterlab
-ipython kernel install --user --name libsbgn-python
+ipython kernel install --user --name libsbgnpy
 ```
