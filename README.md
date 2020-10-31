@@ -8,8 +8,9 @@
 # libsbgnpy : Python library for SBGN
 
 
-Python library to work with [SBGN](http://sbgn.github.io/sbgn/). This library is based on the SBGN XML schema and supports reading, 
+Python library to work with the Systems Biology Graphical Notation ([SBGN](http://sbgn.github.io/sbgn/)). This library is based on the SBGN XML schema and supports reading, 
 writing and validation of SBGN files. Python >=3.5 is supported. 
+
 The initial library was generated using [generateDS](https://bitbucket.org/dkuhlman/generateds). Additional utility functions for 
 reading, writing and rendering SBGN documents are provided.
 
@@ -62,51 +63,5 @@ generateDS and than adapted to include GlyphClasses and ArcClasses.
 The necessary constraints for GlyphClasses, ArcClasses and Languages were added and
 some utility functions created.
 
-## ChangeLog
-**v0.2.0**
-- dropping support of python 2.7, 3.4
-- adding support for python 3.7, 3.8
-- fixing render endpoints (#31, #32)
-- fixing documentation builder
-- removing py2 legacy code
-
-**v0.1.7**
-Support for notes and extensions
-
-* Extension and Notes reading and writing
-* Extension and Notes examples
-
-**v0.1.6**
-Improved testing and documentation
-
-* New documentation: http://libsbgn-python.readthedocs.io/en/latest/index.html
-* Some python 3 bugfixes
-* Additional examples 
-* Additional tests, coverage & switch to py-test
-* pep8 fixes
-* tox support and tox testing
-* logo
-
-**v0.1.5**
-
-* py3 support bugfixes
-* SBGN validation with XSD schema
-* update of bindings from latest schema
-* bug fix in writing some attributes
-
-**v0.1.4**
-
-* support for py2.6, 2.7, 3.4, 3.5
-* continuous integration with travis
-
-**v0.1.3**
-
-* unittests added
-* x, y, w, d handled as float instead int according to specification
-
-
-**v0.1.2**
-
-* initial release
 
 &copy; 2016-2020 Matthias König

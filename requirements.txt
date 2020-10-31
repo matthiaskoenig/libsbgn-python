@@ -1,7 +1,0 @@
-lxml
-requests
-
-# testing
-pytest
-pytest-cov
-
