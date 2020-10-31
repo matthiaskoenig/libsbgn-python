@@ -37,7 +37,7 @@ libsbgnpy : Python library for SBGN
 Python library to work with the Systems Biology Graphical Notation (`SBGN <http://sbgn.github.io/sbgn/>`__). This library is based on the SBGN XML schema and supports reading, 
 writing and validation of SBGN files.
 
-The initial library was generated using `generateDS <https://bitbucket.org/dkuhlman/generateds>`__. Additional utility functions for reading, writing, and rendering SBGN documents are provided.
+The initial library was generated using `generateDS <https://pypi.org/project/generateDS/>`__. Additional utility functions for reading, writing, and rendering SBGN documents are provided.
 
 Documentation with examples is available at `https://libsbgn-python.readthedocs.io <https://libsbgn-python.readthedocs.io>`__.
 
@@ -45,7 +45,7 @@ Documentation with examples is available at `https://libsbgn-python.readthedocs.
 * ``libsbgnTypes.py`` SBGN type definitions (GlyphClasses, ArcClasses, Languages)
 * ``utils.py`` SBGN utility function like writing & reading of files
 * ``render.py`` SBGN rendering
-* ``tests`` unittests
+* ``test/`` unittests
 * ``examples/`` python examples
 * ``validation/`` validation of SBGN files
 
@@ -55,6 +55,17 @@ How to cite
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.597155.svg
    :target: https://doi.org/10.5281/zenodo.597155
    :alt: Zenodo DOI
+
+Installation
+============
+``libsbgnpy`` is available from `pypi <https://pypi.python.org/pypi/libsbgnpy>`__ and
+can be installed via::
+
+    pip install libsbgnpy
+
+Support
+=======
+To report bugs, request features or asking questions please file an `issue <https://github.com/matthiaskoenig/libsbgn-python/issues/new>`__.
 
 License
 =======
@@ -78,17 +89,6 @@ Funding
 =======
 Matthias König is supported by the Federal Ministry of Education and Research (BMBF, Germany)
 within the research network Systems Medicine of the Liver (**LiSyM**, grant number 031L0054).
-
-Installation
-============
-``libsbgnpy`` is available from `pypi <https://pypi.python.org/pypi/libsbgnpy>`__ and
-can be installed via::
-
-    pip install libsbgnpy
-
-Support
-=======
-To report bugs, request features or asking questions please file an `issue <https://github.com/matthiaskoenig/libsbgn-python/issues>`__.
 
 
 Software using libsbgnpy
