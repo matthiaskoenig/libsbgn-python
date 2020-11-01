@@ -77,7 +77,7 @@ class _Information(object):
         Necessary to provide handling for the xsd:any.
         """
         # This is the lxml.etree._Element, in first version going via strings
-        obj_ = etree_.tostring(child_, pretty_print=False)
+        obj_ = etree_.tostring(child_, pretty_print=False, encoding="unicode")
         # print('obj_', obj_)
         if obj_ is not None:
             self.add_anytypeobjs_(obj_)
