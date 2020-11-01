@@ -93,10 +93,7 @@ within the research network Systems Medicine of the Liver (**LiSyM**, grant numb
 
 Software using libsbgnpy
 ========================
-* `Mimoza <http://mimoza.bordeaux.inria.fr/>`__ takes a model in
-SBML format and visualizes it in several formats (downloadable as a
-COMBINE archive).
-
+* `Mimoza <http://mimoza.bordeaux.inria.fr/>`__ takes a model in SBML format and visualizes it in several formats (downloadable as a COMBINE archive).
 
 Python Language Bindings
 ========================
