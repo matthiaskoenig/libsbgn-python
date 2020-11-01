@@ -1,14 +1,21 @@
-# Release info
-Steps for release are
-* update version number in develop branch
-* update documentation & add changes to changelog
-* merge all develop changes to master via pull request
-* create release from master branch in github
-* release on [pypi](https://pypi.python.org/pypi/libsbgnpy)
+# Release information
+
+## update documentation
+* make necessary updates to notebooks
+* build documentation `cd docs_builder` and `make html`
+
+## make release
+* sort imports (`isort src/libsbgnpy`)
+* code formating (`black src/libsbgnpy`)
+* make sure all tests run (`tox --`)
+* update release notes in `release-notes`
+* commit changes
+* bump version (`bumpversion patch` or `bumpversion` minor)
+* `git push --tags` (triggers release)
+
+* test installation in virtualenv from pypi
 ```
-git branch master
-git pull
-python setup.py sdist
-twine upload dist/*
+mkvirtualenv test --python=python3.8
+(test) pip install libsbgnpy
 ```
-* switch to develop branch and increase version number
+* merge pull request to master
