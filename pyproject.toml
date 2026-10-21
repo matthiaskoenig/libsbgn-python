@@ -37,6 +37,8 @@ keywords = [
 	"visualization",
 ]
 dependencies = [
+	# the CA bundle of requests, without the emSign roots of GHSA-6q48-6c7w-9gw2
+	"certifi>=2026.10.19",
 	"lxml>=6.1.3",
 	"requests>=2.34.2",
 	"rich>=15.0.0",

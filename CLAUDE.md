@@ -4,7 +4,7 @@ This file provides guidance when working with code in this repository.
 
 ## Project
 
-`libsbgnpy` is a python library for the Systems Biology Graphical Notation (SBGN): the python bindings of the SBGN-ML schema plus reading, writing, validation and image rendering of SBGN documents. Pure library, no CLI entry points. Requires python >= 3.11, packaged with hatchling (version is read from `src/libsbgnpy/__init__.py`). Runtime dependencies are `xsdata` (XML binding), `lxml` (schema validation), `requests` (rendering web service) and `rich` (output of the examples).
+`libsbgnpy` is a python library for the Systems Biology Graphical Notation (SBGN): the python bindings of the SBGN-ML schema plus reading, writing, validation and image rendering of SBGN documents. Pure library, no CLI entry points. Requires python >= 3.11, packaged with hatchling (version is read from `src/libsbgnpy/__init__.py`). Runtime dependencies are `xsdata` (XML binding), `lxml` (schema validation), `requests` (rendering web service), `certifi` (the CA bundle of requests, floor 2026.10.19 for GHSA-6q48-6c7w-9gw2) and `rich` (output of the examples).
 
 ## Commands
 
@@ -41,7 +41,7 @@ Documentation is [Zensical](https://zensical.org/): markdown sources in `docs/`,
 
 **`sbgn.py` and `render.py` are generated code.** They are the bindings of `schema/SBGN.xsd` and `schema/render.xsd`, generated with xsdata; do not hand-edit them. The classes are keyword-only dataclasses which mirror the schema: `Sbgn` holds `Map` objects, a map holds `Glyph`, `Arc` and `Arcgroup` objects, glyphs nest (a compartment or a complex holds its content, auxiliary units are glyphs), a `Glyph` of class `PROCESS` carries the `Port` objects the arcs attach to, and `Bbox` plus the `start`/`end`/`next` points of an arc carry the layout. `class_value` is the SBGN class, `class` being a keyword. Every element inherits from `Sbgnbase`, which carries `notes` and `extension`. They are regenerated with `uv run python scripts/generate_bindings.py`, which applies every fix to the xsdata output (see `src/libsbgnpy/schema/README.md`); `tests/test_bindings.py` fails when the committed modules differ from a fresh generation.
 
-**`io.py` — reading and writing.** The entry points of the package. `read_sbgn_from_file`/`read_sbgn_from_string` parse with `parse_xml` (untrusted input: no entity resolution, no network; a file is decoded with its declared encoding), move the SBGN-ML 0.1 and 0.2 namespaces to 0.3 with `upconvert_tree` (only element and attribute names change, never values), reject a root other than `sbgn` and bind the lxml tree with xsdata; every failure is an `xsdata.exceptions.ParserError`. They do not validate. `write_sbgn_to_file`/`write_sbgn_to_string` serialize into the 0.3 namespace.
+**`io.py` - reading and writing.** The entry points of the package. `read_sbgn_from_file`/`read_sbgn_from_string` parse with `parse_xml` (untrusted input: no entity resolution, no network; a file is decoded with its declared encoding), move the SBGN-ML 0.1 and 0.2 namespaces to 0.3 with `upconvert_tree` (only element and attribute names change, never values), reject a root other than `sbgn` and bind the lxml tree with xsdata; every failure is an `xsdata.exceptions.ParserError`. They do not validate. `write_sbgn_to_file`/`write_sbgn_to_string` serialize into the 0.3 namespace.
 
 The subtle part is the raw XML of `notes` and `extension`: the schema allows arbitrary content there, so the bindings type it as `list[object]`. It is *set* as a string and *read back* as an `AnyElement` tree. `write_sbgn_to_string` therefore deep-copies the document and converts every raw string into an element tree (`_with_parsed_raw_xml` → `element_from_string`) before serializing, because the serializer escapes a string as text and writes only the first entry of such a list inside the element. `element_to_string` is the inverse for reading, and `read_render_from_extension` uses it to find and parse the `renderInformation` of a map. The conversion between `AnyElement` and XML goes through lxml (`_element_to_node`, `_node_to_element`).
 
@@ -53,7 +53,7 @@ The subtle part is the raw XML of `notes` and `extension`: the schema allows arb
 
 Reading keeps a value outside of an enumeration (an unknown glyph class or version) as a string and logs the xsdata `ConverterWarning` instead of emitting it.
 
-**`image.py` — rendering.** `render_sbgn` posts the document to the rendering web service at `RENDER_URL` and writes the returned PNG; it needs network access and is the only module which does.
+**`image.py` - rendering.** `render_sbgn` posts the document to the rendering web service at `RENDER_URL` and writes the returned PNG; it needs network access and is the only module which does.
 
 `console.py` (rich console, for scripts and examples) and `log.py` provide the shared output/logging. Modules get their logger from the standard library with `logging.getLogger(__name__)`. The package never configures logging: no handlers, no levels, only a `NullHandler` on the `libsbgnpy` logger; `log.enable_rich_logging()` is the opt-in for scripts. Library code logs, it does not print, and log calls use lazy `%s` formatting rather than f-strings (enforced by ruff `G`).
 
