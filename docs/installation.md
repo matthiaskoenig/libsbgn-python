@@ -41,7 +41,7 @@ To work on the repository itself, with the test and documentation tooling, see [
 
 ## Dependencies
 
-The package depends on [xsdata](https://github.com/tefra/xsdata), which reads and writes the SBGN-ML documents, [lxml](https://lxml.de/), which validates them against the schema, [requests](https://requests.readthedocs.io/), which queries the rendering web service, and [rich](https://rich.readthedocs.io/), which formats the output of the examples. `lxml` ships wheels for all common platforms, so no compiler is needed.
+The package depends on [xsdata](https://github.com/tefra/xsdata), which reads and writes the SBGN-ML documents, [lxml](https://lxml.de/), which validates them against the schema, [requests](https://requests.readthedocs.io/), which queries the rendering web service, [certifi](https://github.com/certifi/python-certifi), the certificates requests verifies the service with (at least 2026.10.19, which removes the emSign roots of [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)), and [rich](https://rich.readthedocs.io/), which formats the output of the examples. `lxml` ships wheels for all common platforms, so no compiler is needed.
 
 ## Logging
 
